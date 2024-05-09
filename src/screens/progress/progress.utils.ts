@@ -130,8 +130,7 @@ export const prepareMonthlyStackChartData = (
 
   const chartData: StackChartData[] = dayLabels.map((dayLabel) => {
     const total = sumByLabel[dayLabel]?.length ?? 0;
-
-    let stocks = sumByLabel[dayLabel] ?? [];
+    let stocks = sumByLabel[dayLabel]?.sort((a, b) => a.value - b.value) ?? [];
     let updatedStock: StackDataType[] = [];
     stocks.forEach((i, index) => {
       if (index === 0) {

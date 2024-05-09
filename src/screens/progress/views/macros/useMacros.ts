@@ -8,6 +8,7 @@ import type {
 } from '../../../../components';
 import { prepareMonthlyStackChartData as prepareMacroChartData } from '../../progress.utils';
 import { useTargetMacros } from '../../../.../../../hooks';
+import { useIsFocused } from '@react-navigation/native';
 
 interface Data {
   calories: StackChartData[];
@@ -41,6 +42,10 @@ export const useMacros = () => {
           'protein',
         ]);
         setChartData({
+          calories: [],
+          macroChartData: [],
+        });
+        setChartData({
           calories: caloriesData,
           macroChartData: macrosData,
         });
@@ -52,15 +57,19 @@ export const useMacros = () => {
     [services]
   );
 
-  useEffect(() => {
-    const startDate = calendarCarouselRef?.current?.getStartDate();
-    const endDate = calendarCarouselRef?.current?.getEndDate();
-    const type = calendarCarouselRef?.current?.getCalendarType();
+  const isFocus = useIsFocused();
 
-    if (startDate && endDate && type) {
-      fetchData(startDate, endDate, type);
+  useEffect(() => {
+    if (isFocus) {
+      const startDate = calendarCarouselRef?.current?.getStartDate();
+      const endDate = calendarCarouselRef?.current?.getEndDate();
+      const type = calendarCarouselRef?.current?.getCalendarType();
+
+      if (startDate && endDate && type) {
+        fetchData(startDate, endDate, type);
+      }
     }
-  }, [fetchData]);
+  }, [fetchData, isFocus]);
 
   return {
     macroChartData: chartData?.macroChartData ?? [],
