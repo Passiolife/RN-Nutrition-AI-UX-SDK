@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { PASSIO_SDK_KEY } from '../../config';
 import { PassioSDK } from '@passiolife/nutritionai-react-native-sdk-v3/src/sdk/v2';
+import { PASSIO_SDK_KEY } from '../../key'; // create key.ts folder at root
 
 export function usePassioAuthConfig() {
   const [isReady, setIsReady] = useState(false);

@@ -70,4 +70,5 @@ example/ios/.xcode.env.local
 example/src/config/index.ts
 example/android/app/release/output-metadata.json
 example/android/app/release/*
-src/config/index.ts
+
+src/key.ts

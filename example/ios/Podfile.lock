@@ -1124,7 +1124,7 @@ DEPENDENCIES:
   - libevent (~> 2.1.12)
   - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
-  - "NutritionReport (from `https://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@github.com/Passiolife/Nutrition-Report-iOS.git`, tag `1.0.2`)"
+  - NutritionReport (from `https://github.com/Passiolife/Nutrition-Report-iOS.git`, tag `1.0.2`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -1213,7 +1213,7 @@ EXTERNAL SOURCES:
   lottie-react-native:
     :path: "../node_modules/lottie-react-native"
   NutritionReport:
-    :git: "https://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@github.com/Passiolife/Nutrition-Report-iOS.git"
+    :git: https://github.com/Passiolife/Nutrition-Report-iOS.git
     :tag: 1.0.2
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
@@ -1332,7 +1332,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   NutritionReport:
-    :git: "https://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@github.com/Passiolife/Nutrition-Report-iOS.git"
+    :git: https://github.com/Passiolife/Nutrition-Report-iOS.git
     :tag: 1.0.2
 
 SPEC CHECKSUMS:
@@ -1408,6 +1408,6 @@ SPEC CHECKSUMS:
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: e64aa65de36c0832d04e8c7bd614396c77a80047
 
-PODFILE CHECKSUM: 04527cf47cf810632bc0e8dd637ff1a9e898a634
+PODFILE CHECKSUM: 5d2c0a04feb1d13f08578145ba0d9025d3cd45b5
 
 COCOAPODS: 1.14.3

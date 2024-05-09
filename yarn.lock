@@ -1855,9 +1855,10 @@
   dependencies:
     "@octokit/openapi-types" "^20.0.0"
 
-"@passiolife/nutritionai-react-native-sdk-v3@https://github.com/Passiolife/NutritionAI-React-Native-SDK-v3.git#5828b8088bf59b09b20156764acd343716716461":
+"@passiolife/nutritionai-react-native-sdk-v3@3.0.3":
   version "3.0.3"
-  resolved "https://github.com/Passiolife/NutritionAI-React-Native-SDK-v3.git#5828b8088bf59b09b20156764acd343716716461"
+  resolved "https://npm.pkg.github.com/download/@passiolife/nutritionai-react-native-sdk-v3/3.0.3/6452494f346579aafc084cb7085e383f29c14cb9#6452494f346579aafc084cb7085e383f29c14cb9"
+  integrity sha512-FXxFS8SslfihFR2c8XJYpkH3kASitAK/7DHDi4FusXHGRjY3RXGsdDfk03JbTsQJCt7B8WNvsOCU82aR/WkLiA==
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
