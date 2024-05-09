@@ -1,0 +1,238 @@
+diff --git a/node_modules/react-native-gifted-charts/src/BarChart/Animated2DWithGradient.tsx b/node_modules/react-native-gifted-charts/src/BarChart/Animated2DWithGradient.tsx
+index 5682f14..2f558a9 100644
+--- a/node_modules/react-native-gifted-charts/src/BarChart/Animated2DWithGradient.tsx
++++ b/node_modules/react-native-gifted-charts/src/BarChart/Animated2DWithGradient.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React, {useEffect, useState} from 'react';
+ import {View, LayoutAnimation, Platform, UIManager, Text} from 'react-native';
+ import Svg, {Defs, Rect} from 'react-native-svg';
+diff --git a/node_modules/react-native-gifted-charts/src/BarChart/RenderBars.tsx b/node_modules/react-native-gifted-charts/src/BarChart/RenderBars.tsx
+index f06132f..3e888c4 100644
+--- a/node_modules/react-native-gifted-charts/src/BarChart/RenderBars.tsx
++++ b/node_modules/react-native-gifted-charts/src/BarChart/RenderBars.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React from 'react';
+ import {View, TouchableOpacity, Animated, Text} from 'react-native';
+ import AnimatedThreeDBar from '../Components/AnimatedThreeDBar';
+diff --git a/node_modules/react-native-gifted-charts/src/BarChart/RenderStackBars.tsx b/node_modules/react-native-gifted-charts/src/BarChart/RenderStackBars.tsx
+index b11f14e..eb32689 100644
+--- a/node_modules/react-native-gifted-charts/src/BarChart/RenderStackBars.tsx
++++ b/node_modules/react-native-gifted-charts/src/BarChart/RenderStackBars.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React, {useEffect} from 'react';
+ import {
+   View,
+diff --git a/node_modules/react-native-gifted-charts/src/BarChart/index.tsx b/node_modules/react-native-gifted-charts/src/BarChart/index.tsx
+index cd50316..16dade1 100644
+--- a/node_modules/react-native-gifted-charts/src/BarChart/index.tsx
++++ b/node_modules/react-native-gifted-charts/src/BarChart/index.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React, {useCallback, useEffect, useMemo, useRef} from 'react';
+ import {Animated, Easing, View} from 'react-native';
+ import RenderBars from './RenderBars';
+diff --git a/node_modules/react-native-gifted-charts/src/Components/AnimatedThreeDBar/index.tsx b/node_modules/react-native-gifted-charts/src/Components/AnimatedThreeDBar/index.tsx
+index db1f49e..0f37639 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/AnimatedThreeDBar/index.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/AnimatedThreeDBar/index.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React, {useEffect, useState} from 'react';
+ import {
+   View,
+diff --git a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/index.tsx b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/index.tsx
+index 4daff4b..b5c09bf 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/index.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/index.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React, {Fragment, useEffect} from 'react';
+ import {View, ScrollView, StyleSheet, I18nManager} from 'react-native';
+ import {renderHorizSections} from './renderHorizSections';
+diff --git a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderHorizSections.tsx b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderHorizSections.tsx
+index b8e020c..93a4998 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderHorizSections.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderHorizSections.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React from 'react';
+ import {Text, View} from 'react-native';
+ import Rule from '../lineSvg';
+diff --git a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/index.tsx b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/index.tsx
+index 9296ca9..4cd7042 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/index.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/index.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React from 'react';
+ import {View, Animated} from 'react-native';
+ import Svg, {Path} from 'react-native-svg';
+diff --git a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderDataPoints.tsx b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderDataPoints.tsx
+index 50bad33..d822845 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderDataPoints.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderDataPoints.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React, {Fragment} from 'react';
+ import {styles} from '../../../BarChart/styles';
+ import {View} from 'react-native';
+diff --git a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderSpecificDataPoints.tsx b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderSpecificDataPoints.tsx
+index 5f78a17..2f9eddf 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderSpecificDataPoints.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderSpecificDataPoints.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React, {Fragment} from 'react';
+ import {getXForLineInBar, getYForLineInBar} from 'gifted-charts-core';
+ import {Circle, Rect, Text as CanvasText} from 'react-native-svg';
+diff --git a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderSpecificVerticalLines.tsx b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderSpecificVerticalLines.tsx
+index 32a91e4..9769f0d 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderSpecificVerticalLines.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderLineInBarChart/renderSpecificVerticalLines.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React from 'react';
+ import {Rect} from 'react-native-svg';
+ 
+diff --git a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderVerticalLines.tsx b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderVerticalLines.tsx
+index d31e483..26af2ac 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderVerticalLines.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/BarAndLineChartsWrapper/renderVerticalLines.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React from 'react';
+ import {View} from 'react-native';
+ import {chartTypes} from 'gifted-charts-core';
+diff --git a/node_modules/react-native-gifted-charts/src/Components/BarSpecificComponents/barBackgroundPattern.tsx b/node_modules/react-native-gifted-charts/src/Components/BarSpecificComponents/barBackgroundPattern.tsx
+index 2d98756..9057bce 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/BarSpecificComponents/barBackgroundPattern.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/BarSpecificComponents/barBackgroundPattern.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React from 'react';
+ import Svg, {Defs, Rect} from 'react-native-svg';
+ 
+diff --git a/node_modules/react-native-gifted-charts/src/Components/BarSpecificComponents/cap.tsx b/node_modules/react-native-gifted-charts/src/Components/BarSpecificComponents/cap.tsx
+index 26ed34d..76970d8 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/BarSpecificComponents/cap.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/BarSpecificComponents/cap.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React from 'react';
+ import {View} from 'react-native';
+ import {BarDefaults} from 'gifted-charts-core';
+diff --git a/node_modules/react-native-gifted-charts/src/Components/common/LinearGradient.tsx b/node_modules/react-native-gifted-charts/src/Components/common/LinearGradient.tsx
+index 445297c..f1ee538 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/common/LinearGradient.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/common/LinearGradient.tsx
+@@ -1,5 +1,5 @@
+ import React from 'react';
+-import {ViewStyle} from "react-native";
++import type { ViewStyle } from "react-native";
+ 
+ type LinearGradientProps = {
+   style?: ViewStyle;
+diff --git a/node_modules/react-native-gifted-charts/src/Components/common/Pointer.tsx b/node_modules/react-native-gifted-charts/src/Components/common/Pointer.tsx
+index 83a4017..30e472b 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/common/Pointer.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/common/Pointer.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React from 'react';
+ import {View} from 'react-native';
+ 
+diff --git a/node_modules/react-native-gifted-charts/src/Components/common/StripAndLabel.tsx b/node_modules/react-native-gifted-charts/src/Components/common/StripAndLabel.tsx
+index 2c3c37d..e77d877 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/common/StripAndLabel.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/common/StripAndLabel.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React from 'react';
+ import {View} from 'react-native';
+ import Svg, {Line} from 'react-native-svg';
+diff --git a/node_modules/react-native-gifted-charts/src/Components/lineSvg.tsx b/node_modules/react-native-gifted-charts/src/Components/lineSvg.tsx
+index 08cc34a..2f62c00 100644
+--- a/node_modules/react-native-gifted-charts/src/Components/lineSvg.tsx
++++ b/node_modules/react-native-gifted-charts/src/Components/lineSvg.tsx
+@@ -1,5 +1,5 @@
+ import * as React from 'react';
+-import {ColorValue} from 'react-native';
++import type { ColorValue } from 'react-native';
+ import Svg, {G, Path} from 'react-native-svg';
+ import { ruleTypes } from 'gifted-charts-core';
+ 
+diff --git a/node_modules/react-native-gifted-charts/src/LineChart/LineChartBicolor.tsx b/node_modules/react-native-gifted-charts/src/LineChart/LineChartBicolor.tsx
+index 63e6f26..2a3217b 100644
+--- a/node_modules/react-native-gifted-charts/src/LineChart/LineChartBicolor.tsx
++++ b/node_modules/react-native-gifted-charts/src/LineChart/LineChartBicolor.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React, {Fragment, useCallback, useEffect, useMemo, useRef} from 'react';
+ import {View, Animated, Easing, Text} from 'react-native';
+ import {styles} from './styles';
+diff --git a/node_modules/react-native-gifted-charts/src/LineChart/index.tsx b/node_modules/react-native-gifted-charts/src/LineChart/index.tsx
+index 21914ae..3143c42 100644
+--- a/node_modules/react-native-gifted-charts/src/LineChart/index.tsx
++++ b/node_modules/react-native-gifted-charts/src/LineChart/index.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React, {Fragment, useCallback, useEffect, useMemo, useRef} from 'react';
+ import {
+   View,
+@@ -6,7 +7,7 @@ import {
+   Text,
+   Dimensions,
+   Platform,
+-  ColorValue,
++  type ColorValue,
+   I18nManager,
+ } from 'react-native';
+ import {styles} from './styles';
+diff --git a/node_modules/react-native-gifted-charts/src/PieChart/index.tsx b/node_modules/react-native-gifted-charts/src/PieChart/index.tsx
+index 1d34660..b8106b8 100644
+--- a/node_modules/react-native-gifted-charts/src/PieChart/index.tsx
++++ b/node_modules/react-native-gifted-charts/src/PieChart/index.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React from 'react';
+ import {View} from 'react-native';
+ import {PieChartMain} from './main';
+diff --git a/node_modules/react-native-gifted-charts/src/PieChart/main.tsx b/node_modules/react-native-gifted-charts/src/PieChart/main.tsx
+index ec5b3d6..65971c2 100644
+--- a/node_modules/react-native-gifted-charts/src/PieChart/main.tsx
++++ b/node_modules/react-native-gifted-charts/src/PieChart/main.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React from 'react';
+ import {View} from 'react-native';
+ import Svg, {
+diff --git a/node_modules/react-native-gifted-charts/src/PieChartPro/index.tsx b/node_modules/react-native-gifted-charts/src/PieChartPro/index.tsx
+index dff5567..0522a37 100644
+--- a/node_modules/react-native-gifted-charts/src/PieChartPro/index.tsx
++++ b/node_modules/react-native-gifted-charts/src/PieChartPro/index.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React, {useEffect} from 'react';
+ import {
+   PieChartPropsType,
+diff --git a/node_modules/react-native-gifted-charts/src/PopulationPyramid/index.tsx b/node_modules/react-native-gifted-charts/src/PopulationPyramid/index.tsx
+index 500cfea..c42d990 100644
+--- a/node_modules/react-native-gifted-charts/src/PopulationPyramid/index.tsx
++++ b/node_modules/react-native-gifted-charts/src/PopulationPyramid/index.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ import React, {Fragment} from 'react';
+ import {View} from 'react-native';
+ import {
+diff --git a/node_modules/react-native-gifted-charts/src/index.tsx b/node_modules/react-native-gifted-charts/src/index.tsx
+index fba7064..8dfbb49 100644
+--- a/node_modules/react-native-gifted-charts/src/index.tsx
++++ b/node_modules/react-native-gifted-charts/src/index.tsx
+@@ -1,3 +1,4 @@
++// @ts-nocheck
+ export {BarChart} from './BarChart';
+ export {PieChart} from './PieChart';
+ export {PieChartPro} from './PieChartPro';

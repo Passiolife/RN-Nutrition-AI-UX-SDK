@@ -1,0 +1,100 @@
+import React from 'react';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import { useBranding } from '../../../../contexts';
+import type { Branding } from '../../../../contexts';
+import {
+  CalendarCarousel,
+  StackChart,
+  BasicButton,
+  CustomActivityIndicator,
+} from '../../../../components';
+import { scaleHeight, scaleWidth, scaledSize } from '../../../../utils';
+import { useMacros } from './useMacros';
+
+const Macros = () => {
+  const {
+    macroChartData,
+    fetchData,
+    calories,
+    calendarCarouselRef,
+    targetCalories,
+    targetFat,
+    targetCarbs,
+    targetProtein,
+    loading,
+  } = useMacros();
+
+  const styles = macrosStyle(useBranding());
+
+  return (
+    <View style={styles.container}>
+      <CalendarCarousel
+        ref={calendarCarouselRef}
+        calendarCarouselContainerStyle={styles.calendarCarouselContainer}
+        onDateSelect={(sd, ed, type) => {
+          return fetchData(sd, ed, type);
+        }}
+      />
+      {loading ? (
+        <CustomActivityIndicator style={{ marginTop: 90 }} />
+      ) : (
+        <ScrollView
+          style={styles.scrollViewStyle}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.contentContainerStyle}
+        >
+          <StackChart
+            barChartContainerStyle={styles.stackChartContainer}
+            stackData={calories ?? []}
+            title="Calories"
+            showInfo={false}
+            target={targetCalories}
+          />
+
+          <StackChart
+            barChartContainerStyle={styles.stackChartContainer}
+            title="Macros"
+            target={targetFat + targetProtein + targetCarbs}
+            stackData={macroChartData ?? []}
+          />
+
+          <BasicButton
+            style={styles.button}
+            text="Generate Report"
+            onPress={() => null}
+          />
+        </ScrollView>
+      )}
+    </View>
+  );
+};
+
+const macrosStyle = ({}: Branding) =>
+  StyleSheet.create({
+    container: {
+      paddingHorizontal: scaleWidth(16),
+      flex: 1,
+    },
+    switchTabContainer: {
+      marginTop: scaleHeight(12),
+    },
+    barChartContainer: {
+      marginTop: scaleHeight(16),
+    },
+    stackChartContainer: {
+      marginTop: scaleHeight(16),
+    },
+    calendarCarouselContainer: {
+      marginTop: scaleHeight(24),
+    },
+    scrollViewStyle: {},
+    contentContainerStyle: {
+      paddingBottom: scaleHeight(75),
+    },
+    button: {
+      borderRadius: scaledSize(4),
+      marginTop: scaleHeight(64),
+    },
+  });
+
+export default React.memo(Macros);
