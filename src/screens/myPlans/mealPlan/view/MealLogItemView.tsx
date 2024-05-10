@@ -1,9 +1,10 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image, TouchableOpacity, View } from 'react-native';
 import { ICONS } from '../../../../assets';
 import styles from './MeaLogView.Style';
 import { PassioFoodIcon } from '../../../../components/passio/PassioFoodIcon';
 import type { PassioMealPlanItem } from '@passiolife/nutritionai-react-native-sdk-v3';
+import { Text } from '../../../../components';
 
 interface Props {
   passioMealPlanItem: PassioMealPlanItem;
@@ -34,10 +35,15 @@ const MealLogItemView = (props: Props) => {
           />
         </View>
         <View style={styles.mealDetail}>
-          <Text numberOfLines={2} ellipsizeMode="tail" style={styles.mealName}>
+          <Text
+            numberOfLines={2}
+            ellipsizeMode="tail"
+            color="text"
+            style={styles.mealName}
+          >
             {meal.foodName}
           </Text>
-          <Text style={styles.mealSize}>
+          <Text style={styles.mealSize} color="secondaryText">
             {`${meal.nutritionPreview?.servingQuantity} ${meal.nutritionPreview?.servingUnit}`}
             {' | '}
             {meal?.nutritionPreview?.calories + ' calories'}

@@ -44,8 +44,15 @@ const Micros = () => {
       return renderHeader();
     }
     const recommended = recommendedNutrient[item.id];
-    const percentage = (item.amount * 100) / recommended;
-    const isOverValue = recommended > 0 && percentage > 100;
+    let percentage = (Math.round(item.amount) * 100) / recommended;
+
+    const remain = recommended - Math.round(item.amount);
+
+    if (remain < 0) {
+      percentage = 100;
+    }
+
+    const isOverValue = percentage >= 100;
 
     return (
       <View>
@@ -54,18 +61,14 @@ const Micros = () => {
             {nutrientName[item.id]}
           </Text>
           <Text weight="400" style={styles.itemText}>
-            {Math.round(isOverValue ? item.amount ?? 0 : item.amount ?? 0) +
-              ' ' +
-              nutrientUnits[item.id]}
+            {Math.round(item.amount ?? 0) + ' ' + nutrientUnits[item.id]}
           </Text>
           <Text
             color={isOverValue ? 'error' : 'text'}
             weight={isOverValue ? '500' : '400'}
             style={styles.itemText}
           >
-            {Math.round(recommended > 0 ? recommended - item.amount : 0) +
-              ' ' +
-              nutrientUnits[item.id]}
+            {Math.round(remain) + ' ' + nutrientUnits[item.id]}
           </Text>
         </View>
         <ProgressBar

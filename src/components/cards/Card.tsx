@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
       height: 2.5,
     },
     shadowRadius: 2.85,
-    elevation: 8,
+    elevation: 12,
   },
 });
