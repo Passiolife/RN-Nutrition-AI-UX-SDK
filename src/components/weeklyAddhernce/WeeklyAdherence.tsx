@@ -1,5 +1,5 @@
 import { DateTime, Info } from 'luxon';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   FlatList,
   Image,
@@ -16,9 +16,16 @@ import { getMealLogsFormDateToDate } from '../../utils/DataServiceHelper';
 
 interface Props {
   headerDate: DateTime;
+  onDateSelect: (date: Date) => void;
 }
 
-const WeeklyAdherence = ({ headerDate }: Props) => {
+interface DayItem {
+  day: string | undefined;
+  isoDate: string | null;
+  isCurrentMonth: boolean;
+}
+
+const WeeklyAdherence = ({ headerDate, onDateSelect }: Props) => {
   const branding = useBranding();
   const styles = calderComponentStyle(branding);
 
@@ -39,12 +46,16 @@ const WeeklyAdherence = ({ headerDate }: Props) => {
 
   const service = useServices();
 
+  const visibleDateRef = useRef(DateTime.now());
+
   useEffect(() => {
     setCurrentWeekStart(headerDate.startOf('week'));
+    visibleDateRef.current = headerDate;
   }, [headerDate]);
 
   useEffect(() => {
     setCurrentMonth(headerDate.startOf('month'));
+    visibleDateRef.current = headerDate;
   }, [headerDate]);
 
   const getLogStatus = useCallback(
@@ -67,27 +78,30 @@ const WeeklyAdherence = ({ headerDate }: Props) => {
   );
 
   useEffect(() => {
-    const startDate = currentWeekStart.startOf('week');
-    const endDate = currentWeekStart.endOf('week');
-    getLogStatus(startDate, endDate);
-  }, [currentWeekStart, getLogStatus]);
-
-  useEffect(() => {
-    const startDate = currentWeekStart.startOf('month');
-    const endDate = currentWeekStart.endOf('month');
-    getLogStatus(startDate, endDate);
-  }, [currentMonth, currentWeekStart, getLogStatus]);
+    if (calendarViewMode === 'month') {
+      const startDate = visibleDateRef.current.startOf('week');
+      const endDate = visibleDateRef.current.endOf('week');
+      getLogStatus(startDate, endDate);
+    } else {
+      const startDate = visibleDateRef.current.startOf('month');
+      const endDate = visibleDateRef.current.endOf('month');
+      getLogStatus(startDate, endDate);
+    }
+  }, [calendarViewMode, getLogStatus]);
 
   // Function to navigate to the previous period (week or month)
   const navigateToPrevious = useCallback(() => {
     if (calendarViewMode === 'week') {
       setCurrentWeekStart(currentWeekStart.minus({ weeks: 1 }));
+      visibleDateRef.current = currentWeekStart;
       // Update currentMonth if the previous week is in a different month
       if (currentWeekStart.minus({ weeks: 1 }).month !== currentMonth.month) {
         setCurrentMonth(currentMonth.minus({ months: 1 }));
+        visibleDateRef.current = currentMonth;
       }
     } else {
       setCurrentMonth(currentMonth.minus({ months: 1 }));
+      visibleDateRef.current = currentMonth;
     }
   }, [calendarViewMode, currentWeekStart, currentMonth]);
 
@@ -95,12 +109,15 @@ const WeeklyAdherence = ({ headerDate }: Props) => {
   const navigateToNext = useCallback(() => {
     if (calendarViewMode === 'week') {
       setCurrentWeekStart(currentWeekStart.plus({ weeks: 1 }));
+      visibleDateRef.current = currentWeekStart;
       // Update currentMonth if the next week is in a different month
       if (currentWeekStart.plus({ weeks: 1 }).month !== currentMonth.month) {
         setCurrentMonth(currentMonth.plus({ months: 1 }));
+        visibleDateRef.current = currentMonth;
       }
     } else {
       setCurrentMonth(currentMonth.plus({ months: 1 }));
+      visibleDateRef.current = currentMonth;
     }
   }, [calendarViewMode, currentWeekStart, currentMonth]);
 
@@ -116,11 +133,16 @@ const WeeklyAdherence = ({ headerDate }: Props) => {
 
   // Function to render the dates for the current week
   const renderWeekDates = useCallback(() => {
-    const weekDatesArray = [];
+    const weekDatesArray: DayItem[] = [];
     for (let i = 0; i < 7; i++) {
       const weekDate = currentWeekStart.plus({ days: i });
       const isoDate = weekDate.toISODate();
-      weekDatesArray.push({ day: days[i], isoDate });
+      const data: DayItem = {
+        day: days[i],
+        isoDate: isoDate ?? ' ',
+        isCurrentMonth: false,
+      };
+      weekDatesArray.push(data);
     }
     return weekDatesArray;
   }, [currentWeekStart, days]);
@@ -177,9 +199,11 @@ const WeeklyAdherence = ({ headerDate }: Props) => {
   const toggleCalendarView = () => {
     if (calendarViewMode === 'month') {
       setCurrentWeekStart(headerDate.startOf('week'));
+      visibleDateRef.current = currentWeekStart;
       setCalendarViewMode('week');
     } else {
       const currentStartOfMonth = headerDate.startOf('month');
+      visibleDateRef.current = currentStartOfMonth;
       setCalendarViewMode('month');
       setCurrentMonth(currentStartOfMonth);
     }
@@ -242,6 +266,40 @@ const WeeklyAdherence = ({ headerDate }: Props) => {
     return status;
   };
 
+  const renderItem = ({ index, item }: { index: number; item: DayItem }) => {
+    const status = getDateStatus(item.isoDate ?? '');
+    return (
+      <View style={styles.itemBox} key={index}>
+        <TouchableOpacity
+          onPress={() => {
+            const jsDate = DateTime.fromISO(item.isoDate ?? '').setZone(
+              'local'
+            );
+
+            onDateSelect(jsDate.toJSDate());
+          }}
+          style={[
+            styles.itemBg,
+            status === 'Missed' && styles.missedDate,
+            status === 'Logged' && styles.loggedDate,
+            isToday(item.isoDate) && styles.todayDateBg,
+          ]}
+        >
+          <Text
+            weight="600"
+            size="_12px"
+            style={[
+              styles.itemText,
+              isToday(item.isoDate) && styles.todayDateText,
+            ]}
+          >
+            {DateTime.fromISO(item.isoDate ?? '').day}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
   return (
     <Card style={styles.macroContainer}>
       <View style={styles.macroTitleContainer}>
@@ -271,32 +329,7 @@ const WeeklyAdherence = ({ headerDate }: Props) => {
           numColumns={7}
           scrollEnabled={false}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ index, item }) => {
-            const status = getDateStatus(item.isoDate ?? '');
-            return (
-              <View style={styles.itemBox} key={index}>
-                <TouchableOpacity
-                  style={[
-                    styles.itemBg,
-                    status === 'Logged' && styles.loggedDate,
-                    status === 'Missed' && styles.missedDate,
-                    isToday(item.isoDate) && styles.todayDateBg,
-                  ]}
-                >
-                  <Text
-                    weight="600"
-                    size="_12px"
-                    style={[
-                      styles.itemText,
-                      isToday(item.isoDate) && styles.todayDateText,
-                    ]}
-                  >
-                    {DateTime.fromISO(item.isoDate ?? '').day}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            );
-          }}
+          renderItem={renderItem}
           data={
             calendarViewMode === 'week' ? renderWeekDates() : renderMonthDates()
           }

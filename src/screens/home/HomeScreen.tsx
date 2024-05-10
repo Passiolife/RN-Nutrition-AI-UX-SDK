@@ -95,7 +95,12 @@ const HomeScreenView = () => {
       >
         <DailyNutrition foodLogs={foodLogs} />
 
-        {true && <CalenderComponent headerDate={DateTime.fromJSDate(date)} />}
+        {true && (
+          <CalenderComponent
+            headerDate={DateTime.fromJSDate(date)}
+            onDateSelect={changeDate}
+          />
+        )}
 
         {true && (
           <View style={styles.widgetsContainer}>
