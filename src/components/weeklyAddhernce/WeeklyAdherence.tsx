@@ -1,5 +1,5 @@
 import { DateTime, Info } from 'luxon';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   FlatList,
   Image,
@@ -7,13 +7,18 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { useBranding, type Branding } from '../../contexts';
+import { useBranding, useServices, type Branding } from '../../contexts';
 import { ICONS } from '../../assets';
 import { Text } from '../texts';
 import { scaleHeight, scaledSize } from '../../utils';
 import { Card } from '../cards';
+import { getMealLogsFormDateToDate } from '../../utils/DataServiceHelper';
 
-const WeeklyAdherence = () => {
+interface Props {
+  headerDate: DateTime;
+}
+
+const WeeklyAdherence = ({ headerDate }: Props) => {
   const branding = useBranding();
   const styles = calderComponentStyle(branding);
 
@@ -24,11 +29,54 @@ const WeeklyAdherence = () => {
     'week'
   ); // View mode: 'week' or 'month'
   const [currentWeekStart, setCurrentWeekStart] = useState<DateTime>(
-    DateTime.now().startOf('week')
+    headerDate.startOf('week')
   ); // Start of the current week
   const [currentMonth, setCurrentMonth] = useState<DateTime>(
-    DateTime.now().startOf('month')
+    headerDate.startOf('month')
   ); // Start of the current month
+
+  const [logDates, setLogDates] = useState<string[]>([]); // Start of the current month
+
+  const service = useServices();
+
+  useEffect(() => {
+    setCurrentWeekStart(headerDate.startOf('week'));
+  }, [headerDate]);
+
+  useEffect(() => {
+    setCurrentMonth(headerDate.startOf('month'));
+  }, [headerDate]);
+
+  const getLogStatus = useCallback(
+    (startDate: DateTime, endDate: DateTime) => {
+      const newLogs: string[] = [];
+      getMealLogsFormDateToDate(
+        startDate.toJSDate(),
+        endDate.toJSDate(),
+        service
+      ).then((item) => {
+        item.forEach((i) => {
+          newLogs.push(
+            DateTime.fromISO(i.eventTimestamp).toFormat('yyyy-MM-dd')
+          );
+        });
+        setLogDates(newLogs);
+      });
+    },
+    [service]
+  );
+
+  useEffect(() => {
+    const startDate = currentWeekStart.startOf('week');
+    const endDate = currentWeekStart.endOf('week');
+    getLogStatus(startDate, endDate);
+  }, [currentWeekStart, getLogStatus]);
+
+  useEffect(() => {
+    const startDate = currentWeekStart.startOf('month');
+    const endDate = currentWeekStart.endOf('month');
+    getLogStatus(startDate, endDate);
+  }, [currentMonth, currentWeekStart, getLogStatus]);
 
   // Function to navigate to the previous period (week or month)
   const navigateToPrevious = useCallback(() => {
@@ -58,7 +106,7 @@ const WeeklyAdherence = () => {
 
   // Function to check if a date is today
   const isToday = (date: string | null) => {
-    return DateTime.fromISO(date ?? '').hasSame(DateTime.now(), 'day');
+    return DateTime.fromISO(date ?? '').hasSame(headerDate, 'day');
   };
 
   // Function to format a date
@@ -128,15 +176,10 @@ const WeeklyAdherence = () => {
   // Function to toggle between week and month view
   const toggleCalendarView = () => {
     if (calendarViewMode === 'month') {
-      const today = DateTime.now();
-      if (today >= currentMonth && today <= currentMonth.endOf('month')) {
-        setCurrentWeekStart(today.startOf('week'));
-      } else {
-        setCurrentWeekStart(currentMonth.startOf('month').startOf('week'));
-      }
+      setCurrentWeekStart(headerDate.startOf('week'));
       setCalendarViewMode('week');
     } else {
-      const currentStartOfMonth = currentMonth.startOf('month');
+      const currentStartOfMonth = headerDate.startOf('month');
       setCalendarViewMode('month');
       setCurrentMonth(currentStartOfMonth);
     }
@@ -187,12 +230,24 @@ const WeeklyAdherence = () => {
     );
   };
 
+  const getDateStatus = (date: string) => {
+    const status: 'Missed' | 'Logged' | 'Future' = 'Missed';
+    if (logDates.find((i) => i === date) !== undefined) {
+      return 'Logged';
+    } else if (
+      DateTime.fromFormat(date, 'yyyy-MM-dd').diffNow('day').days > 0
+    ) {
+      return 'Future';
+    }
+    return status;
+  };
+
   return (
     <Card style={styles.macroContainer}>
       <View style={styles.macroTitleContainer}>
         <Image source={ICONS.weeklyAdherence} style={styles.headerBodyIcon} />
         <Text weight="600" size="_18px" style={styles.macroTitle}>
-          Weekly Adherence
+          {'Weekly Adherence'}
         </Text>
         <TouchableOpacity onPress={toggleCalendarView}>
           <Image
@@ -217,11 +272,14 @@ const WeeklyAdherence = () => {
           scrollEnabled={false}
           showsHorizontalScrollIndicator={false}
           renderItem={({ index, item }) => {
+            const status = getDateStatus(item.isoDate ?? '');
             return (
               <View style={styles.itemBox} key={index}>
                 <TouchableOpacity
                   style={[
                     styles.itemBg,
+                    status === 'Logged' && styles.loggedDate,
+                    status === 'Missed' && styles.missedDate,
                     isToday(item.isoDate) && styles.todayDateBg,
                   ]}
                 >
@@ -291,6 +349,12 @@ const calderComponentStyle = ({ primaryColor, indigo50 }: Branding) =>
     },
     todayDateBg: {
       backgroundColor: primaryColor,
+    },
+    loggedDate: {
+      backgroundColor: 'rgba(209, 250, 229, 1)',
+    },
+    missedDate: {
+      backgroundColor: 'rgba(254, 226, 226, 1)',
     },
     todayDateText: {
       color: '#FFF',

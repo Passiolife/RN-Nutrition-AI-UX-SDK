@@ -16,6 +16,7 @@ import { useHome } from './useHome';
 import CalenderComponent from '../../components/weeklyAddhernce/WeeklyAdherence';
 import { useBranding } from '../../contexts';
 import homeScreenStyle from './styles';
+import { DateTime } from 'luxon';
 
 export interface HomeScreenScreenProps {
   defaultDate?: Date;
@@ -94,7 +95,7 @@ const HomeScreenView = () => {
       >
         <DailyNutrition foodLogs={foodLogs} />
 
-        {false && <CalenderComponent />}
+        {true && <CalenderComponent headerDate={DateTime.fromJSDate(date)} />}
 
         {true && (
           <View style={styles.widgetsContainer}>

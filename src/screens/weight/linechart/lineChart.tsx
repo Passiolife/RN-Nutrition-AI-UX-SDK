@@ -33,10 +33,7 @@ export const WeightTrendChart = ({ data }: WeightTrendChartProps) => {
           };
           return items;
         })}
-        spacing={
-          // data.length > 7 ? screenWidth / (data.length * 1.5) : screenWidth / 10
-          data.length > 7 ? screenWidth / 45 : screenWidth / 9.5
-        }
+        spacing={data.length > 7 ? screenWidth / 45 : screenWidth / 9.5}
         adjustToWidth
         width={screenWidth}
         curved
