@@ -75,10 +75,10 @@ export const useMicros = () => {
     isMore,
     loading,
     nutrients: isMore ? nutrients : nutrients.slice(0, 10),
+    isInfo,
     onLeftArrowPress,
     onMorePress,
     onRightArrowPress,
     onInfoPress,
-    isInfo,
   };
 };

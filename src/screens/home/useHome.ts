@@ -46,34 +46,34 @@ export function useHome() {
 
   useEffect(() => {
     if (isFocused) {
-      getWatersForDate(new Date(), services).then((data) => {
+      getWatersForDate(date, services).then((data) => {
         const total = totalWater(data, unitsWeight);
         const target = Number(targetWater ?? 0) - total;
         setRemainWater(target);
         setAchievedWater(total);
       });
     }
-  }, [isFocused, services, targetWater, unitsWeight]);
+  }, [date, isFocused, services, targetWater, unitsWeight]);
 
   useEffect(() => {
     if (isFocused) {
-      getWeightForDate(new Date(), services).then((data) => {
+      getWeightForDate(date, services).then((data) => {
         const total = averageWeight(data, unitsWeight);
         const target = Number(targetWeight ?? 0) - total;
         setRemainWeight(target);
         setAchievedWeight(total);
       });
     }
-  }, [isFocused, services, targetWeight, unitsWeight]);
+  }, [date, isFocused, services, targetWeight, unitsWeight]);
   useEffect(() => {}, [targetWeight]);
 
   return {
+    achievedWater,
+    achievedWeight,
     date,
     foodLogs,
     isOpenDatePicker,
     name,
-    achievedWater,
-    achievedWeight,
     remainWater,
     remainWeight,
     targetWeight,

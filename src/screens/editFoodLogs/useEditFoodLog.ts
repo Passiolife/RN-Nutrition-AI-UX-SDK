@@ -285,6 +285,7 @@ export function useEditFoodLog() {
     isOpenFoodNameAlert,
     isHideMealTime: params.prevRouteName === 'Favorites',
     isHideTimeStamp: params.prevRouteName === 'Favorites',
+    isHideFavorite: params.prevRouteName === 'Favorites',
     closeDatePicker,
     closeFavoriteFoodLogAlert,
     closeSaveFoodNameAlert,

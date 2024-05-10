@@ -38,7 +38,9 @@ export const useWeightEntry = () => {
     setWeight(val);
   };
 
-  const handlePressCancel = () => {};
+  const handlePressCancel = () => {
+    navigation.goBack();
+  };
   const handlePressOk = () => {
     const updateDate = dateRef.current?.getTimeStamp();
     const updateTime = timeRef.current?.getTimeStamp();

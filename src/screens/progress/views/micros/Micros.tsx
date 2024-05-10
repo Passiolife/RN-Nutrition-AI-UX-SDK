@@ -28,15 +28,15 @@ import { DateTime } from 'luxon';
 
 const Micros = () => {
   const {
-    onLeftArrowPress,
-    onRightArrowPress,
     dateTime,
-    nutrients,
-    loading,
-    onMorePress,
-    isMore,
     isInfo,
+    isMore,
+    loading,
+    nutrients,
     onInfoPress,
+    onLeftArrowPress,
+    onMorePress,
+    onRightArrowPress,
   } = useMicros();
 
   const renderItem = ({ item, index }: { item: Nutrient; index: number }) => {

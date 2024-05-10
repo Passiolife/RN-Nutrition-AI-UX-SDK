@@ -44,6 +44,7 @@ export const EditFoodLogScreen = () => {
     foodLog,
     from,
     isFavorite,
+    isHideFavorite,
     isOpenDatePicker,
     isOpenFavoriteFoodAlert,
     isOpenFoodNameAlert,
@@ -109,23 +110,25 @@ export const EditFoodLogScreen = () => {
                 foodLog.selectedUnit
               )}
               rightIconForHeader={
-                <TouchableOpacity
-                  onPress={() => {
-                    onSaveFavoriteFoodLog(foodLog.name);
-                  }}
-                >
-                  <Image
-                    source={
-                      isFavorite ? ICONS.filledHeartBlue : ICONS.heartBlue
-                    }
-                    style={
-                      isFavorite
-                        ? styles.filledHeartIconStyle
-                        : styles.heartIconStyle
-                    }
-                    resizeMode="contain"
-                  />
-                </TouchableOpacity>
+                !isHideFavorite ? (
+                  <TouchableOpacity
+                    onPress={() => {
+                      onSaveFavoriteFoodLog(foodLog.name);
+                    }}
+                  >
+                    <Image
+                      source={
+                        isFavorite ? ICONS.filledHeartBlue : ICONS.heartBlue
+                      }
+                      style={
+                        isFavorite
+                          ? styles.filledHeartIconStyle
+                          : styles.heartIconStyle
+                      }
+                      resizeMode="contain"
+                    />
+                  </TouchableOpacity>
+                ) : undefined
               }
             />
           </TouchableOpacity>

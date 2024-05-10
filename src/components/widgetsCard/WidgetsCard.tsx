@@ -5,6 +5,7 @@ import {
   View,
   type ImageSourcePropType,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import { useBranding } from '../../contexts';
 import type { Branding } from '../../contexts';
@@ -36,52 +37,59 @@ export const WidgetsCard = ({
   const styles = WidgetsCardStyle(useBranding());
   return (
     <Card style={styles.widgetContainer}>
-      <View style={[styles.header, styles.row]}>
-        <View style={styles.row}>
-          {leftIcon ? (
-            <TouchableOpacity onPress={onPressLeftIcon && onPressLeftIcon}>
+      <Pressable onPress={onPressRightIcon && onPressRightIcon}>
+        <View style={[styles.header, styles.row]}>
+          <View style={styles.row}>
+            {leftIcon ? (
+              <TouchableOpacity onPress={onPressLeftIcon && onPressLeftIcon}>
+                <Image
+                  source={leftIcon}
+                  resizeMode="contain"
+                  style={styles.icon}
+                />
+              </TouchableOpacity>
+            ) : undefined}
+            <Text weight="600" size="_18px" color="text" style={styles.title}>
+              {widgetTitle}
+            </Text>
+          </View>
+          {rightIcon ? (
+            <TouchableOpacity onPress={onPressRightIcon && onPressRightIcon}>
               <Image
-                source={leftIcon}
+                source={rightIcon}
                 resizeMode="contain"
                 style={styles.icon}
               />
             </TouchableOpacity>
           ) : undefined}
-          <Text weight="600" size="_18px" color="text" style={styles.title}>
-            {widgetTitle}
-          </Text>
         </View>
-        {rightIcon ? (
-          <TouchableOpacity onPress={onPressRightIcon && onPressRightIcon}>
-            <Image
-              source={rightIcon}
-              resizeMode="contain"
-              style={styles.icon}
-            />
-          </TouchableOpacity>
-        ) : undefined}
-      </View>
-      <View style={styles.contentView}>
-        <Text weight="800" size="_28px" color="primaryColor">
-          {value}
-        </Text>
-        <Text weight="400" size="_16px" color="gray500">
-          {unitValue}
-        </Text>
-      </View>
-      <View>
-        <Text weight="400" size="_12px" color="text" style={styles.bottomText}>
-          <Text weight="600" size="_12px" color="text">
-            {remain ?? 0}
+        <View style={styles.contentView}>
+          <Text weight="800" size="_28px" color="primaryColor">
+            {value}
           </Text>
-          <Text>&nbsp;</Text>
-          <Text weight="600" size="_12px" color="text">
+          <Text weight="400" size="_16px" color="gray500">
             {unitValue}
           </Text>
-          <Text>&nbsp;</Text>
-          remain to daily goal
-        </Text>
-      </View>
+        </View>
+        <View>
+          <Text
+            weight="400"
+            size="_12px"
+            color="text"
+            style={styles.bottomText}
+          >
+            <Text weight="600" size="_12px" color="text">
+              {remain ?? 0}
+            </Text>
+            <Text>&nbsp;</Text>
+            <Text weight="600" size="_12px" color="text">
+              {unitValue}
+            </Text>
+            <Text>&nbsp;</Text>
+            remain to daily goal
+          </Text>
+        </View>
+      </Pressable>
     </Card>
   );
 };

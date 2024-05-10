@@ -20,7 +20,7 @@ type ScreenNavigationProps = StackNavigationProp<ParamList, 'WaterEntry'>;
 export const useWaterEntry = () => {
   const { params } = useRoute<RouteProp<ParamList, 'WaterEntry'>>();
 
-  const [consumed, setConsumed] = useState('');
+  const [consumed, setConsumed] = useState('50');
   const dateRef = useRef<TimeStampViewRef>(null);
   const timeRef = useRef<TimeStampViewRef>(null);
   const navigation = useNavigation<ScreenNavigationProps>();
@@ -42,7 +42,9 @@ export const useWaterEntry = () => {
     setConsumed(val);
   };
 
-  const handlePressCancel = () => {};
+  const handlePressCancel = () => {
+    navigation.goBack();
+  };
   const handlePressOk = () => {
     const updateDate = dateRef.current?.getTimeStamp();
     const updateTime = timeRef.current?.getTimeStamp();
@@ -69,14 +71,14 @@ export const useWaterEntry = () => {
   };
 
   return {
-    handlePressCancel,
-    handlePressOk,
-    handleWaterInput,
     consumed,
     dateRef,
     timeRef,
     water: params.water,
     unitLabel: ogMlLabel,
     isEdit: params.water !== undefined,
+    handlePressCancel,
+    handlePressOk,
+    handleWaterInput,
   };
 };
