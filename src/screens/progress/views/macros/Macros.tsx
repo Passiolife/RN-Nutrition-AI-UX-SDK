@@ -38,32 +38,33 @@ const Macros = () => {
       {loading ? (
         <CustomActivityIndicator style={{ marginTop: 90 }} />
       ) : (
-        <ScrollView
-          style={styles.scrollViewStyle}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.contentContainerStyle}
-        >
-          <StackChart
-            barChartContainerStyle={styles.stackChartContainer}
-            stackData={calories ?? []}
-            title="Calories"
-            showInfo={false}
-            target={targetCalories}
-          />
+        <>
+          <ScrollView
+            style={styles.scrollViewStyle}
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.contentContainerStyle}
+          >
+            <StackChart
+              barChartContainerStyle={styles.stackChartContainer}
+              stackData={calories ?? []}
+              title="Calories"
+              showInfo={false}
+              target={targetCalories}
+            />
 
-          <StackChart
-            barChartContainerStyle={styles.stackChartContainer}
-            title="Macros"
-            target={targetFat + targetProtein + targetCarbs}
-            stackData={macroChartData ?? []}
-          />
-
+            <StackChart
+              barChartContainerStyle={styles.stackChartContainer}
+              title="Macros"
+              target={targetFat + targetProtein + targetCarbs}
+              stackData={macroChartData ?? []}
+            />
+          </ScrollView>
           <BasicButton
             style={styles.button}
             text="Generate Report"
             onPress={() => null}
           />
-        </ScrollView>
+        </>
       )}
     </View>
   );
@@ -93,7 +94,7 @@ const macrosStyle = ({}: Branding) =>
     },
     button: {
       borderRadius: scaledSize(4),
-      marginTop: scaleHeight(64),
+      marginVertical: scaleHeight(16),
     },
   });
 
