@@ -10,7 +10,6 @@ const menuStyle = ({ white }: Branding) =>
     },
     main: {
       paddingHorizontal: scaleWidth(16),
-      paddingVertical: scaleWidth(16),
     },
     optionContainer: {
       backgroundColor: white,

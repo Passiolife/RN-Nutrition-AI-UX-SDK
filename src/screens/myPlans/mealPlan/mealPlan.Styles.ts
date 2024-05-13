@@ -18,7 +18,7 @@ const mealPlanScreenStyle = ({ backgroundColor }: Branding) =>
     cardHeader: {
       flexDirection: 'row',
       paddingHorizontal: scaleWidth(16),
-      alignItems: 'center',
+      alignSelf: 'center',
     },
     icon: {
       width: scaleWidth(20),

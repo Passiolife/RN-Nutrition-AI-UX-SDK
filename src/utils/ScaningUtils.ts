@@ -20,8 +20,7 @@ export function getMealLog(date: Date, meal: MealLabel | undefined): MealLabel {
 
 export function mealLabelByDate(date: Date): MealLabel {
   try {
-    const localDateTime = date.toLocaleTimeString();
-    const hours = Number(localDateTime.split(':')[0]);
+    const hours = date.getHours();
     if (hours >= 4 && hours <= 10) {
       return 'breakfast';
     } else if (hours >= 11 && hours <= 14) {

@@ -17,6 +17,7 @@ export * from './MealPlanUtils';
 export * from './PassioUtils';
 export * from './QuickResultUtils';
 export * from './ScaningUtils';
+export * from './quickSuggestionUtils';
 export {
   isToday,
   currentTimeStamp,
