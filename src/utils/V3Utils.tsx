@@ -55,6 +55,7 @@ export const convertPassioFoodItemToFoodLog = (
   const log: FoodLog = {
     name: foodItem.name,
     uuid: uuid,
+    longName: foodItem.details,
     passioID: foodItem.refCode ?? foodItem.id,
     refCode: foodItem.refCode,
     eventTimestamp: dateFormat,

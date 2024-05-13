@@ -23,6 +23,7 @@ interface Props {
   imageName: string;
   qty: number;
   servingUnit: string;
+  longName?: string;
   weight: number;
   rightIconForHeader?: JSX.Element;
   onMoreDetailPress?: () => void;
@@ -39,6 +40,7 @@ const LogInformationView = ({
   onMoreDetailPress,
   imageName,
   rightIconForHeader,
+  longName,
 }: Props) => {
   const calories = totalAmountOfNutrient(foodItems, 'calories');
   const carbs = totalAmountOfNutrient(foodItems, 'carbs');
@@ -71,7 +73,9 @@ const LogInformationView = ({
             size="_14px"
             color="secondaryText"
             style={styles.logSize}
-          >{`${qty} ${servingUnit} (${weight}${'g'})`}</Text>
+          >
+            {longName ? longName : `${qty} ${servingUnit} (${weight}${'g'})`}
+          </Text>
         </View>
         {rightIconForHeader ? (
           <View style={styles.rightIconView}>
