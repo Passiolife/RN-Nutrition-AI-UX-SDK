@@ -68,6 +68,11 @@ const RenderItem = ({
           />
         </>
       )}
+      {expandable && item.data.length === 0 && (
+        <>
+          <Text style={{ padding: 16, textAlign: 'center' }}>No Data</Text>
+        </>
+      )}
     </Card>
   );
 };
