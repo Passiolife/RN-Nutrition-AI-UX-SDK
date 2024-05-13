@@ -78,7 +78,7 @@ export const nutrientUnits: Record<NutrientType, NutrientUnit> = {
   magnesium: 'mg',
   phosphorus: 'mg',
   iodine: 'ug',
-  zinc: 'g',
+  zinc: 'mg',
   selenium: 'g',
   folicAcid: 'g',
   vitaminKPhylloquinone: 'g',

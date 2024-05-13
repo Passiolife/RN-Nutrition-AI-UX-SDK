@@ -16,7 +16,7 @@ import {
 } from '../models';
 import uuid4 from 'react-native-uuid';
 import { convertDateToDBFormat } from './DateFormatter';
-import { getMealLog } from '../utils';
+import { getLogToDate, getMealLog } from '../utils';
 import type { PassioIngredient } from '@passiolife/nutritionai-react-native-sdk-v3/src';
 import type { QuickSuggestion } from 'src/models/QuickSuggestion';
 
@@ -204,10 +204,11 @@ export const updateQuantityOfFoodLog = (foodLog: FoodLog, qty: number) => {
   return copyOfFoodLog;
 };
 
-export const passioSuggestedFoods = async (): Promise<
-  (QuickSuggestion | null)[]
-> => {
-  const list = await PassioSDK.fetchSuggestions('breakfast');
+export const passioSuggestedFoods = async (
+  date: Date
+): Promise<(QuickSuggestion | null)[]> => {
+  const meal = getMealLog(getLogToDate(date, undefined), undefined);
+  const list = await PassioSDK.fetchSuggestions(meal);
   return await Promise.all(
     (list ?? []).map(async (item) => {
       const attribute = await PassioSDK.fetchFoodItemForDataInfo(item);

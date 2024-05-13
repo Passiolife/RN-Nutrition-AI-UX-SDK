@@ -9,6 +9,8 @@ import { AsyncStorageHelper } from '../utils/AsyncStorageHelper';
 import type { AnalyticsFoodLogs } from '../models/PassioAnalytics';
 import { passioSuggestedFoods } from '../utils/V3Utils';
 
+const date = new Date();
+
 export function useQuickSuggestion(mealLabel: MealLabel | 'All Day') {
   const isFocused = useIsFocused();
   const services = useServices();
@@ -95,7 +97,7 @@ export function useQuickSuggestion(mealLabel: MealLabel | 'All Day') {
         }
       }
 
-      const prePopulatedQuickSuggestions = await passioSuggestedFoods();
+      const prePopulatedQuickSuggestions = await passioSuggestedFoods(date);
       const combinedQuickSuggestions = quickSuggestions
         .concat(
           prePopulatedQuickSuggestions.filter(
@@ -103,7 +105,6 @@ export function useQuickSuggestion(mealLabel: MealLabel | 'All Day') {
           )
         )
         .reduce((previous: QuickSuggestion[], current) => {
-          // avoid duplicate passioID
           const logs = previous.find((item) => item.id === current.id);
           if (!logs) {
             return previous.concat([current]);

@@ -16,7 +16,6 @@ import { getMealLogsFormDateToDate } from '../../utils/DataServiceHelper';
 
 interface Props {
   headerDate: DateTime;
-  onDateSelect: (date: Date) => void;
 }
 
 interface DayItem {
@@ -25,7 +24,7 @@ interface DayItem {
   isCurrentMonth: boolean;
 }
 
-const WeeklyAdherence = ({ headerDate, onDateSelect }: Props) => {
+const WeeklyAdherence = ({ headerDate }: Props) => {
   const branding = useBranding();
   const styles = calderComponentStyle(branding);
 
@@ -78,15 +77,9 @@ const WeeklyAdherence = ({ headerDate, onDateSelect }: Props) => {
   );
 
   useEffect(() => {
-    if (calendarViewMode === 'month') {
-      const startDate = visibleDateRef.current.startOf('week');
-      const endDate = visibleDateRef.current.endOf('week');
-      getLogStatus(startDate, endDate);
-    } else {
-      const startDate = visibleDateRef.current.startOf('month');
-      const endDate = visibleDateRef.current.endOf('month');
-      getLogStatus(startDate, endDate);
-    }
+    const startDate = visibleDateRef.current.startOf('month');
+    const endDate = visibleDateRef.current.endOf('month');
+    getLogStatus(startDate, endDate);
   }, [calendarViewMode, getLogStatus]);
 
   // Function to navigate to the previous period (week or month)
@@ -204,8 +197,8 @@ const WeeklyAdherence = ({ headerDate, onDateSelect }: Props) => {
     } else {
       const currentStartOfMonth = headerDate.startOf('month');
       visibleDateRef.current = currentStartOfMonth;
-      setCalendarViewMode('month');
       setCurrentMonth(currentStartOfMonth);
+      setCalendarViewMode('month');
     }
   };
 
@@ -271,13 +264,6 @@ const WeeklyAdherence = ({ headerDate, onDateSelect }: Props) => {
     return (
       <View style={styles.itemBox} key={index}>
         <TouchableOpacity
-          onPress={() => {
-            const jsDate = DateTime.fromISO(item.isoDate ?? '').setZone(
-              'local'
-            );
-
-            onDateSelect(jsDate.toJSDate());
-          }}
           style={[
             styles.itemBg,
             status === 'Missed' && styles.missedDate,
