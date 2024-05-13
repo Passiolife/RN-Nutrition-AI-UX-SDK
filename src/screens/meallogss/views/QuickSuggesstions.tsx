@@ -22,6 +22,10 @@ export const QuickSuggestions = ({
   onFoodItemClickCall,
   quickSuggestedAttributes,
 }: Props) => {
+  const renderFooter = () => {
+    return <View style={styles.footer} />;
+  };
+
   return (
     <View style={[styles.itemsContainer, style]}>
       <Text
@@ -45,6 +49,7 @@ export const QuickSuggestions = ({
           style={styles.list}
           data={quickSuggestedAttributes}
           numColumns={2}
+          ListFooterComponent={renderFooter}
           renderItem={({ item }: { item: QuickSuggestion }) => {
             return (
               <QuickSuggestionItemView
@@ -63,6 +68,9 @@ export const QuickSuggestions = ({
 const styles = StyleSheet.create({
   itemsContainer: {
     backgroundColor: 'white',
+  },
+  footer: {
+    height: 120,
   },
   list: {
     marginHorizontal: 16,
