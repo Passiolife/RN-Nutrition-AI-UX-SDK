@@ -10,12 +10,12 @@ import {
 import { Button, Text, TextInput } from '@app/components';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import loginStyles from './LoginScreen.style';
-import { useLogin } from './useLogin';
+import signupStyles from './Signup.style';
+import { useSignUp } from './useSignUp';
 
-export interface LoginScreenProps {}
+export interface SignUpScreenProps {}
 
-const LoginScreen = () => {
+const SignUpScreen = () => {
   const {
     email,
     handleChangeEmail,
@@ -26,9 +26,9 @@ const LoginScreen = () => {
     screenH,
     onKeyboardWillshow,
     onKeyboardWillHide,
-  } = useLogin();
+  } = useSignUp();
 
-  const styles = loginStyles();
+  const styles = signupStyles();
 
   const logo = require('../../../assets/image/passio_logo.png');
   const bgImage = require('../../../assets/image/bg_image.png');
@@ -51,7 +51,7 @@ const LoginScreen = () => {
         >
           <View>
             <Image source={logo} resizeMode="center" style={styles.logo} />
-            <Text style={styles.headerText}>Login</Text>
+            <Text style={styles.headerText}>Sign Up</Text>
             <TextInput
               placeholder="Email address"
               icon={
@@ -92,7 +92,16 @@ const LoginScreen = () => {
             </Text>
           </View>
           <Pressable>
-            <Text style={styles.forgotPwd}>Forgot your password?</Text>
+            <Text style={styles.acknowledge}>
+              By signing up, you acknowledge that your have read{'\n'}the&nbsp;
+              <Text style={[styles.acknowledge, styles.underline]}>
+                Privacy Policy
+              </Text>
+              &nbsp;and agree to the&nbsp;
+              <Text style={[styles.acknowledge, styles.underline]}>
+                Terms of Service.
+              </Text>
+            </Text>
           </Pressable>
         </KeyboardAwareScrollView>
       </SafeAreaView>
@@ -100,4 +109,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default SignUpScreen;
