@@ -28,14 +28,19 @@ export const getAllAnalyticQuickSuggestionRecords = async () => {
       .sort((dataA, dataB) => dataB.engagement - dataA.engagement)
       .reduce((previous: AnalyticsFoodLogs[], current) => {
         // avoid duplicate passioID
-        const logs = previous.find((item) => item.id === current.id);
+        const logs = previous.find(
+          (item) =>
+            item.id === current.id ||
+            (item.foodLog &&
+              current.foodLog &&
+              item.foodLog?.name === current.foodLog?.name)
+        );
         if (!logs) {
           return previous.concat([current]);
         } else {
           return previous;
         }
       }, [])
-      // create QuickSuggestion of sort the analyticsFoodLogs
       .map(createQuickSuggestionFromAnalyticsFoodLog)
   );
   return quickSuggestion.filter((item) => item !== null) as QuickSuggestion[];

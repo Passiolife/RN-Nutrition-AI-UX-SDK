@@ -116,7 +116,7 @@ export const deleteFavoriteFoodLog = async (
   });
 };
 
-// Save Favourite Food logs into local storage
+// Save Favorite Food logs into local storage
 export const saveFavouriteFood = async (
   db: SQLiteDatabase,
   favoriteFoodItem: FavoriteFoodItem

@@ -50,7 +50,8 @@ export const MealLogScreenView = gestureHandlerRootHOC(() => {
 
   const snapPoints = useMemo(() => [scaleHeight(100), '50%'], []);
 
-  const { quickSuggestedFoodItems } = useQuickSuggestion('All Day');
+  const { quickSuggestedFoodItems, removeQuickSuggestion } =
+    useQuickSuggestion('All Day');
 
   const [isLoadingScreen, setLoadingScreen] = useState(false);
 
@@ -137,7 +138,10 @@ export const MealLogScreenView = gestureHandlerRootHOC(() => {
         backgroundStyle={styles.bottomSheetChildrenContainer}
       >
         <QuickSuggestions
-          onFoodItemClickCall={onQuickSuggestionPress}
+          onFoodItemClickCall={(suggestion) => {
+            onQuickSuggestionPress(suggestion);
+            removeQuickSuggestion(suggestion);
+          }}
           quickSuggestedAttributes={quickSuggestedFoodItems ?? []}
         />
       </BottomSheet>
