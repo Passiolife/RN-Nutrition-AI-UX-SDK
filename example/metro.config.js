@@ -7,6 +7,9 @@ const pak = require('../package.json');
 const root = path.resolve(__dirname, '..');
 const modules = Object.keys({ ...pak.peerDependencies });
 
+const defaultConfig = getDefaultConfig(__dirname);
+const { assetExts, sourceExts } = defaultConfig.resolver;
+
 /**
  * Metro configuration
  * https://facebook.github.io/metro/docs/configuration
@@ -25,7 +28,8 @@ const config = {
           new RegExp(`^${escape(path.join(root, 'node_modules', m))}\\/.*$`)
       )
     ),
-
+    assetExts: assetExts.filter((ext) => ext !== 'svg'),
+    sourceExts: [...sourceExts, 'svg'],
     extraNodeModules: modules.reduce((acc, name) => {
       acc[name] = path.join(__dirname, 'node_modules', name);
       return acc;
@@ -39,6 +43,7 @@ const config = {
         inlineRequires: true,
       },
     }),
+    babelTransformerPath: require.resolve('react-native-svg-transformer'),
   },
 };
 
