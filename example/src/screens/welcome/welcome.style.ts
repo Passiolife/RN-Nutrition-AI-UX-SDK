@@ -1,5 +1,6 @@
 import {
   Colors,
+  moderateScale,
   scaleHeight,
   scaleWidth,
   scaledSize,
@@ -7,42 +8,43 @@ import {
 } from '@app/utils';
 import { StyleSheet } from 'react-native';
 
-const { error, white } = Colors;
+const { error, white, primaryColor } = Colors;
 
-const loginStyles = () =>
+const welcomeStyles = () =>
   StyleSheet.create({
     bodyContainer: {
       flex: 1,
+      justifyContent: 'space-between',
     },
     headerText: {
       fontSize: scaledSize(30),
       fontWeight: '700',
       marginVertical: scaleHeight(16),
       textAlign: 'center',
-      color: Colors.white,
+      color: white,
     },
-    errorText: {
-      color: error,
+    acknowledge: {
+      color: white,
       textAlign: 'center',
-      marginTop: scaleHeight(8),
-    },
-    forgotPwd: {
-      color: Colors.white,
-      textDecorationLine: 'underline',
-      textAlign: 'center',
+      fontSize: moderateScale(13),
+      lineHeight: scaledSize(20),
     },
     btn: {
       marginTop: scaleHeight(16),
       borderRadius: scaledSize(6),
     },
-    disableBtn: {
+    btnWhite: {
       marginTop: scaleHeight(16),
       borderRadius: scaledSize(6),
-      backgroundColor: Colors.primaryColor20,
+      backgroundColor: white,
     },
     btntxt: {
       color: white,
       fontSize: scaleHeight(16),
+    },
+    btntxtWhite: {
+      fontSize: scaleHeight(16),
+      color: primaryColor,
     },
     img: {
       height: scaleHeight(20),
@@ -57,6 +59,11 @@ const loginStyles = () =>
       marginHorizontal: scaleWidth(24),
       flex: 1,
     },
+    underline: { textDecorationLine: 'underline' },
+    actionContainer: {
+      paddingHorizontal: scaleWidth(16),
+      marginBottom: scaleHeight(36),
+    },
   });
 
-export default loginStyles;
+export default welcomeStyles;

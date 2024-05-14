@@ -44,7 +44,7 @@ export type ButtonProps = AnimatedButtonProps & ExtraButtonProps;
 
 export const AnimatedTouchableOpacity = React.memo(
   (props: AnimatedButtonProps) => {
-    const { containerStyle, disabled } = props;
+    const { containerStyle } = props;
     const scaleValue = useSharedValue(1);
 
     const animatedButtonStyle = useAnimatedStyle(() => {
@@ -55,15 +55,7 @@ export const AnimatedTouchableOpacity = React.memo(
 
     return (
       <AnimatedButtonComponent
-        style={[
-          containerStyle,
-          animatedButtonStyle,
-          {
-            backgroundColor: disabled
-              ? Colors.primaryColor20
-              : Colors.primaryColor,
-          },
-        ]}
+        style={[containerStyle, animatedButtonStyle]}
         onPressIn={() => (scaleValue.value = withSpring(0.9))}
         onPressOut={() => (scaleValue.value = withSpring(1))}
         activeOpacity={0.8}

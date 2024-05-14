@@ -79,7 +79,9 @@ const LoginScreen = () => {
               title="Log In"
               titleStyle={styles.btntxt}
               disabled={!email || !password}
-              buttonContainerStyle={styles.btn}
+              buttonContainerStyle={
+                !email || !password ? styles.disableBtn : styles.btn
+              }
             />
             <Text style={styles.errorText}>
               {!isEmailValid && !isPasswordValid
