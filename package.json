@@ -24,11 +24,11 @@
   ],
   "scripts": {
     "test": "yarn prepare && jest",
+    "prepare": "bob build && husky install",
     "snapshot-update": "yarn prepare && jest -u",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "release": "release-it",
-    "prepare": "husky install",
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",

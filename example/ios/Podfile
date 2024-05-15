@@ -42,7 +42,7 @@ target 'NutritionUxExample' do
   pod 'react-native-nutrition-ux', :path => '../..'
   pod 'React-Core', :path => '../node_modules/react-native/', :modular_headers => true
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
-  pod 'NutritionReport', git: 'https://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@github.com/Passiolife/Nutrition-Report-iOS.git', :tag => '1.0.2'
+  pod 'NutritionReport', git: 'https://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@`github.com/Passiolife/Nutrition-Report-iOS.git', :tag => '1.0.2'
 
   target 'NutritionUxExampleTests' do
     inherit! :complete
