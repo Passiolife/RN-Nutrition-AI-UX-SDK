@@ -8,7 +8,7 @@ import {
 } from '@app/utils';
 import { StyleSheet } from 'react-native';
 
-const { error, white, primaryColor } = Colors;
+const { white, primaryColor } = Colors;
 
 const welcomeStyles = () =>
   StyleSheet.create({
