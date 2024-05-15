@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import NutritionReport
+
 
 class DayLogs: Decodable {
 
@@ -21,12 +21,6 @@ class DayLogs: Decodable {
         self.records = records
     }
 
-    func convertToNutritionFoodRecordSDKModel() -> NutritionReport.DayLog {
-        let foodRecord = self.records.map { (foodRecord) -> NutritionReport.FoodRecord in
-            foodRecord.convertToNutritionSDKModel()
-        }
-        return NutritionReport.DayLog(date: self.date, records: foodRecord)
-    }
 }
 
 struct FoodRecord: Decodable {
@@ -40,24 +34,7 @@ struct FoodRecord: Decodable {
     let foodItems: [FoodItem]
     let uuid, name, selectedUnit: String
 
-    func convertToNutritionSDKModel() -> NutritionReport.FoodRecord {
-        let ingredient = self.convertToIngredientSDKModel()
-        return NutritionReport.FoodRecord.init(
-            name: self.name,
-            uuid: self.uuid,
-            createdAt: Date(),
-            selectedUnit: self.selectedUnit,
-			selectedQuantity: self.selectedQuantity ?? 0.0,
-            ingredients: ingredient,
-            mealLabel: MealLabel(rawValue: meal.capitalized)
-        )
-    }
 
-    func convertToIngredientSDKModel() -> [NutritionReport.FoodItem] {
-        return self.foodItems.map { (foodItem)  in
-            foodItem.convertToIngredientSDKModel()
-        }
-    }
 }
 
 // MARK: - FoodItem
@@ -74,34 +51,6 @@ struct FoodItem: Decodable {
     let nutrients: [Nutrient]
     let barcode: String?
   
-    func convertToIngredientSDKModel() -> NutritionReport.FoodItem {
-
-        var caloies: Double = 0.0
-        var carbs: Double = 0.0
-        var fat: Double = 0.0
-        var protein: Double = 0.0
-
-        _ = self.nutrients.map { (nutrient)  in
-            switch nutrient.id {
-            case "calories" :
-                caloies = nutrient.amount
-            case "carbs" :
-                carbs = nutrient.amount
-            case "protein" :
-                protein = nutrient.amount
-            case "fat" :
-                fat = nutrient.amount
-            default : break
-            }
-        }
-
-        return NutritionReport.FoodItem(
-            totalCalories: caloies,
-            totalCarbs: carbs,
-            totalFat: fat,
-            totalProteins: protein
-        )
-    }
 
 }
 
@@ -177,9 +126,7 @@ extension Date {
         return dates
     }
 
-    static func dates(for report: NutritionReport.ReportTimeDuration) -> [Date] {
-        Date.dates(from: report.duration.endDate, to: report.duration.startDate)
-    }
+  
 }
 
 struct UserProfile: Decodable {
