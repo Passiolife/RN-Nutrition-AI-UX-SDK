@@ -32,13 +32,13 @@ const templateStyles = () =>
       width: '70%',
     },
     title: {
-      fontSize: scaledSize(20),
+      fontSize: scaledSize(18),
       fontWeight: '600',
       color: Colors.white,
     },
     desc: {
-      fontSize: scaledSize(14),
-      fontWeight: '600',
+      fontSize: scaledSize(12),
+      fontWeight: '500',
       color: Colors.white,
     },
 

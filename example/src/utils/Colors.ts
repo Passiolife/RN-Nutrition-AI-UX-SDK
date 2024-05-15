@@ -19,6 +19,7 @@ export interface ColorsType {
   white: string;
   whiteOpacity20: string;
   primaryColor20: string;
+  primaryColor30: string;
 }
 
 export const Colors: ColorsType = {
@@ -35,6 +36,7 @@ export const Colors: ColorsType = {
   indigo50: 'rgba(238, 242, 255, 1)',
   primaryColor: 'rgba(79, 70, 229, 1)',
   primaryColor20: 'rgba(79, 70, 229, 0.2)',
+  primaryColor30: 'rgba(79, 70, 229, 0.3)',
   proteins: 'rgba(16, 185, 129, 1)',
   purple: 'rgba(79, 70, 229, 1)',
   searchBody: 'rgba(242, 245, 251, 1)',
