@@ -43,7 +43,6 @@ import PdfView from '../screens/pdfViews/PdfViewScreen';
 import MyPlanScreen from '../screens/myPlans/MyPlanScreen';
 import { HomeBottomNavigation } from './HomeBottomNavigations';
 import MealLogScreen from '../screens/meallogss/MealLogScreen';
-import { usePassioAuthConfig } from '../screens/scanning/usePassioAuthConfig';
 import Toast, { type ToastConfig } from 'react-native-toast-message';
 import { toastConfig } from '../components';
 import WaterEntry from '../screens/water/views/waterentry/WaterEntry';
@@ -56,8 +55,6 @@ const Stack = createNativeStackNavigator();
 enableScreens();
 
 export const NutritionNavigator = () => {
-  usePassioAuthConfig();
-
   return (
     <>
       <NavigationContainer>

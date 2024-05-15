@@ -9,4 +9,5 @@ export * from './navigaitons';
 export { NutritionProfileScreen } from './screens';
 export * from './utils';
 export * from './hooks/usePassioAuthConfig';
+
 import 'react-native-gesture-handler';

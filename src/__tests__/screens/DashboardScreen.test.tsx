@@ -8,7 +8,6 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react-native';
 import { AsyncStorageHelper } from '../../utils/AsyncStorageHelper';
-import { usePassioAuthConfig } from '../../screens/scanning/usePassioAuthConfig';
 
 const mockedDispatch = jest.fn();
 jest.mock('@react-navigation/native', () => {
@@ -48,7 +47,6 @@ describe('Dashboard Screen :', () => {
 
   it('checked if user has completed onBoarding and render screen', async () => {
     let tree: RenderAPI;
-    usePassioAuthConfig();
     await AsyncStorageHelper.setOnBoardingCompleted();
     tree = await render(
       <>
