@@ -54,7 +54,7 @@
     "@babel/runtime": "^7.23.8",
     "@gorhom/bottom-sheet": "^4.6.1",
     "@notifee/react-native": "^7.8.2",
-    "@passiolife/nutritionai-react-native-sdk-v3": "3.0.3",
+    "@passiolife/nutritionai-react-native-sdk-v3": "https://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@github.com/Passiolife/NutritionAI-React-Native-SDK-v3.git#22ee0faeef29cbee97e1fd48e53fda387670a710",
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-community/datetimepicker": "^7.6.3",
     "@react-native-community/slider": "^4.5.0",
