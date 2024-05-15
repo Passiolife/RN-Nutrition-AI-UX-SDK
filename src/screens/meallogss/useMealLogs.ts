@@ -67,14 +67,22 @@ export function useMealLogs() {
   async function onQuickSuggestionPress(quickSuggestion: QuickSuggestion) {
     let foodLog = quickSuggestion.foodLog;
 
-    if (foodLog === undefined && quickSuggestion.id) {
+    if (foodLog === undefined && quickSuggestion.refCode) {
       const attribute = await PassioSDK.fetchFoodItemForRefCode(
-        quickSuggestion.id
+        quickSuggestion.refCode
+      );
+      if (attribute) {
+        foodLog = convertPassioFoodItemToFoodLog(attribute, date, undefined);
+      }
+    } else if (foodLog === undefined && quickSuggestion.passioFoodDataInfo) {
+      const attribute = await PassioSDK.fetchFoodItemForDataInfo(
+        quickSuggestion.passioFoodDataInfo
       );
       if (attribute) {
         foodLog = convertPassioFoodItemToFoodLog(attribute, date, undefined);
       }
     }
+
     if (foodLog !== undefined) {
       await services.dataService.saveFoodLog({
         ...foodLog,

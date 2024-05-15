@@ -54,7 +54,7 @@ export const QuickSuggestions = ({
             return (
               <QuickSuggestionItemView
                 foodName={item.foodName}
-                imageName={item.imageName}
+                imageName={item.iconID}
                 onFoodItemClickCall={() => onFoodItemClickCall(item)}
               />
             );
