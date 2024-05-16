@@ -4,6 +4,7 @@
     "baseUrl": "./",
     "paths": {
       "*": ["../example/src/*"],
+      "react-native-nutrition-ux":["../src/index"],
       "@app/components": ["../example/src/components"],
       "@app/screens": ["../example/src/screens"],
       "@app/assets": ["../example/assets"],

@@ -2,9 +2,6 @@ PODS:
   - boost (1.83.0)
   - BVLinearGradient (2.8.3):
     - React-Core
-  - Charts (3.6.0):
-    - Charts/Core (= 3.6.0)
-  - Charts/Core (3.6.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.73.2)
   - FBReactNativeSpec (0.73.2):
@@ -24,11 +21,6 @@ PODS:
   - lottie-react-native (6.4.1):
     - lottie-ios (~> 4.3.3)
     - React-Core
-  - NutritionReport (1.0.2):
-    - Charts
-    - NutritionReport/Core (= 1.0.2)
-  - NutritionReport/Core (1.0.2):
-    - Charts
   - RCT-Folly (2022.05.16.00):
     - boost
     - DoubleConversion
@@ -903,7 +895,6 @@ PODS:
   - react-native-blob-util (0.19.6):
     - React-Core
   - react-native-nutrition-ux (3.0.3):
-    - NutritionReport
     - React-Core
   - react-native-pdf (6.7.4):
     - React-Core
@@ -1124,7 +1115,6 @@ DEPENDENCIES:
   - libevent (~> 2.1.12)
   - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
-  - NutritionReport (from `https://github.com/Passiolife/Nutrition-Report-iOS.git`, tag `1.0.2`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
@@ -1187,7 +1177,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - Charts
     - fmt
     - libevent
     - SocketRocket
@@ -1212,9 +1201,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/lottie-ios"
   lottie-react-native:
     :path: "../node_modules/lottie-react-native"
-  NutritionReport:
-    :git: https://github.com/Passiolife/Nutrition-Report-iOS.git
-    :tag: 1.0.2
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTRequired:
@@ -1330,15 +1316,9 @@ EXTERNAL SOURCES:
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
-CHECKOUT OPTIONS:
-  NutritionReport:
-    :git: https://github.com/Passiolife/Nutrition-Report-iOS.git
-    :tag: 1.0.2
-
 SPEC CHECKSUMS:
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   BVLinearGradient: 880f91a7854faff2df62518f0281afb1c60d49a3
-  Charts: 888b39ae772b3dc79d0a0e659f0419ff9bd3e963
   DoubleConversion: fea03f2699887d960129cc54bba7e52542b6f953
   FBLazyVector: fbc4957d9aa695250b55d879c1d86f79d7e69ab4
   FBReactNativeSpec: 86de768f89901ef6ed3207cd686362189d64ac88
@@ -1348,7 +1328,6 @@ SPEC CHECKSUMS:
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   lottie-ios: 3d98679b41fa6fd6aff2352b3953dbd3df8a397e
   lottie-react-native: a2ae9c27c273b060b2affff2957bc0ff7fdca353
-  NutritionReport: 4e9b72389075e60a86bb7689f0d997ef36e0f68f
   RCT-Folly: 7169b2b1c44399c76a47b5deaaba715eeeb476c0
   RCTRequired: 9b1e7e262745fb671e33c51c1078d093bd30e322
   RCTTypeSafety: a759e3b086eccf3e2cbf2493d22f28e082f958e6
@@ -1371,7 +1350,7 @@ SPEC CHECKSUMS:
   React-logger: 66b168e2b2bee57bd8ce9e69f739d805732a5570
   React-Mapbuffer: 9ee041e1d7be96da6d76a251f92e72b711c651d6
   react-native-blob-util: d8fa1a7f726867907a8e43163fdd8b441d4489ea
-  react-native-nutrition-ux: 2aadd8a75a90fc488a0a74ad82970c693a22dd7d
+  react-native-nutrition-ux: 6233ebae0fe67493456b87180af898745991f00a
   react-native-pdf: 79aa75e39a80c1d45ffe58aa500f3cf08f267a2e
   react-native-safe-area-context: 0ee144a6170530ccc37a0fd9388e28d06f516a89
   react-native-slider: 7d387c7e8dd0b4c12bf49c975c8666435f082a33
@@ -1408,6 +1387,6 @@ SPEC CHECKSUMS:
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: e64aa65de36c0832d04e8c7bd614396c77a80047
 
-PODFILE CHECKSUM: 5d2c0a04feb1d13f08578145ba0d9025d3cd45b5
+PODFILE CHECKSUM: a2947df3ae3fe759cfd0e850554bc385583bc722
 
 COCOAPODS: 1.14.3

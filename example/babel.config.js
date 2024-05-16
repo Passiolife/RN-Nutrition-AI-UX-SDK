@@ -19,6 +19,7 @@ module.exports = {
         ],
         alias: {
           [pak.name]: path.join(__dirname, '..', pak.source),
+          'react-native-nutrition-ux': './src/index',
           '@app/components': '../example/src/components',
           '@app/screens': '../example/src/screens',
           '@app/assets': '../example/assets',

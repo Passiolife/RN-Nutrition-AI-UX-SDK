@@ -19,14 +19,27 @@ export function getMealLog(date: Date, meal: MealLabel | undefined): MealLabel {
 }
 
 export function mealLabelByDate(date: Date): MealLabel {
-  if (isBreakfastTime(date)) {
-    return 'breakfast';
-  } else if (isLunchTime(date)) {
-    return 'lunch';
-  } else if (isDinnerTime(date)) {
-    return 'dinner';
-  } else {
-    return 'snack';
+  try {
+    const hours = date.getHours();
+    if (hours >= 4 && hours <= 10) {
+      return 'breakfast';
+    } else if (hours >= 11 && hours <= 14) {
+      return 'lunch';
+    } else if (hours >= 17 && hours <= 21) {
+      return 'dinner';
+    } else {
+      return 'snack';
+    }
+  } catch (err) {
+    if (isBreakfastTime(date)) {
+      return 'breakfast';
+    } else if (isLunchTime(date)) {
+      return 'lunch';
+    } else if (isDinnerTime(date)) {
+      return 'dinner';
+    } else {
+      return 'snack';
+    }
   }
 }
 

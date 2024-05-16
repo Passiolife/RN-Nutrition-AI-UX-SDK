@@ -11,12 +11,14 @@ export const CircularProgressNutritionTrackView = ({
   stock,
   stock2,
   text,
+  unit,
 }: {
   record: number;
   total: number;
   stock: string;
   stock2: string;
   text: string;
+  unit?: string;
 }) => {
   const actualTotal = total;
   const actualRecord = record;
@@ -67,7 +69,7 @@ export const CircularProgressNutritionTrackView = ({
               testID="testNutrientCalories"
               style={styles.calorieItemValue}
             >
-              {Math.round(actualRecord)}
+              {Math.round(actualRecord) + (unit ? ` ${unit}` : '')}
             </Text>
             <View style={styles.line} />
             <Text weight="500" color="text" style={styles.calorieItemTitle}>

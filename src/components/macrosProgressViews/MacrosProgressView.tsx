@@ -39,16 +39,19 @@ const MacrosProgressView = (props: MacrosProgressViewProps) => {
         stock={cabColor}
         stock2={'rgba(12, 74, 110, 1)'}
         text={'Carbs'}
+        unit="g"
       />
       <CircularProgressNutritionTrackView
         record={protein.target}
         total={protein.consumed}
         stock2={'rgba(6, 78, 59, 1)'}
         stock={protColor}
+        unit="g"
         text={'Protein'}
       />
       <CircularProgressNutritionTrackView
         record={fat.target}
+        unit="g"
         total={fat.consumed}
         stock2={'rgba(49, 46, 129, 1)'}
         stock={fatColor}

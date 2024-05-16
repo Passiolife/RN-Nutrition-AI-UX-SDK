@@ -13,8 +13,7 @@ import { nutrientName, nutrientUnits, type Nutrient } from '../../models';
 import { ICONS } from '../../assets';
 
 const NutritionInformationScreen = () => {
-  const { nutrients, onMorePress, isMore, isInfo, onInfoPress } =
-    useNutritionInformation();
+  const { nutrients, isInfo, onInfoPress } = useNutritionInformation();
 
   const renderItem = ({ item }: { item: Nutrient; index: number }) => {
     return (
@@ -79,16 +78,6 @@ const NutritionInformationScreen = () => {
     );
   };
 
-  const renderFooter = () => {
-    return (
-      <TouchableOpacity onPress={onMorePress} style={styles.more}>
-        <Text weight="500" color="primaryColor">
-          {isMore ? 'Show Less' : 'Show More'}
-        </Text>
-      </TouchableOpacity>
-    );
-  };
-
   return (
     <>
       <BackNavigation title="Nutrition Information" />
@@ -114,7 +103,6 @@ const NutritionInformationScreen = () => {
           style={styles.list}
           numColumns={2}
           showsVerticalScrollIndicator={false}
-          ListFooterComponent={renderFooter}
           ListHeaderComponent={renderInfo}
         />
       </View>

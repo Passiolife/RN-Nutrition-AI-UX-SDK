@@ -13,7 +13,7 @@ import { dateFormatter } from '../../utils';
 import { withLoading } from '../../components/withLoading';
 import { content } from '../../constants/Content';
 import { useHome } from './useHome';
-import CalenderComponent from '../../components/weeklyAddhernce/WeeklyAdherence';
+import WeeklyAdherence from '../../components/weeklyAddhernce/WeeklyAdherence';
 import { useBranding } from '../../contexts';
 import homeScreenStyle from './styles';
 import { DateTime } from 'luxon';
@@ -95,35 +95,28 @@ const HomeScreenView = () => {
       >
         <DailyNutrition foodLogs={foodLogs} />
 
-        {true && (
-          <CalenderComponent
-            headerDate={DateTime.fromJSDate(date)}
-            onDateSelect={changeDate}
-          />
-        )}
+        <WeeklyAdherence headerDate={DateTime.fromJSDate(date)} />
 
-        {true && (
-          <View style={styles.widgetsContainer}>
-            <WidgetsCard
-              widgetTitle="Water"
-              leftIcon={ICONS.blueWaterDrop}
-              rightIcon={ICONS.newAddPlus}
-              value={Math.round(achievedWater)}
-              onPressRightIcon={onWaterPress}
-              unitValue={unitOfWater}
-              remain={Math.round(remainWater)}
-            />
-            <WidgetsCard
-              widgetTitle="Weight"
-              onPressRightIcon={onWeightPress}
-              leftIcon={ICONS.blueWeightMachine}
-              rightIcon={ICONS.newAddPlus}
-              value={Math.round(achievedWeight)}
-              unitValue={unitOfWeight}
-              remain={Math.round(remainWeight)}
-            />
-          </View>
-        )}
+        <View style={styles.widgetsContainer}>
+          <WidgetsCard
+            widgetTitle="Water"
+            leftIcon={ICONS.blueWaterDrop}
+            rightIcon={ICONS.newAddPlus}
+            value={Math.round(achievedWater)}
+            onPressRightIcon={onWaterPress}
+            unitValue={unitOfWater}
+            remain={Math.round(remainWater)}
+          />
+          <WidgetsCard
+            widgetTitle="Weight"
+            onPressRightIcon={onWeightPress}
+            leftIcon={ICONS.blueWeightMachine}
+            rightIcon={ICONS.newAddPlus}
+            value={Math.round(achievedWeight)}
+            unitValue={unitOfWeight}
+            remain={Math.round(remainWeight)}
+          />
+        </View>
       </ScrollView>
       <DatePicker
         isDatePickerVisible={isOpenDatePicker}

@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
 
 import { PassioSDK } from '@passiolife/nutritionai-react-native-sdk-v3/src/sdk/v2';
-import { PASSIO_SDK_KEY } from '../../key'; // create key.ts folder at root
 
-export function usePassioAuthConfig() {
+export function usePassioAuthConfig({ key }: { key: string }) {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     async function getAuth() {
       const isAuthorized = await PassioSDK.requestCameraAuthorization();
       const passioSDKStatus = await PassioSDK.configure({
-        key: PASSIO_SDK_KEY,
+        key: key,
         autoUpdate: true,
         debugMode: true,
       });
@@ -21,7 +20,7 @@ export function usePassioAuthConfig() {
     }
 
     getAuth();
-  }, []);
+  }, [key]);
 
   return {
     isReady,

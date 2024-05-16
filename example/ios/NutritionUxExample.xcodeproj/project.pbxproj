@@ -412,18 +412,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NutritionUxExample-NutritionUxExampleTests/Pods-NutritionUxExample-NutritionUxExampleTests-resources.sh",
-				"${PODS_ROOT}/NutritionReport/NutritionReport/Resources/Fonts/Comfortaa_Bold.ttf",
-				"${PODS_ROOT}/NutritionReport/NutritionReport/Resources/Fonts/Comfortaa_Regular.ttf",
-				"${PODS_ROOT}/NutritionReport/NutritionReport/Resources/Fonts/Comfortaa_Thin.ttf",
-				"${PODS_CONFIGURATION_BUILD_DIR}/NutritionReport/NutritionReport.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Comfortaa_Bold.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Comfortaa_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Comfortaa_Thin.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NutritionReport.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCTI18nStrings.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,18 +492,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-NutritionUxExample/Pods-NutritionUxExample-resources.sh",
-				"${PODS_ROOT}/NutritionReport/NutritionReport/Resources/Fonts/Comfortaa_Bold.ttf",
-				"${PODS_ROOT}/NutritionReport/NutritionReport/Resources/Fonts/Comfortaa_Regular.ttf",
-				"${PODS_ROOT}/NutritionReport/NutritionReport/Resources/Fonts/Comfortaa_Thin.ttf",
-				"${PODS_CONFIGURATION_BUILD_DIR}/NutritionReport/NutritionReport.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Comfortaa_Bold.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Comfortaa_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Comfortaa_Thin.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NutritionReport.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCTI18nStrings.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

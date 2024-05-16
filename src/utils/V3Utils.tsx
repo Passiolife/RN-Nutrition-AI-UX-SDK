@@ -55,6 +55,7 @@ export const convertPassioFoodItemToFoodLog = (
   const log: FoodLog = {
     name: foodItem.name,
     uuid: uuid,
+    longName: foodItem.details,
     passioID: foodItem.refCode ?? foodItem.id,
     refCode: foodItem.refCode,
     eventTimestamp: dateFormat,
@@ -204,27 +205,18 @@ export const updateQuantityOfFoodLog = (foodLog: FoodLog, qty: number) => {
   return copyOfFoodLog;
 };
 
-export const passioSuggestedFoods = async (): Promise<
-  (QuickSuggestion | null)[]
-> => {
-  const list = await PassioSDK.fetchSuggestions('breakfast');
+export const passioSuggestedFoods = async (
+  meal: MealLabel
+): Promise<(QuickSuggestion | null)[]> => {
+  const list = await PassioSDK.fetchSuggestions(meal);
   return await Promise.all(
     (list ?? []).map(async (item) => {
-      const attribute = await PassioSDK.fetchFoodItemForDataInfo(item);
-      if (attribute) {
-        return {
-          id: attribute.refCode,
-          foodName: attribute?.name,
-          imageName: attribute.iconId,
-          foodLog: convertPassioFoodItemToFoodLog(
-            attribute,
-            new Date(),
-            undefined
-          ),
-        } as QuickSuggestion;
-      } else {
-        return null;
-      }
+      const quickSuggestion: QuickSuggestion = {
+        foodName: item.foodName,
+        passioFoodDataInfo: item,
+        iconID: item.iconID,
+      };
+      return quickSuggestion;
     })
   );
 };

@@ -79,7 +79,7 @@ export const WidgetsCard = ({
             style={styles.bottomText}
           >
             <Text weight="600" size="_12px" color="text">
-              {remain ?? 0}
+              {remain && remain > 0 ? remain : 0}
             </Text>
             <Text>&nbsp;</Text>
             <Text weight="600" size="_12px" color="text">

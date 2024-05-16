@@ -14,6 +14,7 @@ export interface FoodLog extends ServingInfo {
   refCode?: string;
   eventTimestamp: string;
   isOpenFood?: boolean;
+  longName?: string;
   meal: MealLabel;
   imageName: string;
   entityType: PassioIDEntityType | 'user-recipe';
