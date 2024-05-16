@@ -22,7 +22,6 @@ import { ICONS } from '../../assets';
 import { FlatList } from 'react-native';
 import { useWeights } from './useWeights';
 import { DateTime } from 'luxon';
-import { WeightTrendChart } from './linechart/lineChart';
 import type { Weight } from '../../models';
 
 const WeightScreen = () => {
@@ -31,7 +30,7 @@ const WeightScreen = () => {
     isContentVisible,
     weightLabel,
     weights,
-    weightTrendData,
+    // weightTrendData,
     convertWeightAccordingToUnitWeight,
     getWeights,
     handleContentVisible,
@@ -118,7 +117,8 @@ const WeightScreen = () => {
           <View style={styles.chartHeaderText}>
             <Text style={styles.headerOvr}>Weight Trend</Text>
           </View>
-          <WeightTrendChart data={weightTrendData} />
+          {/* <WeightTrendChart data={weightTrendData} /> */}
+          <Text size="_18px">Line Chart</Text>
         </Card>
         <Card style={styles.roundedAndShadowView}>
           <FlatList

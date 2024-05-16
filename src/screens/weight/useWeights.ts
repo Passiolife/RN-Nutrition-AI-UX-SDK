@@ -8,7 +8,7 @@ import type { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { useSettingScreen } from '../setting/useSettingScreen';
 import { convertKGToPounds } from '../nutritionProfile/unitConversions';
-import type { WeightTrendChart } from './linechart/lineChart';
+// import type { WeightTrendChart } from './linechart/lineChart';
 import { prepPareWeightChart } from './views/weightentry/Weight.utils';
 
 export interface WaterSections {
@@ -26,9 +26,7 @@ export const useWeights = () => {
 
   const [isContentVisible, setIsContentVisible] = useState(true);
   const [weights, setWeightSection] = useState<Weight[]>([]);
-  const [weightTrendData, seTWeightTrendData] = useState<WeightTrendChart[]>(
-    []
-  );
+  const [weightTrendData, seTWeightTrendData] = useState<any[]>([]);
 
   const getWeights = useCallback(
     (startDate: Date, endDate: Date, type: SwitchTabLabelEnum) => {

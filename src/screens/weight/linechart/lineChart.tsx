@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
-import { LineChart, type lineDataItem } from 'react-native-gifted-charts';
-import { screenWidth } from '../../../utils';
+// import { LineChart, type lineDataItem } from 'react-native-gifted-charts';
+// import { screenWidth } from '../../../utils';
 
 export type WeightTrendChart = {
   value: number;
@@ -12,11 +12,11 @@ interface WeightTrendChartProps {
   data: WeightTrendChart[];
 }
 
-export const WeightTrendChart = ({ data }: WeightTrendChartProps) => {
-  const maxValue = Math.max(...data.map((o) => o.value));
+export const WeightTrendChart = ({}: WeightTrendChartProps) => {
+  // const maxValue = Math.max(...data.map((o) => o.value));
   return (
     <View style={{ overflow: 'hidden', marginVertical: 20 }}>
-      <LineChart
+      {/* <LineChart
         data={data.map((item, index) => {
           const items: lineDataItem = {
             ...item,
@@ -47,7 +47,7 @@ export const WeightTrendChart = ({ data }: WeightTrendChartProps) => {
         xAxisColor="transparent"
         dataPointsColor="blue"
         rulesType="solid"
-      />
+      /> */}
     </View>
   );
 };

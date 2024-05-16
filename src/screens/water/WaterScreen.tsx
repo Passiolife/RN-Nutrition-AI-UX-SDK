@@ -12,7 +12,6 @@ import {
 import { ICONS } from '../../assets';
 import {
   BackNavigation,
-  BarChart,
   CalendarCarousel,
   Card,
   SwipeableView,
@@ -28,7 +27,7 @@ import type { Water } from '../../models';
 const WaterScreen = () => {
   const {
     calendarCarouselRef,
-    chartData,
+    // chartData,
     isContentVisible,
     isImperialWeight,
     ogMlLabel,
@@ -110,13 +109,14 @@ const WaterScreen = () => {
           onDateSelect={getWaters}
         />
 
-        {chartData && (
+        {/* {chartData && (
           <BarChart
             barData={chartData}
             title="Water Trend"
             barChartContainerStyle={{ marginTop: 16 }}
           />
-        )}
+        )} */}
+        <Text size="_18px">Bar Chart</Text>
         <QuickAddTracking
           isImperial={isImperialWeight}
           label={ogMlLabel}

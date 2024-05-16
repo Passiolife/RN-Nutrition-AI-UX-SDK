@@ -5,12 +5,12 @@ import {
   type StyleProp,
   type ViewStyle,
   FlatList,
-  Dimensions,
+  // Dimensions,
 } from 'react-native';
-import {
-  BarChart as GiftedBarChart,
-  type stackDataItem,
-} from 'react-native-gifted-charts';
+// import {
+//   BarChart as GiftedBarChart,
+//   type stackDataItem,
+// } from 'react-native-gifted-charts';
 import { scaledSize, scaleHeight, scaled, scaleWidth } from '../../utils';
 import { useBranding } from '../../contexts';
 import type { Branding } from '../../contexts';
@@ -48,12 +48,12 @@ const chartLegendData: legendDataTyle[] = [
 
 export const StackChart = ({
   title = 'Macros',
-  stackData,
+  // stackData,
   showInfo = true,
 }: StackChartProps) => {
-  const maxValue = Math.max(
-    ...stackData.flatMap((day) => day.stacks.map((stack) => stack.value))
-  );
+  // const maxValue = Math.max(
+  //   ...stackData.flatMap((day) => day.stacks.map((stack) => stack.value))
+  // );
 
   const styles = stackChartStyle(useBranding());
 
@@ -75,7 +75,7 @@ export const StackChart = ({
           {title}
         </Text>
         <View style={styles.chartView}>
-          {stackData.length > 0 && (
+          {/* {stackData.length > 0 && (
             <GiftedBarChart
               stackData={stackData.map((item, index) => {
                 const data: stackDataItem = {
@@ -115,7 +115,7 @@ export const StackChart = ({
               stepHeight={45}
               barWidth={stackData.length > 7 ? 5 : 10}
             />
-          )}
+          )} */}
         </View>
       </Card>
       {showInfo && (

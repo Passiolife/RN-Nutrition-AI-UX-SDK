@@ -8,7 +8,7 @@ import {
 } from 'react-native-nutrition-ux';
 import branding from './branding';
 import { NavigationContainer } from '@react-navigation/native';
-import { PASSIO_SDK_KEY } from './config';
+import { PASSIO_SDK_KEY } from '../config';
 import { SplashScreen } from './SplashScreen';
 
 export default function App() {

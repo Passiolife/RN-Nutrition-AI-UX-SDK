@@ -1,19 +1,13 @@
-import {
-  Dimensions,
-  StyleSheet,
-  View,
-  type StyleProp,
-  type ViewStyle,
-} from 'react-native';
+import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 import React from 'react';
 import { Text } from '../texts';
 import { useBranding } from '../../contexts';
 import type { Branding } from '../../contexts';
 import { scaledSize, scaleHeight } from '../../utils';
-import {
-  BarChart as GiftedBarChart,
-  type barDataItem,
-} from 'react-native-gifted-charts';
+// import {
+//   BarChart as GiftedBarChart,
+//   type barDataItem,
+// } from 'react-native-gifted-charts';
 import { Card } from '../cards';
 
 export interface ChartData {
@@ -30,11 +24,11 @@ export interface BarChartProps {
 export const BarChart = ({
   title = 'Calories',
   barChartContainerStyle,
-  barData,
+  // barData,
 }: BarChartProps) => {
   const styles = barChartStyle(useBranding());
 
-  const maxValue = Math.max(...barData.map((o) => o.value));
+  // const maxValue = Math.max(...barData.map((o) => o.value));
 
   return (
     <View style={barChartContainerStyle}>
@@ -44,7 +38,7 @@ export const BarChart = ({
         </Text>
 
         <View style={styles.chartView}>
-          <GiftedBarChart
+          {/* <GiftedBarChart
             data={barData.map((item, index) => {
               const items: barDataItem = {
                 ...item,
@@ -81,7 +75,7 @@ export const BarChart = ({
             stepHeight={50}
             frontColor={'rgba(79, 70, 229, 1)'}
             barWidth={barData.length > 7 ? 6 : 10}
-          />
+          /> */}
         </View>
       </Card>
     </View>

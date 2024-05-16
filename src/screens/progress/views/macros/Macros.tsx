@@ -4,23 +4,23 @@ import { useBranding } from '../../../../contexts';
 import type { Branding } from '../../../../contexts';
 import {
   CalendarCarousel,
-  StackChart,
   BasicButton,
   CustomActivityIndicator,
+  Text,
 } from '../../../../components';
 import { scaleHeight, scaleWidth, scaledSize } from '../../../../utils';
 import { useMacros } from './useMacros';
 
 const Macros = () => {
   const {
-    macroChartData,
+    // macroChartData,
     fetchData,
-    calories,
+    // calories,
     calendarCarouselRef,
-    targetCalories,
-    targetFat,
-    targetCarbs,
-    targetProtein,
+    // targetCalories,
+    // targetFat,
+    // targetCarbs,
+    // targetProtein,
     loading,
   } = useMacros();
 
@@ -44,7 +44,8 @@ const Macros = () => {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.contentContainerStyle}
           >
-            <StackChart
+            <Text size="_18px">Stack Chart</Text>
+            {/* <StackChart
               barChartContainerStyle={styles.stackChartContainer}
               stackData={calories ?? []}
               title="Calories"
@@ -57,7 +58,7 @@ const Macros = () => {
               title="Macros"
               target={targetFat + targetProtein + targetCarbs}
               stackData={macroChartData ?? []}
-            />
+            /> */}
           </ScrollView>
           <BasicButton
             style={styles.button}
