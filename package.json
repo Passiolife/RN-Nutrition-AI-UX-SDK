@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "test": "yarn prepare && jest",
-    "prepare": "bob build && husky install",
+    "prepare": "bob build",
     "snapshot-update": "yarn prepare && jest -u",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -63,6 +63,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
     "@react-navigation/stack": "^6.3.29",
+    "gifted-charts-core": "^0.1.4",
     "intl": "^1.2.5",
     "jsc-android": "^250231.0.0",
     "lottie-ios": "4.3.4",
