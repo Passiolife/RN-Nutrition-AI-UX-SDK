@@ -13,13 +13,15 @@ import { Text } from '../../../components/texts/Text';
 
 interface Props {
   style?: StyleProp<ViewStyle>;
-  onFoodItemClickCall: (quickSuggestion: QuickSuggestion) => void;
+  onFoodLogEditor: (quickSuggestion: QuickSuggestion) => void;
+  onFoodLog: (quickSuggestion: QuickSuggestion) => void;
   quickSuggestedAttributes: Array<QuickSuggestion>;
 }
 
 export const QuickSuggestions = ({
   style,
-  onFoodItemClickCall,
+  onFoodLogEditor,
+  onFoodLog,
   quickSuggestedAttributes,
 }: Props) => {
   const renderFooter = () => {
@@ -55,7 +57,8 @@ export const QuickSuggestions = ({
               <QuickSuggestionItemView
                 foodName={item.foodName}
                 imageName={item.iconID}
-                onFoodItemClickCall={() => onFoodItemClickCall(item)}
+                onFoodLogEditor={() => onFoodLogEditor(item)}
+                onFoodLog={() => onFoodLog(item)}
               />
             );
           }}

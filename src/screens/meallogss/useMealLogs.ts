@@ -64,7 +64,10 @@ export function useMealLogs() {
     params?.onDateChange?.(updatedDate);
   }
 
-  async function onQuickSuggestionPress(quickSuggestion: QuickSuggestion) {
+  async function onQuickSuggestionPress(
+    quickSuggestion: QuickSuggestion,
+    isOpenEditor: boolean
+  ) {
     let foodLog = quickSuggestion.foodLog;
 
     if (foodLog === undefined && quickSuggestion.refCode) {
@@ -84,13 +87,19 @@ export function useMealLogs() {
     }
 
     if (foodLog !== undefined) {
-      await services.dataService.saveFoodLog({
+      const updateFoodLog = {
         ...foodLog,
         eventTimestamp: convertDateToDBFormat(date),
         meal: getMealLog(date, undefined),
-      });
-      ShowToast(`"${foodLog.name}" added into "${foodLog.meal}"`);
-      setFoodLogs((value) => [...value, foodLog!]);
+      };
+
+      if (isOpenEditor) {
+        navigateToEditFoodLog(updateFoodLog);
+      } else {
+        await services.dataService.saveFoodLog(updateFoodLog);
+        ShowToast(`"${updateFoodLog.name}" added into "${updateFoodLog.meal}"`);
+        setFoodLogs((value) => [...value, foodLog!]);
+      }
       bottomSheetModalRef.current?.snapToIndex(0);
     }
   }

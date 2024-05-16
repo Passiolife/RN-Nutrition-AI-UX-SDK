@@ -8,13 +8,14 @@ import { Text } from '../../../components';
 interface Props {
   imageName?: string;
   foodName: string;
-  onFoodItemClickCall: () => void;
+  onFoodLogEditor: () => void;
+  onFoodLog: () => void;
 }
 
 export const QuickSuggestionItemView = (props: Props) => {
-  const { foodName, imageName, onFoodItemClickCall } = props;
+  const { foodName, imageName, onFoodLogEditor, onFoodLog } = props;
   return (
-    <TouchableOpacity onPress={onFoodItemClickCall} style={styles.container}>
+    <TouchableOpacity onPress={onFoodLogEditor} style={styles.container}>
       <View style={styles.imageContainer}>
         <PassioFoodIcon
           imageName={imageName}
@@ -32,7 +33,9 @@ export const QuickSuggestionItemView = (props: Props) => {
       >
         {foodName}
       </Text>
-      <Image source={ICONS.newAddPlus} style={styles.addIcon} />
+      <TouchableOpacity onPress={onFoodLog}>
+        <Image source={ICONS.newAddPlus} style={styles.addIcon} />
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };
