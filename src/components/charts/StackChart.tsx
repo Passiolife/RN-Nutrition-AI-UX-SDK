@@ -5,12 +5,7 @@ import {
   type StyleProp,
   type ViewStyle,
   FlatList,
-  Dimensions,
 } from 'react-native';
-import {
-  BarChart as GiftedBarChart,
-  type stackDataItem,
-} from 'react-native-gifted-charts';
 import { scaledSize, scaleHeight, scaled, scaleWidth } from '../../utils';
 import { useBranding } from '../../contexts';
 import type { Branding } from '../../contexts';
@@ -48,13 +43,8 @@ const chartLegendData: legendDataTyle[] = [
 
 export const StackChart = ({
   title = 'Macros',
-  stackData,
   showInfo = true,
 }: StackChartProps) => {
-  const maxValue = Math.max(
-    ...stackData.flatMap((day) => day.stacks.map((stack) => stack.value))
-  );
-
   const styles = stackChartStyle(useBranding());
 
   const renderLegends = ({ item }: { item: legendDataTyle }) => {
@@ -74,49 +64,7 @@ export const StackChart = ({
         <Text size="_18px" weight="600" color="text">
           {title}
         </Text>
-        <View style={styles.chartView}>
-          {stackData.length > 0 && (
-            <GiftedBarChart
-              stackData={stackData.map((item, index) => {
-                const data: stackDataItem = {
-                  ...item,
-                  label:
-                    stackData.length === 7
-                      ? item.label.slice(0, 2)
-                      : (index % 8 === 0 || index === stackData.length - 1) ===
-                          true
-                        ? item.label.replace(/\D/g, '')
-                        : undefined,
-
-                  showXAxisIndex: false,
-                  labelTextStyle: {
-                    width: 100,
-                    marginLeft: stackData.length > 7 ? -10 : 0,
-                  },
-                } as stackDataItem;
-                return data;
-              })}
-              rulesType={'solid'}
-              width={
-                stackData.length > 7
-                  ? Dimensions.get('screen').width - 100
-                  : undefined
-              }
-              isAnimated={false}
-              yAxisThickness={0}
-              xAxisColor={'#CACACA'}
-              xAxisThickness={1}
-              initialSpacing={10}
-              rulesThickness={1}
-              rulesColor={'rgba(202, 202, 202, 1)'}
-              spacing={stackData.length > 7 ? 2 : 30}
-              stepValue={maxValue > 0 ? maxValue / 2 : 100}
-              maxValue={maxValue > 0 ? maxValue : 200}
-              stepHeight={45}
-              barWidth={stackData.length > 7 ? 5 : 10}
-            />
-          )}
-        </View>
+        <View style={styles.chartView} />
       </Card>
       {showInfo && (
         <View style={styles.legendView}>
