@@ -1,7 +1,6 @@
 package com.reactnativenutritionux
 
 import FoodItem
-import com.passio.nutritionreportrenderer.nutritionreportdata.MealLabel
 
 data class FoodLog(
   val eventTimestamp: String,
@@ -9,6 +8,5 @@ data class FoodLog(
   val selectedUnit: String,
   val name: String,
   val uuid: String,
-  val meal: MealLabel,
   val foodItems: List<FoodItem>
 )
