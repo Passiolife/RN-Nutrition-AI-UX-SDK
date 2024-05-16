@@ -5,14 +5,14 @@ import {
   type PassioNutrients,
   type UnitMass,
 } from '@passiolife/nutritionai-react-native-sdk-v3';
-import {
-  type FoodItem,
-  type FoodLog,
-  type MealLabel,
-  type Nutrient,
-  type NutrientType,
-  type ServingSize,
-  type ServingUnit,
+import type {
+  FoodItem,
+  FoodLog,
+  MealLabel,
+  Nutrient,
+  NutrientType,
+  ServingSize,
+  ServingUnit,
 } from '../models';
 import uuid4 from 'react-native-uuid';
 import { convertDateToDBFormat } from './DateFormatter';

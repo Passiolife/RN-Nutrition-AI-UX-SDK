@@ -1,7 +1,7 @@
 import { PassioSDK } from '@passiolife/nutritionai-react-native-sdk-v3/src/sdk/v2';
 import type { MealLabel } from '../models/MealLabel';
 import type { QuickSuggestion } from '../models/QuickSuggestion';
-import { type Services } from '../contexts';
+import type { Services } from '../contexts';
 import { substrateDate } from '../utils/DateUtils';
 import { AsyncStorageHelper } from '../utils/AsyncStorageHelper';
 import type { AnalyticsFoodLogs } from '../models/PassioAnalytics';

@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import uuid4 from 'react-native-uuid';
 import type { CalendarCarouselRef, ChartData } from '../../components';
 import { useServices } from '../../contexts';
-import { type Water } from '../../models';
+import type { Water } from '../../models';
 import type { ParamList } from '../../navigaitons';
 import { SwitchTabLabelEnum } from '../../types';
 import { ShowToast } from '../../utils';

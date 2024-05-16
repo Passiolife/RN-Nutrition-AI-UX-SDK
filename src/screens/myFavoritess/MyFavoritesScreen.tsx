@@ -11,7 +11,7 @@ import FavoriteFoodLogView from './views/FavoriteFoodLogView';
 import { withLoading } from '../../utils';
 import { ProgressLoadingView, BackNavigation } from '../../components';
 import { content } from '../../constants/Content';
-import { type Branding } from '../../contexts';
+import type { Branding } from '../../contexts';
 
 export type FavoritesScreenNavigationProps = StackNavigationProp<
   ParamList,

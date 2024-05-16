@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import type { Branding } from '../../contexts';
 import { scaleHeight, scaleWidth } from '../../utils';
-import { type EdgeInsets } from 'react-native-safe-area-context';
+import type { EdgeInsets } from 'react-native-safe-area-context';
 
 const headerStyle = ({}: Branding, insets: EdgeInsets) => {
   const statusBarHeight = insets.top;

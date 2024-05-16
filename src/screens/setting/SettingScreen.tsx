@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView, StyleSheet, Switch, View } from 'react-native';
 import { BackNavigation, Card, DashboardMenu, Text } from '../../components';
 import { COLORS } from '../../constants';
-import { type LengthUnitSetting, type WeightUnitSetting } from '../../models';
+import type { LengthUnitSetting, WeightUnitSetting } from '../../models';
 import { ListPicker } from '../../components/listPickers';
 import { useSettingScreen } from './useSettingScreen';
 import { scaleHeight } from '../../utils';

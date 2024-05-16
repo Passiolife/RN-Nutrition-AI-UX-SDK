@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
-import { type FoodLog } from '../../models';
+import type { FoodLog } from '../../models';
 import { Card, MacrosProgressView, Text } from '..';
 import styles from './styles';
 import { ICONS } from '../../assets';

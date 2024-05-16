@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { useServices } from './contexts';
-import { DashboardScreen } from './index';
-import { MealLogScreenView } from './screens';
+import { DashboardScreen, MealLogScreenView } from './screens';
 
 export const NutritionApp = () => {
   const services = useServices();
