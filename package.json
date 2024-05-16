@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "test": "yarn prepare && jest",
-    "prepare": "patch-package && bob build",
+    "prepare": "bob build",
     "snapshot-update": "yarn prepare && jest -u",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -32,7 +32,6 @@
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
-    "postinstall": "patch-package && husky",
     "android": "cd example && yarn android",
     "ios": "cd example && yarn ios"
   },
