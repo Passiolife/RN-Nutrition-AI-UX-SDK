@@ -41,7 +41,7 @@ const RenderItem = ({
   };
   const styles = mealLogViewStyle(useBranding());
 
-  const [expandable, setExpandable] = useState(true);
+  const [expandable, setExpandable] = useState(item.data.length > 0);
   return (
     <Card style={styles.cardContainer}>
       <Pressable
@@ -70,7 +70,12 @@ const RenderItem = ({
       )}
       {expandable && item.data.length === 0 && (
         <>
-          <Text style={{ padding: 16, textAlign: 'center' }}>No Data</Text>
+          <Text
+            color="secondaryText"
+            style={{ padding: 16, textAlign: 'center' }}
+          >
+            No Data
+          </Text>
         </>
       )}
     </Card>
