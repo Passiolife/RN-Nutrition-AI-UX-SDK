@@ -48,24 +48,8 @@ export const BarChart = ({
 }: BarChartProps) => {
   const { calories, black } = useBranding();
   const styles = barChartStyle(useBranding());
-  // console.log('barData ::: ', barData);
 
   const maxValue = Math.max(...barData.map((o) => o.value));
-
-  const Test = barData.map((item, index) => {
-    const items = {
-      ...item,
-      label:
-        barData.length === 7
-          ? item.label.slice(0, 2)
-          : (index % 7 === 0 || index === barData.length - 1) === true
-            ? item.label.replace(/\D/g, '')
-            : undefined,
-    };
-    return items;
-  });
-
-  console.log('Test ::: ', Test);
 
   return (
     <View style={barChartContainerStyle}>
@@ -99,14 +83,13 @@ export const BarChart = ({
               tickValues={[0, maxValue / 2, maxValue]}
             />
             <VictoryAxis
-              // tickFormat={(item, index) => {
-              //   return barData.length === 7
-              //     ? item.slice(0, 2)
-              //     : (index % 7 === 0 || index === barData.length - 1) === true
-              //       ? item.replace(/\D/g, '')
-              //       : undefined;
-              // }}
-              tickValues={['AB', 'sd', 'sdf']}
+              tickFormat={(item, index) => {
+                return barData.length === 7
+                  ? item.slice(0, 2)
+                  : (index % 7 === 0 || index === barData.length - 1) === true
+                    ? item.replace(/\D/g, '')
+                    : undefined;
+              }}
               style={{
                 tickLabels: {
                   fontSize: 12,
@@ -129,10 +112,10 @@ export const BarChart = ({
               data={barData}
               x="label"
               y="value"
-              barWidth={12}
+              barWidth={barData.length > 7 ? 6 : 12}
               animate={{
-                duration: 2000,
-                onLoad: { duration: 1000 },
+                duration: 1000,
+                onLoad: { duration: 500 },
               }}
               style={{
                 labels: { display: 'none' },
