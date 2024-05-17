@@ -80,7 +80,7 @@
     "react-native-screens": "^3.30.1",
     "react-native-sqlite-storage": "^6.0.1",
     "react-native-status-bar-height": "^2.6.0",
-    "react-native-svg": "^15.1.0",
+    "react-native-svg": "^15.3.0",
     "react-native-swipe-gestures": "^1.0.5",
     "react-native-toast-message": "^2.2.0",
     "react-native-uuid": "^2.0.1",
