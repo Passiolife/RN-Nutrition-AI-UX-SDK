@@ -7,6 +7,7 @@ import {
   VictoryLine,
 } from 'victory-native';
 import { useBranding } from '../../../contexts';
+import { scaleHeight, scaledSize } from '../../../utils';
 
 export type WeightTrendChart = {
   value: number;
@@ -23,13 +24,19 @@ export const WeightTrendChart = ({ data }: WeightTrendChartProps) => {
   const maxValue = Math.max(...data.map((o) => o.value));
 
   return (
-    <View style={{ overflow: 'hidden', marginVertical: 20 }}>
+    <View
+      style={{
+        overflow: 'hidden',
+        marginTop: scaleHeight(0),
+        padding: scaledSize(16),
+      }}
+    >
       <VictoryChart
         domainPadding={{ x: 16 }}
-        width={Dimensions.get('window').width - 45}
+        width={Dimensions.get('window').width - 60}
         theme={VictoryTheme.material}
-        padding={{ left: 40, right: 30, bottom: 30, top: 10 }}
-        height={150}
+        padding={{ left: 30, right: 30, bottom: 30, top: 0 }}
+        height={125}
       >
         <VictoryAxis
           dependentAxis={true}

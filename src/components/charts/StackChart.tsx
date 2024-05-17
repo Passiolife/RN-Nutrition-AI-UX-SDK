@@ -50,6 +50,11 @@ const chartLegendData: legendDataTyle[] = [
   { color: '#0EA5E9', label: 'Carbs' },
 ];
 
+function normalizeToMultipleOf(value: number, multiple: number) {
+  const roundedValue = Math.round(value / multiple) * multiple;
+  return roundedValue > value ? roundedValue : roundedValue + multiple;
+}
+
 export const StackChart = ({
   title = 'Macros',
   stackData,
@@ -57,9 +62,12 @@ export const StackChart = ({
 }: StackChartProps) => {
   const { black } = useBranding();
 
-  const maxValue = Math.max(
-    ...stackData.flatMap((day) => day.stacks.map((stack) => stack.value))
-  );
+  let maxValue = stackData.reduce((max, day) => {
+    const daySum = day.stacks.reduce((sum, stack) => sum + stack.value, 0);
+    return Math.max(max, daySum);
+  }, 0);
+
+  maxValue = normalizeToMultipleOf(maxValue, 20);
 
   const transformedData = stackData.map((day) =>
     day.stacks.map((stack) => ({
@@ -93,8 +101,8 @@ export const StackChart = ({
             domainPadding={{ x: 16 }}
             width={Dimensions.get('window').width - 45}
             theme={VictoryTheme.material}
-            padding={{ left: 40, right: 30, bottom: 30, top: 20 }}
-            height={150}
+            padding={{ left: 40, right: 30, bottom: 30, top: 10 }}
+            height={135}
           >
             <VictoryAxis
               dependentAxis={true}
@@ -136,7 +144,7 @@ export const StackChart = ({
               minDomain={{ y: 0 }}
             />
 
-            <VictoryStack colorScale={'warm'}>
+            <VictoryStack>
               {transformedData[0] &&
                 transformedData[0].map((_, i) => (
                   <VictoryBar
@@ -149,10 +157,7 @@ export const StackChart = ({
                       data: {
                         fill: ({ datum }) => datum.fill,
                       },
-                    }}
-                    animate={{
-                      duration: 1000,
-                      onLoad: { duration: 500 },
+                      labels: { display: 'none' },
                     }}
                   />
                 ))}
@@ -186,7 +191,7 @@ const stackChartStyle = ({}: Branding) =>
       marginVertical: scaledSize(8),
     },
     chartView: {
-      marginTop: scaleHeight(30),
+      marginTop: scaleHeight(12),
     },
     legendView: {
       marginTop: scaleHeight(16),

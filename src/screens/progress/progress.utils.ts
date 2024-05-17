@@ -120,7 +120,7 @@ export const prepareMonthlyStackChartData = (
     const previousStack = sumByLabel[dayOfWeek];
     const newStack = macros.map((macro) => ({
       color: getColorForMacro(macro),
-      value: sums[macro] ?? 0,
+      value: Math.round(sums[macro] ?? 0),
     }));
 
     const combine = [...(previousStack ?? []), ...newStack];

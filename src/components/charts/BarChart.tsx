@@ -64,7 +64,7 @@ export const BarChart = ({
             width={Dimensions.get('window').width - 50}
             theme={VictoryTheme.material}
             padding={{ left: 40, right: 30, bottom: 30, top: 20 }}
-            height={150}
+            height={135}
           >
             <VictoryAxis
               dependentAxis={true}
