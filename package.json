@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "test": "yarn prepare && jest",
-    "prepare": "bob build",
+    "prepare": "patch-package && bob build",
     "snapshot-update": "yarn prepare && jest -u",
     "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",

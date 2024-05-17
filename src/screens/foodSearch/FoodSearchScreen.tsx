@@ -68,7 +68,8 @@ export const FoodSearchScreen = () => {
               <SearchResultView
                 searchResult={results}
                 handleLoadMore={() => {}}
-                onPressSearchResult={onSearchItemPress}
+                onPressLog={(item) => onSearchItemPress(item, false)}
+                onPressEditor={(item) => onSearchItemPress(item, true)}
               />
             </>
           ) : null}

@@ -138,9 +138,12 @@ export const MealLogScreenView = gestureHandlerRootHOC(() => {
         backgroundStyle={styles.bottomSheetChildrenContainer}
       >
         <QuickSuggestions
-          onFoodItemClickCall={(suggestion) => {
-            onQuickSuggestionPress(suggestion);
+          onFoodLog={(suggestion) => {
+            onQuickSuggestionPress(suggestion, false);
             removeQuickSuggestion(suggestion);
+          }}
+          onFoodLogEditor={(suggestion) => {
+            onQuickSuggestionPress(suggestion, true);
           }}
           quickSuggestedAttributes={quickSuggestedFoodItems ?? []}
         />

@@ -4,19 +4,13 @@ import { useCallback, useEffect, useState } from 'react';
 import type { FoodSearchScreenNavigationProps } from './FoodSearchScreen';
 import { useDebounce } from '../../utils/UseDebounce';
 import {
-  StackActions,
   useNavigation,
   useRoute,
   type RouteProp,
 } from '@react-navigation/native';
-import { useBranding } from '../../contexts';
-import {
-  getLogToDate,
-  mealLabelByDate,
-  recordAnalyticsFoodLogs,
-} from '../../utils';
+import { useBranding, useServices } from '../../contexts';
+import { getLogToDate, mealLabelByDate } from '../../utils';
 import { FoodSearchScreenRoute } from '../../navigaitons/Route';
-import { ScreenType } from '../../models/ScreenType';
 import type { ParamList } from '../../navigaitons';
 import type {
   PassioFoodDataInfo,
@@ -28,6 +22,7 @@ export function useFoodSearch() {
   const navigation = useNavigation<FoodSearchScreenNavigationProps>();
   const route = useRoute<RouteProp<ParamList, 'FoodSearchScreen'>>();
   const branding = useBranding();
+  const services = useServices();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -73,7 +68,10 @@ export function useFoodSearch() {
     navigation.goBack();
   };
 
-  const onSearchItemPress = async (item: PassioFoodItem) => {
+  const onSearchItemPress = async (
+    item: PassioFoodItem,
+    isOpenEditor: boolean
+  ) => {
     if (route.params.from === 'Search') {
       const logToDate = getLogToDate(
         route.params.logToDate,
@@ -86,20 +84,23 @@ export function useFoodSearch() {
 
       const foodLog = convertPassioFoodItemToFoodLog(item, logToDate, meal);
 
-      await recordAnalyticsFoodLogs({
-        id: item.refCode ?? item.id,
-        screen: ScreenType.search,
-        foodLog: foodLog,
-      });
+      if (isOpenEditor) {
+        navigation.navigate('EditFoodLogScreen', {
+          foodLog: foodLog,
+          prevRouteName: FoodSearchScreenRoute,
+        });
+      } else {
+        await services.dataService.saveFoodLog(foodLog);
+        navigation.pop(1);
+        navigation.navigate('BottomNavigation', {
+          screen: 'MealLogScreen',
+        });
+      }
 
-      navigation.navigate('EditFoodLogScreen', {
-        foodLog: foodLog,
-        prevRouteName: FoodSearchScreenRoute,
-      });
       route.params.onSaveData?.(item);
     } else {
       route.params.onSaveData?.(item);
-      navigation.dispatch(StackActions.pop(1));
+      navigation.replace;
     }
   };
 

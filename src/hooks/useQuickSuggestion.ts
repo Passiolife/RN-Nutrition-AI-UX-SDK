@@ -24,10 +24,8 @@ export function useQuickSuggestion(foodLogs: FoodLog[]) {
         .flatMap((i) => i.name.toLowerCase());
 
       //Collect last 30 days data
-      if (last30DayQuickScanRef.current.length === 0) {
-        quickSuggestions = await getLast30SaysQuickSuggestions(meal, services);
-        last30DayQuickScanRef.current = quickSuggestions;
-      }
+      quickSuggestions = await getLast30SaysQuickSuggestions(meal, services);
+      last30DayQuickScanRef.current = quickSuggestions;
 
       // Pre populate quick suggestions
       if (

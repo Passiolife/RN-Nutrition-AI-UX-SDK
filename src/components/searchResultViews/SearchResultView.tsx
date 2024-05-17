@@ -12,19 +12,26 @@ import {
 interface SearchResultViewProps {
   searchResult: Array<PassioFoodDataInfo>;
   handleLoadMore: () => void;
-  onPressSearchResult: (item: PassioFoodItem) => void;
+  onPressLog: (item: PassioFoodItem) => void;
+  onPressEditor: (item: PassioFoodItem) => void;
 }
 
 const SearchResultView = (props: SearchResultViewProps) => {
-  const { searchResult, handleLoadMore, onPressSearchResult } = props;
+  const { searchResult, handleLoadMore, onPressEditor, onPressLog } = props;
 
   const renderSearchResult = ({ item }: { item: PassioFoodDataInfo }) => {
     return (
       <SearchResultItemView
-        onPressSearchResult={async () => {
+        onPressEditor={async () => {
           const attr = await PassioSDK.fetchFoodItemForDataInfo(item);
           if (attr) {
-            onPressSearchResult(attr);
+            onPressEditor(attr);
+          }
+        }}
+        onPressLog={async () => {
+          const attr = await PassioSDK.fetchFoodItemForDataInfo(item);
+          if (attr) {
+            onPressLog(attr);
           }
         }}
         passioID={item.iconID ?? ''}

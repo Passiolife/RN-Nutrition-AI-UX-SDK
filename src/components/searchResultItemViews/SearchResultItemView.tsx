@@ -14,24 +14,23 @@ interface Props {
   imageName: string;
   name: string;
   brandName?: string;
-  onPressSearchResult: () => void;
+  onPressEditor: () => void;
+  onPressLog: () => void;
   entityType: PassioIDEntityType;
 }
 
 const SearchResultItemView = ({
   passioID,
   name,
-  onPressSearchResult,
+  onPressEditor,
+  onPressLog,
   entityType,
   brandName,
   imageName,
 }: Props) => {
   return (
     <Card style={styles.shadowContainer}>
-      <TouchableOpacity
-        style={styles.mealContainer}
-        onPress={onPressSearchResult}
-      >
+      <TouchableOpacity style={styles.mealContainer} onPress={onPressEditor}>
         <View style={styles.mealImgLayout}>
           <PassioFoodIcon
             passioID={passioID}
@@ -55,9 +54,9 @@ const SearchResultItemView = ({
             </Text>
           )}
         </View>
-        <View style={styles.addFoodIconView}>
+        <TouchableOpacity onPress={onPressLog} style={styles.addFoodIconView}>
           <Image source={ICONS.newAddPlus} style={styles.addFoodIcon} />
-        </View>
+        </TouchableOpacity>
       </TouchableOpacity>
     </Card>
   );
