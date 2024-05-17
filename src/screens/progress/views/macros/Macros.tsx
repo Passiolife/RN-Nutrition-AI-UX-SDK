@@ -6,21 +6,21 @@ import {
   CalendarCarousel,
   BasicButton,
   CustomActivityIndicator,
-  Text,
+  StackChart,
 } from '../../../../components';
 import { scaleHeight, scaleWidth, scaledSize } from '../../../../utils';
 import { useMacros } from './useMacros';
 
 const Macros = () => {
   const {
-    // macroChartData,
+    macroChartData,
     fetchData,
-    // calories,
+    calories,
     calendarCarouselRef,
-    // targetCalories,
-    // targetFat,
-    // targetCarbs,
-    // targetProtein,
+    targetCalories,
+    targetFat,
+    targetCarbs,
+    targetProtein,
     loading,
   } = useMacros();
 
@@ -44,21 +44,24 @@ const Macros = () => {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.contentContainerStyle}
           >
-            <Text size="_18px">Stack Chart</Text>
-            {/* <StackChart
-              barChartContainerStyle={styles.stackChartContainer}
-              stackData={calories ?? []}
-              title="Calories"
-              showInfo={false}
-              target={targetCalories}
-            />
+            {calories.length > 0 ? (
+              <StackChart
+                barChartContainerStyle={styles.stackChartContainer}
+                stackData={calories ?? []}
+                title="Calories"
+                showInfo={false}
+                target={targetCalories}
+              />
+            ) : null}
 
-            <StackChart
-              barChartContainerStyle={styles.stackChartContainer}
-              title="Macros"
-              target={targetFat + targetProtein + targetCarbs}
-              stackData={macroChartData ?? []}
-            /> */}
+            {macroChartData.length > 0 ? (
+              <StackChart
+                barChartContainerStyle={styles.stackChartContainer}
+                title="Macros"
+                target={targetFat + targetProtein + targetCarbs}
+                stackData={macroChartData ?? []}
+              />
+            ) : null}
           </ScrollView>
           <BasicButton
             style={styles.button}

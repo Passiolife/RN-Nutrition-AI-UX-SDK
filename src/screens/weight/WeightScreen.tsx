@@ -118,7 +118,9 @@ const WeightScreen = () => {
           <View style={styles.chartHeaderText}>
             <Text style={styles.headerOvr}>Weight Trend</Text>
           </View>
-          <WeightTrendChart data={weightTrendData} />
+          {weightTrendData.length > 0 ? (
+            <WeightTrendChart data={weightTrendData} />
+          ) : null}
         </Card>
         <Card style={styles.roundedAndShadowView}>
           <FlatList

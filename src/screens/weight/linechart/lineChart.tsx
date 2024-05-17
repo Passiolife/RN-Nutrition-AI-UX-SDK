@@ -22,22 +22,22 @@ export const WeightTrendChart = ({ data }: WeightTrendChartProps) => {
 
   const maxValue = Math.max(...data.map((o) => o.value));
 
-  const newData = [
-    { label: 'Mon', value: 10 },
-    { label: 'Tue', value: 20 },
-    { label: 'Wed', value: 30 },
-    { label: 'Thu', value: 15 },
-    { label: 'Fri', value: 45 },
-    { label: 'Sat', value: 33 },
-    { label: 'Sun', value: 50 },
-  ];
+  // const newData = [
+  //   { label: 'Mon', value: 10 },
+  //   { label: 'Tue', value: 20 },
+  //   { label: 'Wed', value: 30 },
+  //   { label: 'Thu', value: 15 },
+  //   { label: 'Fri', value: 45 },
+  //   { label: 'Sat', value: 33 },
+  //   { label: 'Sun', value: 50 },
+  // ];
   return (
     <View style={{ overflow: 'hidden', marginVertical: 20 }}>
       <VictoryChart
         domainPadding={{ x: 16 }}
         width={Dimensions.get('window').width - 45}
         theme={VictoryTheme.material}
-        padding={{ left: 30, right: 30, bottom: 30, top: 10 }}
+        padding={{ left: 40, right: 30, bottom: 30, top: 10 }}
         height={150}
       >
         <VictoryAxis
@@ -59,7 +59,7 @@ export const WeightTrendChart = ({ data }: WeightTrendChartProps) => {
           tickFormat={(item, index) => {
             return data.length === 7
               ? item.slice(0, 2)
-              : (index % 7 === 0 || index === data.length - 1) === true
+              : (index % 8 === 0 || index === data.length - 1) === true
                 ? item.replace(/\D/g, '')
                 : undefined;
           }}
@@ -86,8 +86,8 @@ export const WeightTrendChart = ({ data }: WeightTrendChartProps) => {
           }}
           x="label"
           y="value"
-          data={newData}
-          interpolation="natural"
+          data={data}
+          interpolation="basis"
         />
       </VictoryChart>
     </View>

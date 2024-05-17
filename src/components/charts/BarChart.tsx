@@ -61,9 +61,9 @@ export const BarChart = ({
         <View style={styles.chartView}>
           <VictoryChart
             domainPadding={{ x: 16 }}
-            width={Dimensions.get('window').width - 45}
+            width={Dimensions.get('window').width - 50}
             theme={VictoryTheme.material}
-            padding={{ left: 30, right: 30, bottom: 30, top: 20 }}
+            padding={{ left: 40, right: 30, bottom: 30, top: 20 }}
             height={150}
           >
             <VictoryAxis
@@ -86,7 +86,7 @@ export const BarChart = ({
               tickFormat={(item, index) => {
                 return barData.length === 7
                   ? item.slice(0, 2)
-                  : (index % 7 === 0 || index === barData.length - 1) === true
+                  : (index % 8 === 0 || index === barData.length - 1) === true
                     ? item.replace(/\D/g, '')
                     : undefined;
               }}

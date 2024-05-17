@@ -5,17 +5,21 @@ import {
   type StyleProp,
   type ViewStyle,
   FlatList,
-  // Dimensions,
+  Dimensions,
 } from 'react-native';
-// import {
-//   BarChart as GiftedBarChart,
-//   type stackDataItem,
-// } from 'react-native-gifted-charts';
+
 import { scaledSize, scaleHeight, scaled, scaleWidth } from '../../utils';
 import { useBranding } from '../../contexts';
 import type { Branding } from '../../contexts';
 import { Card } from '../cards';
 import { Text } from '../texts';
+import {
+  VictoryBar,
+  VictoryChart,
+  VictoryTheme,
+  VictoryAxis,
+  VictoryStack,
+} from 'victory-native';
 export interface StackDataType {
   value: number;
   color: string;
@@ -48,12 +52,22 @@ const chartLegendData: legendDataTyle[] = [
 
 export const StackChart = ({
   title = 'Macros',
-  // stackData,
+  stackData,
   showInfo = true,
 }: StackChartProps) => {
-  // const maxValue = Math.max(
-  //   ...stackData.flatMap((day) => day.stacks.map((stack) => stack.value))
-  // );
+  const { black } = useBranding();
+
+  const maxValue = Math.max(
+    ...stackData.flatMap((day) => day.stacks.map((stack) => stack.value))
+  );
+
+  const transformedData = stackData.map((day) =>
+    day.stacks.map((stack) => ({
+      x: day.label,
+      y: stack.value,
+      fill: stack.color,
+    }))
+  );
 
   const styles = stackChartStyle(useBranding());
 
@@ -75,47 +89,75 @@ export const StackChart = ({
           {title}
         </Text>
         <View style={styles.chartView}>
-          {/* {stackData.length > 0 && (
-            <GiftedBarChart
-              stackData={stackData.map((item, index) => {
-                const data: stackDataItem = {
-                  ...item,
-                  label:
-                    stackData.length === 7
-                      ? item.label.slice(0, 2)
-                      : (index % 8 === 0 || index === stackData.length - 1) ===
-                          true
-                        ? item.label.replace(/\D/g, '')
-                        : undefined,
-
-                  showXAxisIndex: false,
-                  labelTextStyle: {
-                    width: 100,
-                    marginLeft: stackData.length > 7 ? -10 : 0,
-                  },
-                } as stackDataItem;
-                return data;
-              })}
-              rulesType={'solid'}
-              width={
-                stackData.length > 7
-                  ? Dimensions.get('screen').width - 100
-                  : undefined
-              }
-              isAnimated={false}
-              yAxisThickness={0}
-              xAxisColor={'#CACACA'}
-              xAxisThickness={1}
-              initialSpacing={10}
-              rulesThickness={1}
-              rulesColor={'rgba(202, 202, 202, 1)'}
-              spacing={stackData.length > 7 ? 2 : 30}
-              stepValue={maxValue > 0 ? maxValue / 2 : 100}
-              maxValue={maxValue > 0 ? maxValue : 200}
-              stepHeight={45}
-              barWidth={stackData.length > 7 ? 5 : 10}
+          <VictoryChart
+            domainPadding={{ x: 16 }}
+            width={Dimensions.get('window').width - 45}
+            theme={VictoryTheme.material}
+            padding={{ left: 40, right: 30, bottom: 30, top: 20 }}
+            height={150}
+          >
+            <VictoryAxis
+              dependentAxis={true}
+              maxDomain={{ y: maxValue }}
+              minDomain={{ y: 0 }}
+              style={{
+                grid: {
+                  stroke: '#CACACA',
+                  strokeWidth: 1,
+                  strokeDasharray: '6, 0',
+                },
+                ticks: { stroke: 'none' },
+                axis: { stroke: 'none' },
+                tickLabels: { fill: black },
+              }}
+              tickValues={[0, maxValue / 2, maxValue]}
             />
-          )} */}
+            <VictoryAxis
+              tickFormat={(item, index) => {
+                return stackData.length === 7
+                  ? item.slice(0, 2)
+                  : (index % 8 === 0 || index === stackData.length - 1) === true
+                    ? item.replace(/\D/g, '')
+                    : undefined;
+              }}
+              style={{
+                tickLabels: {
+                  fontSize: 12,
+                  paddingTop: 0,
+                  angle: 0,
+                  fill: black,
+                },
+                grid: { stroke: 'none' },
+                ticks: { stroke: 'node' },
+                axis: { stroke: 'none' },
+                axisLabel: { color: 'red' },
+              }}
+              maxDomain={{ y: maxValue }}
+              minDomain={{ y: 0 }}
+            />
+
+            <VictoryStack colorScale={'warm'}>
+              {transformedData[0] &&
+                transformedData[0].map((_, i) => (
+                  <VictoryBar
+                    barRatio={0.6}
+                    alignment={'middle'}
+                    key={i}
+                    barWidth={stackData.length > 7 ? 6 : 12}
+                    data={transformedData.map((day) => day[i])}
+                    style={{
+                      data: {
+                        fill: ({ datum }) => datum.fill,
+                      },
+                    }}
+                    animate={{
+                      duration: 1000,
+                      onLoad: { duration: 500 },
+                    }}
+                  />
+                ))}
+            </VictoryStack>
+          </VictoryChart>
         </View>
       </Card>
       {showInfo && (
