@@ -4,9 +4,9 @@ import { useBranding } from '../../../../contexts';
 import type { Branding } from '../../../../contexts';
 import {
   CalendarCarousel,
-  StackChart,
   BasicButton,
   CustomActivityIndicator,
+  StackChart,
 } from '../../../../components';
 import { scaleHeight, scaleWidth, scaledSize } from '../../../../utils';
 import { useMacros } from './useMacros';
@@ -44,20 +44,24 @@ const Macros = () => {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.contentContainerStyle}
           >
-            <StackChart
-              barChartContainerStyle={styles.stackChartContainer}
-              stackData={calories ?? []}
-              title="Calories"
-              showInfo={false}
-              target={targetCalories}
-            />
+            {calories.length > 0 ? (
+              <StackChart
+                barChartContainerStyle={styles.stackChartContainer}
+                stackData={calories ?? []}
+                title="Calories"
+                showInfo={false}
+                target={targetCalories}
+              />
+            ) : null}
 
-            <StackChart
-              barChartContainerStyle={styles.stackChartContainer}
-              title="Macros"
-              target={targetFat + targetProtein + targetCarbs}
-              stackData={macroChartData ?? []}
-            />
+            {macroChartData.length > 0 ? (
+              <StackChart
+                barChartContainerStyle={styles.stackChartContainer}
+                title="Macros"
+                target={targetFat + targetProtein + targetCarbs}
+                stackData={macroChartData ?? []}
+              />
+            ) : null}
           </ScrollView>
           <BasicButton
             style={styles.button}

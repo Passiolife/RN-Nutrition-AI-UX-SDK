@@ -1,25 +1,39 @@
 import {
-  Dimensions,
   StyleSheet,
   View,
   type StyleProp,
   type ViewStyle,
+  Dimensions,
 } from 'react-native';
 import React from 'react';
 import { Text } from '../texts';
 import { useBranding } from '../../contexts';
 import type { Branding } from '../../contexts';
 import { scaledSize, scaleHeight } from '../../utils';
+
 import {
-  BarChart as GiftedBarChart,
-  type barDataItem,
-} from 'react-native-gifted-charts';
+  VictoryBar,
+  VictoryChart,
+  VictoryTheme,
+  VictoryAxis,
+} from 'victory-native';
+
 import { Card } from '../cards';
 
 export interface ChartData {
   value: number;
   label: string;
 }
+
+const ChartData: ChartData[] = [
+  { label: 'Mo', value: 10 },
+  { label: 'Tu', value: 20 },
+  { label: 'We', value: 15 },
+  { label: 'Th', value: 30 },
+  { label: 'Fr', value: 18 },
+  { label: 'Sa', value: 35 },
+  { label: 'Su', value: 50 },
+];
 
 export interface BarChartProps {
   title?: string;
@@ -32,6 +46,7 @@ export const BarChart = ({
   barChartContainerStyle,
   barData,
 }: BarChartProps) => {
+  const { calories, black } = useBranding();
   const styles = barChartStyle(useBranding());
 
   const maxValue = Math.max(...barData.map((o) => o.value));
@@ -44,44 +59,70 @@ export const BarChart = ({
         </Text>
 
         <View style={styles.chartView}>
-          <GiftedBarChart
-            data={barData.map((item, index) => {
-              const items: barDataItem = {
-                ...item,
-                label:
-                  barData.length === 7
-                    ? item.label.slice(0, 2)
-                    : (index % 8 === 0 || index === barData.length - 1) === true
-                      ? item.label.replace(/\D/g, '')
-                      : undefined,
-
-                labelTextStyle: {
-                  width: 30,
-                  marginLeft: barData.length > 7 ? -10 : 4,
+          <VictoryChart
+            domainPadding={{ x: 16 }}
+            width={Dimensions.get('window').width - 50}
+            theme={VictoryTheme.material}
+            padding={{ left: 40, right: 30, bottom: 30, top: 20 }}
+            height={135}
+          >
+            <VictoryAxis
+              dependentAxis={true}
+              maxDomain={{ y: maxValue }}
+              minDomain={{ y: 0 }}
+              style={{
+                grid: {
+                  stroke: '#CACACA',
+                  strokeWidth: 1,
+                  strokeDasharray: '6, 0',
                 },
-              };
-              return items;
-            })}
-            spacing={barData.length > 7 ? 2 : 30}
-            width={
-              barData.length > 7
-                ? Dimensions.get('screen').width - 100
-                : undefined
-            }
-            rulesType="solid"
-            isAnimated={false}
-            yAxisThickness={0}
-            xAxisColor={'#CACACA'}
-            xAxisThickness={1}
-            rulesThickness={1}
-            rulesColor={'#CACACA'}
-            initialSpacing={16}
-            maxValue={maxValue > 0 ? maxValue : 100}
-            stepValue={maxValue > 0 ? maxValue / 2 : 50}
-            stepHeight={50}
-            frontColor={'rgba(79, 70, 229, 1)'}
-            barWidth={barData.length > 7 ? 6 : 10}
-          />
+                ticks: { stroke: 'none' },
+                axis: { stroke: 'none' },
+                tickLabels: { fill: black },
+              }}
+              tickValues={[0, maxValue / 2, maxValue]}
+            />
+            <VictoryAxis
+              tickFormat={(item, index) => {
+                return barData.length === 7
+                  ? item.slice(0, 2)
+                  : (index % 8 === 0 || index === barData.length - 1) === true
+                    ? item.replace(/\D/g, '')
+                    : undefined;
+              }}
+              style={{
+                tickLabels: {
+                  fontSize: 12,
+                  paddingTop: 0,
+                  angle: 0,
+                  fill: black,
+                },
+                grid: { stroke: 'none' },
+                ticks: { stroke: 'node' },
+                axis: { stroke: 'none' },
+                axisLabel: { color: 'red' },
+              }}
+              maxDomain={{ y: maxValue }}
+              minDomain={{ y: 0 }}
+            />
+
+            <VictoryBar
+              barRatio={0.6}
+              alignment={'middle'}
+              data={barData}
+              x="label"
+              y="value"
+              barWidth={barData.length > 7 ? 6 : 12}
+              animate={{
+                duration: 1000,
+                onLoad: { duration: 500 },
+              }}
+              style={{
+                labels: { display: 'none' },
+                data: { fill: calories },
+              }}
+            />
+          </VictoryChart>
         </View>
       </Card>
     </View>
@@ -95,7 +136,7 @@ const barChartStyle = ({}: Branding) =>
       padding: scaledSize(16),
     },
     chartView: {
-      marginTop: scaleHeight(20),
+      marginTop: scaleHeight(12),
     },
     noData: {
       marginTop: scaleHeight(20),

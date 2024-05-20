@@ -22,8 +22,8 @@ import { ICONS } from '../../assets';
 import { FlatList } from 'react-native';
 import { useWeights } from './useWeights';
 import { DateTime } from 'luxon';
-import { WeightTrendChart } from './linechart/lineChart';
 import type { Weight } from '../../models';
+import { WeightTrendChart } from './linechart/lineChart';
 
 const WeightScreen = () => {
   const {
@@ -118,7 +118,9 @@ const WeightScreen = () => {
           <View style={styles.chartHeaderText}>
             <Text style={styles.headerOvr}>Weight Trend</Text>
           </View>
-          <WeightTrendChart data={weightTrendData} />
+          {weightTrendData.length > 0 ? (
+            <WeightTrendChart data={weightTrendData} />
+          ) : null}
         </Card>
         <Card style={styles.roundedAndShadowView}>
           <FlatList

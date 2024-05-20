@@ -34,7 +34,6 @@
     "react-native": "0.73.2",
     "react-native-blob-util": "^0.19.6",
     "react-native-gesture-handler": "^2.16.0",
-    "react-native-gifted-charts": "^1.4.10",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-modal-datetime-picker": "^17.1.0",
     "react-native-pdf": "^6.7.4",
@@ -42,7 +41,8 @@
     "react-native-safe-area-context": "^4.8.2",
     "react-native-screens": "^3.30.1",
     "react-native-sqlite-storage": "^6.0.1",
-    "react-native-svg": "^15.1.0"
+    "react-native-svg": "^15.1.0",
+    "victory-native": "^37.0.2"
   },
   "resolutions": {
     "@types/react": "^18.2.0",

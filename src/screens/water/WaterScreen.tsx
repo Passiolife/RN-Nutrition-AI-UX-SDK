@@ -12,11 +12,11 @@ import {
 import { ICONS } from '../../assets';
 import {
   BackNavigation,
-  BarChart,
   CalendarCarousel,
   Card,
   SwipeableView,
   Text,
+  BarChart,
 } from '../../components';
 import type { Branding } from '../../contexts';
 import { useBranding } from '../../contexts';
@@ -110,7 +110,7 @@ const WaterScreen = () => {
           onDateSelect={getWaters}
         />
 
-        {chartData && (
+        {chartData.length > 0 && (
           <BarChart
             barData={chartData}
             title="Water Trend"
