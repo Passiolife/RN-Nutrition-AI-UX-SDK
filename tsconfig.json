@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
-    "types": [],
+    "baseUrl": ".",
     "paths": {
-      "react-native-nutrition-ux": ["./src/index"]
+      "react-native-nutrition-ux": ["./src/index"],
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
+    "declaration": true,
     "esModuleInterop": true,
-    "verbatimModuleSyntax": true,
+    "ignoreDeprecations": "5.0",
+    "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",
     "lib": ["esnext"],
@@ -18,12 +19,11 @@
     "noImplicitReturns": true,
     "noImplicitUseStrict": false,
     "noStrictGenericChecks": false,
-    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext",
+    "target": "esnext"
   }
 }

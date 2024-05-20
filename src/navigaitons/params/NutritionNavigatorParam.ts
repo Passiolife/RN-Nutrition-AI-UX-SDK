@@ -1,5 +1,4 @@
 import type { EditIngredientsScreenProps } from '../../screens/editIngredients';
-import type { PdfViewScreenProps } from 'src/screens/pdfViews/PdfViewScreen';
 import type {
   MealLogScreenProps,
   ScanningScreenProps,
@@ -53,7 +52,6 @@ export type ParamList = {
   EditFoodLogScreen: EditFoodLogScreenProps;
   ProfileScreen: undefined;
   ProfileScreenApp: undefined;
-  PdfViewScreen: PdfViewScreenProps;
   DashboardScreen: undefined;
   FoodSearchScreen: FoodSearchScreenProp;
   FavoritesScreen: FavoritesScreenProps;

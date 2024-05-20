@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Image, Platform, Pressable, StyleSheet, View } from 'react-native';
 
-import { type BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useBranding, type Branding } from '../contexts';
 import { scaleHeight, scaleWidth, scaledSize } from '../utils';
 import { LogOptions, Text, type FloatingOptionRef } from '../components';

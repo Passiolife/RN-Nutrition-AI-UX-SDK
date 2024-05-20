@@ -21,7 +21,6 @@ import {
   NutritionAppRoute,
   NutritionProfileScreenRoute,
   ScanningScreenRoute,
-  PdfViewScreenRoute,
   NutritionProfileScreenAppRoute,
   FoodSearchScreenRoute,
   OnboardingScreenRoute,
@@ -39,7 +38,6 @@ import {
   SettingScreenRoute,
   NutritionInformationScreenRoute,
 } from './Route';
-import PdfView from '../screens/pdfViews/PdfViewScreen';
 import MyPlanScreen from '../screens/myPlans/MyPlanScreen';
 import { HomeBottomNavigation } from './HomeBottomNavigations';
 import MealLogScreen from '../screens/meallogss/MealLogScreen';
@@ -104,11 +102,6 @@ export const NutritionNavigator = () => {
             options={{ headerShown: false }}
             name={NutritionProfileScreenAppRoute}
             component={NutritionProfileScreen}
-          />
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name={PdfViewScreenRoute}
-            component={PdfView}
           />
           <Stack.Screen
             options={{ headerShown: false }}

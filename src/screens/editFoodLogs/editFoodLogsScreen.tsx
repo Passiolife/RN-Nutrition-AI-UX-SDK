@@ -19,7 +19,7 @@ import { IngredientsView } from './views/ingredients/IngredientsView';
 import { calculateComputedWeightAmount } from './utils';
 import { useEditFoodLog } from './useEditFoodLog';
 import { content } from '../../constants/Content';
-import { type Branding } from '../../contexts';
+import type { Branding } from '../../contexts';
 import { scaleWidth, scaled, scaledSize } from '../../utils';
 import { ICONS } from '../../assets';
 import NewEditServingAmountView from './views/newEditServingsAmountView';
