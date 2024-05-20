@@ -32,7 +32,6 @@
     "example": "yarn --cwd example",
     "pods": "cd example && pod-install --quiet",
     "bootstrap": "yarn example && yarn && yarn pods",
-    "postinstall": "husky",
     "android": "cd example && yarn android",
     "ios": "cd example && yarn ios"
   },
