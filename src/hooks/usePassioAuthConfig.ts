@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { PassioSDK } from '@passiolife/nutritionai-react-native-sdk-v3/src/sdk/v2';
+import { PassioSDK } from '@passiolife/nutritionai-react-native-sdk-v3';
 
 export function usePassioConfig({ key }: { key: string }) {
   const [isReady, setIsReady] = useState(false);

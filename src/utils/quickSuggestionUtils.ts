@@ -1,4 +1,4 @@
-import { PassioSDK } from '@passiolife/nutritionai-react-native-sdk-v3/src/sdk/v2';
+import { PassioSDK } from '@passiolife/nutritionai-react-native-sdk-v3';
 import type { MealLabel } from '../models/MealLabel';
 import type { QuickSuggestion } from '../models/QuickSuggestion';
 import type { Services } from '../contexts';

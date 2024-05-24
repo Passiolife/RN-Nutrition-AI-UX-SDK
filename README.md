@@ -3,6 +3,63 @@
 A white-labeled nutrition tracking module implemented in React Native.
 This module is using Passio's Nutrition-AI SDK and enables full process of food tracking for users. 
 
+
+
+## Installation
+
+Step 1: Open terminal
+```sh
+git clone https://github.com/Passiolife/RN-Nutrition-AI-UX-SDK.git
+```
+Step 2: Change directory into terminal
+```sh
+cd RN-Nutrition-AI-UX-SDK
+```
+Step 3: Install node_modules
+```sh
+yarn
+```
+Now node modules downloaded. 
+
+## Run Project in IOS
+
+Step 1: Change directory to example 
+```sh
+cd example
+```
+
+Step 2: Add .env file at example directory (refer example.env)
+```sh
+ENV_PASSIO_KEY = "Put your passio license key here"
+```
+
+Step 3:
+```sh
+yarn ios
+```
+Now project run in IOS
+
+NOTE: PLEASE RUN IOS PROJECT IN REAL DEVICE BECAUSE PASSIOSDK NOT SUPPORTED IN SIMULATOR
+
+
+## Run Project in Android
+
+Step 1: Change directory to example 
+```sh
+cd example
+```
+
+Step 2: Add .env file at example directory (refer example.env)
+```sh
+ENV_PASSIO_KEY = "Put your passio license key here"
+```
+
+Step 3:
+```sh
+yarn android  
+```
+
+
 ### Documentation
 
 Nutrition-UX SDK provides `NutritionDataService` and `AnalyticsService` into  ServicesProvider.
@@ -68,48 +125,6 @@ Nutrition-UX SDK also provide  Branding into BrandingProvider.
 | primaryColor   | You have to provide primary color code here.|
 
 
-
-## Installation
-
-Step 1: Open terminal
-```sh
-git clone https://github.com/Passiolife/React-Native-Nutrition-UX.git
-```
-Step 2: Change directory into terminal
-```sh
-cd React-Native-Nutrition-UX
-```
-Step 3: Install node_modules
-```sh
-yarn
-```
-Now node modules downloaded. 
-
-## Run Project in IOS
-
-Step 1: Change directory to example 
-```sh
-cd example
-```
-Step 2:
-```sh
-yarn ios
-```
-Now project run in IOS
-
-NOTE: PLEASE RUN IOS PROJECT IN REAL DEVICE BECAUSE PASSIOSDK NOT SUPPORTED IN SIMULATOR
-
-
-## Run Project in Android
-
-Step 1: Change directory to example 
-```sh
-cd example
-```
-Step 2:
-```sh
-yarn android  
-```
 
 Now project run in Android
 

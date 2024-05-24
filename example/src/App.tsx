@@ -8,11 +8,11 @@ import {
 } from 'react-native-nutrition-ux';
 import branding from './branding';
 import { NavigationContainer } from '@react-navigation/native';
-import { PASSIO_SDK_KEY } from '../config';
 import { SplashScreen } from './SplashScreen';
+import { ENV_PASSIO_KEY } from '@env';
 
 export default function App() {
-  const { isReady } = usePassioConfig({ key: PASSIO_SDK_KEY });
+  const { isReady } = usePassioConfig({ key: ENV_PASSIO_KEY });
 
   if (!isReady) {
     return <SplashScreen />;
