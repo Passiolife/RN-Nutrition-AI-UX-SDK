@@ -27,7 +27,6 @@ export function useIngredientQuickScan() {
     const config: FoodDetectionConfig = {
       detectBarcodes: true,
       detectPackagedFood: true,
-      detectNutritionFacts: true,
     };
 
     const subscription = PassioSDK.startFoodDetection(

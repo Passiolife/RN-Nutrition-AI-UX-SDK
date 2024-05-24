@@ -216,14 +216,11 @@ export const useQuickScan = () => {
     const config: FoodDetectionConfig = {
       detectBarcodes: true,
       detectPackagedFood: true,
-      detectNutritionFacts: true,
     };
     let subscription = PassioSDK.startFoodDetection(
       config,
       (detection: FoodDetectionEvent) => {
-        if (detection.nutritionFacts) {
-          setFoodDetectionEvent(detection);
-        } else if (
+        if (
           (detection &&
             detection?.candidates?.barcodeCandidates &&
             detection.candidates?.barcodeCandidates?.length > 0) ||
@@ -271,42 +268,38 @@ export const useQuickScan = () => {
     const detection = foodDetectEvents;
     async function init() {
       if (detection) {
-        if (detection.nutritionFacts !== undefined) {
-          setNutritionFacts(detection.nutritionFacts);
-        } else {
-          const { candidates } = detection;
+        const { candidates } = detection;
 
-          if (candidates) {
-            const detectedCandidate = candidates.detectedCandidates?.[0];
-            let attribute: QuickResult | null = await getQuickResults(
-              candidates.barcodeCandidates?.[0],
-              candidates.packagedFoodCode?.[0],
-              detectedCandidate
-            );
+        if (candidates) {
+          const detectedCandidate = candidates.detectedCandidates?.[0];
+          let attribute: QuickResult | null = await getQuickResults(
+            candidates.barcodeCandidates?.[0],
+            candidates.packagedFoodCode?.[0],
+            detectedCandidate
+          );
 
-            /** Now Check attribute and alternative */
+          /** Now Check attribute and alternative */
 
-            if (
-              attribute &&
-              attribute?.passioID !== passioQuickResultRef.current?.passioID
-            ) {
-              setPassioQuickResults(attribute);
-              passioQuickResultRef.current = attribute;
+          if (
+            attribute &&
+            attribute?.passioID !== passioQuickResultRef.current?.passioID
+          ) {
+            setPassioQuickResults(attribute);
+            passioQuickResultRef.current = attribute;
 
-              /** Alternative */
-              const alternative =
-                detectedCandidate?.alternatives &&
-                detectedCandidate.alternatives.length > 0
-                  ? detectedCandidate.alternatives
-                  : candidates.detectedCandidates;
+            /** Alternative */
+            const alternative =
+              detectedCandidate?.alternatives &&
+              detectedCandidate.alternatives.length > 0
+                ? detectedCandidate.alternatives
+                : candidates.detectedCandidates;
 
-              const candidateAlternatives = alternative
-                .map(getDetectionCandidate)
-                .filter(
-                  (item) => item?.passioID !== attribute?.passioID
-                ) as QuickResult[];
-              setPassioAlternatives(candidateAlternatives);
-            }
+            const candidateAlternatives = alternative
+              .map(getDetectionCandidate)
+              .filter(
+                (item) => item?.passioID !== attribute?.passioID
+              ) as QuickResult[];
+            setPassioAlternatives(candidateAlternatives);
           }
         }
       }
