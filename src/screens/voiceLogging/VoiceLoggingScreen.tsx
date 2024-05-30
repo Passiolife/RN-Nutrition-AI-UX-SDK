@@ -90,6 +90,7 @@ export const VoiceLoggingScreen = gestureHandlerRootHOC(() => {
         index={-1}
         snapPoints={snapPoints}
         backgroundStyle={styles.bottomSheetChildrenContainer}
+        handleIndicatorStyle={{ display: 'none' }}
       >
         <VoiceLoggingResult
           onLogSelect={onLogSelectPress}

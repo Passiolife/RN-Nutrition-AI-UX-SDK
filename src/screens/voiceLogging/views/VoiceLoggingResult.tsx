@@ -5,6 +5,7 @@ import {
   View,
   type ViewStyle,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
 import { COLORS } from '../../../constants';
 import { Text } from '../../../components/texts/Text';
@@ -56,6 +57,13 @@ export const VoiceLoggingResult = React.forwardRef(
 
     return (
       <View style={[styles.itemsContainer, style]}>
+        <View style={styles.clearBtnView}>
+          <TouchableOpacity onPress={onClearPress} style={styles.clearBtn}>
+            <Text size="_14px" weight="400" style={styles.clearBtnText}>
+              Clear
+            </Text>
+          </TouchableOpacity>
+        </View>
         <Text
           weight="600"
           size="_18px"
@@ -76,6 +84,7 @@ export const VoiceLoggingResult = React.forwardRef(
           style={styles.list}
           data={passioSpeechRecognitionResults}
           ListFooterComponent={renderFooter}
+          showsVerticalScrollIndicator={false}
           renderItem={({ item }: { item: PassioSpeechRecognitionModel }) => {
             const foodDataInfo = item.advisorInfo?.foodDataInfo;
 
@@ -99,6 +108,7 @@ export const VoiceLoggingResult = React.forwardRef(
             );
           }}
         />
+
         <View style={styles.buttonContainer}>
           <BasicButton
             secondary
@@ -122,6 +132,7 @@ export const VoiceLoggingResult = React.forwardRef(
 const styles = StyleSheet.create({
   itemsContainer: {
     backgroundColor: 'white',
+    flex: 1,
   },
   footer: {
     height: 120,
@@ -129,6 +140,7 @@ const styles = StyleSheet.create({
   list: {
     marginHorizontal: 16,
     marginVertical: 16,
+    flex: 1,
   },
   quickSuggestionTextStyle: {
     alignSelf: 'center',
@@ -137,8 +149,9 @@ const styles = StyleSheet.create({
   },
   noQuickSuggestionTitle: {
     paddingHorizontal: 16,
-    marginBottom: 16,
+    marginBottom: 5,
     alignSelf: 'center',
+    marginTop: 4,
   },
   noQuickSuggestionDescriptions: {
     fontSize: 15,
@@ -150,7 +163,20 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
+    marginBottom: 40,
   },
   buttonTryAgain: { flex: 1, marginStart: 16, marginEnd: 8 },
   buttonLogSelected: { flex: 1, marginEnd: 16, marginStart: 8 },
+  clearBtnView: {
+    alignItems: 'flex-end',
+    paddingHorizontal: 16,
+  },
+  clearBtn: {
+    paddingHorizontal: 4,
+    paddingVertical: 2,
+  },
+  clearBtnText: {
+    textDecorationLine: 'underline',
+    color: '#4F46E5',
+  },
 });

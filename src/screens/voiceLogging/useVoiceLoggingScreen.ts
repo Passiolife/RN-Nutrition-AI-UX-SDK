@@ -93,7 +93,6 @@ export function useVoiceLogging() {
   const onTryAgainPress = () => {
     bottomSheetModalRef.current?.close();
     setSearchQuery('');
-    startRecording();
   };
 
   const onSearchManually = () => {

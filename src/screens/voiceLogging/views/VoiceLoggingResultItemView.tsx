@@ -1,7 +1,6 @@
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { PassioIDEntityType } from '@passiolife/nutritionai-react-native-sdk-v3';
-import { ICONS } from '../../../assets';
 import { PassioFoodIcon } from '../../../components/passio/PassioFoodIcon';
 import { Text } from '../../../components';
 
@@ -35,15 +34,16 @@ export const VoiceLoggingResultItemView = (props: Props) => {
         <Text weight="600" size="_12px" style={[styles.text]}>
           {foodName}
         </Text>
-        <Text weight="400" size="_12px" style={styles.text}>
+        <Text
+          weight="400"
+          size="_12px"
+          style={[styles.text, styles.secondaryText]}
+        >
           {bottom}
         </Text>
       </View>
       <TouchableOpacity onPress={onFoodLogSelect}>
-        <Image
-          source={isSelected ? ICONS.weeklyAdherence : ICONS.newInfo}
-          style={styles.addIcon}
-        />
+        <View style={[styles.addIcon, isSelected && styles.selectedAddIcon]} />
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -51,8 +51,7 @@ export const VoiceLoggingResultItemView = (props: Props) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    alignContent: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(238, 242, 255, 1)',
     flex: 1,
@@ -74,17 +73,25 @@ const styles = StyleSheet.create({
   },
   addIcon: {
     width: 24,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginHorizontal: 16,
     height: 24,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: '#D1D5DB',
+    backgroundColor: '#ffffff',
+    marginRight: 8,
   },
   text: {
     textTransform: 'capitalize',
     marginStart: 16,
     flex: 1,
-    marginHorizontal: 5,
     marginRight: 10,
+  },
+  selectedAddIcon: {
+    borderWidth: 1,
+    borderColor: '#4F46E5',
+    backgroundColor: '#4F46E5',
+  },
+  secondaryText: {
+    marginTop: -4,
   },
 });
