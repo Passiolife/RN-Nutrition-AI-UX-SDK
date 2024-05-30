@@ -5,6 +5,7 @@ export const voiceLoggingScreenStyle = ({ backgroundColor }: Branding) =>
   StyleSheet.create({
     container: {
       backgroundColor: backgroundColor,
+      flex: 1,
     },
     bottomSheetChildrenContainer: {
       shadowColor: '#00000029',
@@ -15,5 +16,26 @@ export const voiceLoggingScreenStyle = ({ backgroundColor }: Branding) =>
       shadowRadius: 10,
       shadowOpacity: 1.0,
       elevation: 1,
+    },
+    contentView: {
+      flex: 1,
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      paddingHorizontal: 24,
+    },
+    contentText: {
+      textAlign: 'center',
+      fontStyle: 'italic',
+      marginTop: 16,
+    },
+    btnView: {
+      marginBottom: 40,
+    },
+    textView: {
+      marginTop: 40,
+      width: '100%',
+      padding: 12,
+      backgroundColor: '#EEF2FF',
+      borderRadius: 8,
     },
   });
