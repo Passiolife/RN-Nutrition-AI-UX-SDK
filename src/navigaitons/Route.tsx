@@ -38,4 +38,5 @@ export const ROUTES = {
   ExploreDetailActionPlan: 'ExploreDetailActionPlan',
   ExploreActionPlans: 'ExploreActionPlans',
   ProgressScreenRoute: 'ProgressScreen',
+  VoiceLoggingScreen: 'VoiceLoggingScreen',
 };

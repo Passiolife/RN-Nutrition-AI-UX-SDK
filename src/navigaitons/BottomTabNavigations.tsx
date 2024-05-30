@@ -21,6 +21,7 @@ interface TabBarProps extends BottomTabBarProps {
   onFoodScanner: () => void;
   onTextSearch: () => void;
   onFavorite: () => void;
+  onVoiceLogging: () => void;
 }
 
 export const TabBar = React.memo((props: TabBarProps) => {
@@ -66,6 +67,10 @@ export const TabBar = React.memo((props: TabBarProps) => {
                   onFavorite={() => {
                     floatingRef.current?.onClose();
                     props.onFavorite();
+                  }}
+                  onVoiceLogging={() => {
+                    floatingRef.current?.onClose();
+                    props.onVoiceLogging();
                   }}
                 />
               }

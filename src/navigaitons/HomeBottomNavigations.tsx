@@ -116,6 +116,12 @@ export const HomeBottomNavigation = React.memo(() => {
               logToMeal: undefined,
             });
           }}
+          onVoiceLogging={() => {
+            navigation.navigate('VoiceLoggingScreen', {
+              logToDate: mealLogDateRef.current,
+              logToMeal: undefined,
+            });
+          }}
           {...props}
           items={menu}
         />

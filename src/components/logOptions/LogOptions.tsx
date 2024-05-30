@@ -9,12 +9,14 @@ interface Props {
   onFoodScanner: () => void;
   onTextSearch: () => void;
   onFavorite: () => void;
+  onVoiceLogging: () => void;
 }
 
 export const LogOptions = ({
   onFavorite,
   onFoodScanner,
   onTextSearch,
+  onVoiceLogging,
 }: Props) => {
   const branding = useBranding();
   const styles = logOptionsStyle(branding);
@@ -32,6 +34,7 @@ export const LogOptions = ({
 
   return (
     <View style={styles.main}>
+      {renderItem(ICONS.logOptionFavorite, 'Voice Logging', onVoiceLogging)}
       {renderItem(ICONS.logOptionFoodScanner, 'Food Scanner', onFoodScanner)}
       {renderItem(ICONS.logOptionSearch, 'Text Search', onTextSearch)}
       {renderItem(ICONS.logOptionFavorite, 'Favorites', onFavorite)}

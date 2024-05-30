@@ -15,6 +15,7 @@ import {
   OnboardingScreen,
   RecipeEditorScreen,
   IngredientQuickScanScreen,
+  VoiceLoggingScreen,
 } from '../screens';
 import {
   DashboardScreenRoute,
@@ -173,6 +174,11 @@ export const NutritionNavigator = () => {
             options={{ headerShown: false }}
             name={SettingScreenRoute}
             component={SettingScreen}
+          />
+          <Stack.Screen
+            options={{ headerShown: false }}
+            name={ROUTES.VoiceLoggingScreen}
+            component={VoiceLoggingScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>

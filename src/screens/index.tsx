@@ -17,3 +17,4 @@ export * from './home';
 export * from './water';
 export * from './weight';
 export * from './nutritionInformation';
+export * from './voiceLogging';
