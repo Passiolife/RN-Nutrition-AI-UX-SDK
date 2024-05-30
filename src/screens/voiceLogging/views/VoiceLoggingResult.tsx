@@ -19,13 +19,20 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   passioSpeechRecognitionResults: Array<PassioSpeechRecognitionModel>;
   onTryAgain: () => void;
+  onSearchManuallyPress: () => void;
   onLogSelect: (selected: PassioSpeechRecognitionModel[]) => void;
 }
 export interface VoiceLoggingResultRef { }
 
 export const VoiceLoggingResult = React.forwardRef(
   (
-    { style, passioSpeechRecognitionResults, onTryAgain, onLogSelect }: Props,
+    {
+      style,
+      passioSpeechRecognitionResults,
+      onTryAgain,
+      onLogSelect,
+      onSearchManuallyPress,
+    }: Props,
     _ref: React.Ref<VoiceLoggingResultRef>
   ) => {
     const renderFooter = () => {
@@ -62,7 +69,7 @@ export const VoiceLoggingResult = React.forwardRef(
         <View style={styles.clearBtnView}>
           <TouchableOpacity onPress={onClearPress} style={styles.clearBtn}>
             <Text size="_14px" weight="400" style={styles.clearBtnText}>
-              Clear
+              {selected && selected.length > 0 ? 'Clear' : ''}
             </Text>
           </TouchableOpacity>
         </View>
@@ -113,7 +120,12 @@ export const VoiceLoggingResult = React.forwardRef(
         <View style={styles.contentView}>
           <Text size="_14px" weight="400">
             Not what you’re looking for?{' '}
-            <Text size="_14px" weight="700" style={styles.contentText}>
+            <Text
+              onPress={onSearchManuallyPress}
+              size="_14px"
+              weight="700"
+              style={styles.contentText}
+            >
               Search Manually
             </Text>
           </Text>
@@ -138,6 +150,7 @@ export const VoiceLoggingResult = React.forwardRef(
               onLogSelect(selected ?? []);
             }}
             style={styles.buttonLogSelected}
+            enable={selected && selected.length > 0}
             text="Log Selected"
           />
         </View>

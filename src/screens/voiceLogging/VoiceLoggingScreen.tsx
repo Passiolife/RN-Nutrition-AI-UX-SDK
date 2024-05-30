@@ -29,6 +29,7 @@ export const VoiceLoggingScreen = gestureHandlerRootHOC(() => {
     onRecordingPress,
     onLogSelectPress,
     onTryAgainPress,
+    onSearchManuallyPress,
   } = useVoiceLogging();
 
   const branding = useBranding();
@@ -102,6 +103,7 @@ export const VoiceLoggingScreen = gestureHandlerRootHOC(() => {
         <VoiceLoggingResult
           onLogSelect={onLogSelectPress}
           onTryAgain={onTryAgainPress}
+          onSearchManuallyPress={onSearchManuallyPress}
           passioSpeechRecognitionResults={PassioSpeechRecognitionResult ?? []}
         />
       </BottomSheet>

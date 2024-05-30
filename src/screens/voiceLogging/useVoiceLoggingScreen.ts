@@ -19,6 +19,7 @@ import Voice, {
   SpeechResultsEvent,
   SpeechStartEvent,
 } from '@react-native-voice/voice';
+import { Alert } from 'react-native';
 
 export type VoiceLoggingScreenNavigationProps = StackNavigationProp<
   ParamList,
@@ -44,9 +45,11 @@ export function useVoiceLogging() {
       setFetchResponse(true);
       setPassioSpeechRecognitionModel(null);
       const val = await PassioSDK.recognizeSpeechRemote(text);
-      if (val) {
+      if (val && val.length > 0) {
         bottomSheetModalRef.current?.expand();
         setPassioSpeechRecognitionModel(val);
+      } else {
+        Alert.alert("Sorry we didn't recognize your input, please try again");
       }
     } catch (error) {
     } finally {
@@ -68,7 +71,7 @@ export function useVoiceLogging() {
         ? mealLabelByDate(logToDate)
         : route.params.logToMeal;
 
-    selected.forEach(async (item) => {
+    for (const item of selected) {
       if (item.advisorInfo.foodDataInfo) {
         const foodItem = await PassioSDK.fetchFoodItemForDataInfo(
           item.advisorInfo.foodDataInfo
@@ -79,10 +82,13 @@ export function useVoiceLogging() {
             logToDate,
             meal
           );
-          await services.dataService.saveFoodLog(foodLog);
+          await services.dataService.saveFoodLog({
+            ...foodLog,
+            meal: item.mealTime ?? meal,
+          });
         }
       }
-    });
+    }
 
     navigation.pop(1);
     navigation.navigate('BottomNavigation', {
@@ -95,7 +101,7 @@ export function useVoiceLogging() {
     setSearchQuery('');
   };
 
-  const onSearchManually = () => {
+  const onSearchManuallyPress = () => {
     navigation.navigate('FoodSearchScreen', {
       logToDate: route.params.logToDate,
       logToMeal: route.params.logToMeal,
@@ -109,6 +115,7 @@ export function useVoiceLogging() {
   const speechEndHandler = (_e: SpeechEndEvent) => {
     setIsRecord(false);
   };
+
   const speechResultsHandler = (e: SpeechResultsEvent) => {
     if (e && e.value && e.value.length > 0) {
       const text = e.value[0];
@@ -121,6 +128,7 @@ export function useVoiceLogging() {
       stopRecording();
       setIsRecord(false);
     } else {
+      setSearchQuery('');
       startRecording();
       setIsRecord(true);
     }
@@ -135,7 +143,9 @@ export function useVoiceLogging() {
     try {
       await Voice.stop();
       setIsRecord(false);
-      recognizeSpeechRemote(searchQuery);
+      if (searchQuery.length > 0) {
+        recognizeSpeechRemote(searchQuery);
+      }
     } catch (error) {}
   };
 
@@ -160,6 +170,6 @@ export function useVoiceLogging() {
     recognizeSpeechRemote,
     onLogSelectPress,
     onTryAgainPress,
-    onSearchManually,
+    onSearchManuallyPress,
   };
 }
