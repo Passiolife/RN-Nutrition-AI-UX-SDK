@@ -4,6 +4,7 @@ import {
   StyleSheet,
   TouchableHighlight,
   type ViewStyle,
+  ActivityIndicator,
 } from 'react-native';
 
 import { COLORS } from '../../constants';
@@ -17,6 +18,7 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   small?: boolean;
   secondary?: boolean;
+  isLoading?: boolean;
   enable?: boolean;
   boarderColor?: string;
   testId?: string;
@@ -29,6 +31,7 @@ export const BasicButton: React.FC<Props> = (props) => {
     onPress,
     style,
     small = false,
+    isLoading = false,
     secondary = false,
     enable = true,
     boarderColor = brandingContext.primaryColor,
@@ -94,19 +97,25 @@ export const BasicButton: React.FC<Props> = (props) => {
       onPress={handleOnPress}
       underlayColor={COLORS.blueTranslucent}
     >
-      <Text
-        weight="600"
-        size="_14px"
-        style={[
-          styles.text,
-          small ? styles.smallText : styles.normalText,
-          {
-            color: secondary ? boarderColor : COLORS.white,
-          },
-        ]}
-      >
-        {text}
-      </Text>
+      {isLoading ? (
+        <ActivityIndicator
+          style={[styles.text, small ? styles.smallText : styles.normalText]}
+        />
+      ) : (
+        <Text
+          weight="600"
+          size="_14px"
+          style={[
+            styles.text,
+            small ? styles.smallText : styles.normalText,
+            {
+              color: secondary ? boarderColor : COLORS.white,
+            },
+          ]}
+        >
+          {text}
+        </Text>
+      )}
     </TouchableHighlight>
   );
 };

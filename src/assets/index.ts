@@ -101,3 +101,4 @@ export const ic_close_blue = require('./ic_close_blue.png');
 export const rounded_plus_white_x4 = require('./rounded_plus_white_x4.png');
 export const ic_barcode_blue_x4 = require('./ic_barcode_blue_x4.png');
 export const ic_marker = require('./marker.png');
+export const speeking_wave = require('./speeking_wave.gif');

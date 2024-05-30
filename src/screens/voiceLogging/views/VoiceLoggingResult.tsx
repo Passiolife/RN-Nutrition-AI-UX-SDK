@@ -18,7 +18,7 @@ interface Props {
   onTryAgain: () => void;
   onLogSelect: (selected: PassioSpeechRecognitionModel[]) => void;
 }
-export interface VoiceLoggingResultRef {}
+export interface VoiceLoggingResultRef { }
 
 export const VoiceLoggingResult = React.forwardRef(
   (
@@ -50,6 +50,10 @@ export const VoiceLoggingResult = React.forwardRef(
       }
     };
 
+    const onClearPress = () => {
+      setSelected([]);
+    };
+
     return (
       <View style={[styles.itemsContainer, style]}>
         <Text
@@ -73,19 +77,24 @@ export const VoiceLoggingResult = React.forwardRef(
           data={passioSpeechRecognitionResults}
           ListFooterComponent={renderFooter}
           renderItem={({ item }: { item: PassioSpeechRecognitionModel }) => {
+            const foodDataInfo = item.advisorInfo?.foodDataInfo;
+
+            const isSelected =
+              selected?.find(
+                (it) =>
+                  it.advisorInfo?.recognizedName ===
+                  item.advisorInfo?.recognizedName
+              ) !== undefined;
+
             return (
               <VoiceLoggingResultItemView
                 foodName={item.advisorInfo?.recognizedName}
-                imageName={item.advisorInfo?.foodDataInfo?.iconID}
-                bottom="1 cup | 173 cal"
-                onFoodLogEditor={() => {}}
+                imageName={foodDataInfo?.iconID}
+                bottom={`${item.advisorInfo?.weightGrams} | ${item.advisorInfo?.portionSize}`}
                 onFoodLogSelect={() => {
                   onFoodSelect(item);
                 }}
-                isSelected={
-                  selected?.find((it) => it.advisorInfo?.recognizedName) !==
-                  undefined
-                }
+                isSelected={isSelected}
               />
             );
           }}

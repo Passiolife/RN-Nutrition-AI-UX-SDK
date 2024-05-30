@@ -14,6 +14,11 @@ import { convertPassioFoodItemToFoodLog } from '../../utils/V3Utils';
 import { useServices } from '../../contexts';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import type BottomSheet from '@gorhom/bottom-sheet';
+import Voice, {
+  SpeechEndEvent,
+  SpeechResultsEvent,
+  SpeechStartEvent,
+} from '@react-native-voice/voice';
 
 export type VoiceLoggingScreenNavigationProps = StackNavigationProp<
   ParamList,
@@ -27,18 +32,26 @@ export function useVoiceLogging() {
   const bottomSheetModalRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ['30%', '60%'], []);
 
+  const [isRecording, setIsRecord] = useState(false);
+  const [isFetchingResponse, setFetchResponse] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
   const [PassioSpeechRecognitionResult, setPassioSpeechRecognitionModel] =
     useState<PassioSpeechRecognitionModel[] | null>(null);
 
   const recognizeSpeechRemote = useCallback(async (text: string) => {
     try {
+      setFetchResponse(true);
       setPassioSpeechRecognitionModel(null);
       const val = await PassioSDK.recognizeSpeechRemote(text);
       if (val) {
         bottomSheetModalRef.current?.expand();
         setPassioSpeechRecognitionModel(val);
       }
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      setFetchResponse(false);
+    }
   }, []);
 
   const onClearPress = () => {
@@ -70,10 +83,17 @@ export function useVoiceLogging() {
         }
       }
     });
+
+    navigation.pop(1);
+    navigation.navigate('BottomNavigation', {
+      screen: 'MealLogScreen',
+    });
   };
 
   const onTryAgainPress = () => {
     bottomSheetModalRef.current?.close();
+    setSearchQuery('');
+    startRecording();
   };
 
   const onSearchManually = () => {
@@ -84,14 +104,59 @@ export function useVoiceLogging() {
     });
   };
 
+  const speechStartHandler = (_e: SpeechStartEvent) => {
+    setIsRecord(true);
+  };
+  const speechEndHandler = (_e: SpeechEndEvent) => {
+    setIsRecord(false);
+  };
+  const speechResultsHandler = (e: SpeechResultsEvent) => {
+    if (e && e.value && e.value.length > 0) {
+      const text = e.value[0];
+      setSearchQuery(text);
+    }
+  };
+
+  const onRecordingPress = () => {
+    if (isRecording) {
+      stopRecording();
+      setIsRecord(false);
+    } else {
+      startRecording();
+      setIsRecord(true);
+    }
+  };
+  const startRecording = async () => {
+    setIsRecord(true);
+    try {
+      await Voice.start('en-Us');
+    } catch (error) {}
+  };
+  const stopRecording = async () => {
+    try {
+      await Voice.stop();
+      setIsRecord(false);
+      recognizeSpeechRemote(searchQuery);
+    } catch (error) {}
+  };
+
   useEffect(() => {
-    recognizeSpeechRemote('recipe of banana cake');
-  }, [recognizeSpeechRemote]);
+    Voice.onSpeechStart = speechStartHandler;
+    Voice.onSpeechEnd = speechEndHandler;
+    Voice.onSpeechResults = speechResultsHandler;
+    return () => {
+      Voice.destroy().then(Voice.removeAllListeners);
+    };
+  }, []);
 
   return {
     PassioSpeechRecognitionResult,
     bottomSheetModalRef,
     snapPoints,
+    isRecording,
+    searchQuery,
+    isFetchingResponse,
+    onRecordingPress,
     onClearPress,
     recognizeSpeechRemote,
     onLogSelectPress,

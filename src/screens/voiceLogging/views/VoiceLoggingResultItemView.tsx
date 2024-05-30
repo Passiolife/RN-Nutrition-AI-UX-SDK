@@ -9,22 +9,15 @@ interface Props {
   imageName?: string;
   foodName: string;
   bottom: string;
-  onFoodLogEditor: () => void;
+  onFoodLogEditor?: () => void;
   onFoodLogSelect: () => void;
   isSelected: boolean;
 }
 
 export const VoiceLoggingResultItemView = (props: Props) => {
-  const {
-    foodName,
-    imageName,
-    onFoodLogEditor,
-    onFoodLogSelect,
-    isSelected,
-    bottom,
-  } = props;
+  const { foodName, imageName, onFoodLogSelect, isSelected, bottom } = props;
   return (
-    <TouchableOpacity onPress={onFoodLogEditor} style={styles.container}>
+    <TouchableOpacity onPress={onFoodLogSelect} style={styles.container}>
       <View style={styles.imageContainer}>
         <PassioFoodIcon
           imageName={imageName}

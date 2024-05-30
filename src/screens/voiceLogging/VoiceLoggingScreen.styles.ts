@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import type { Branding } from '../../contexts';
+
+const { height, width } = Dimensions.get('window');
 
 export const voiceLoggingScreenStyle = ({ backgroundColor }: Branding) =>
   StyleSheet.create({
@@ -34,8 +36,14 @@ export const voiceLoggingScreenStyle = ({ backgroundColor }: Branding) =>
     textView: {
       marginTop: 40,
       width: '100%',
+    },
+    textWrapper: {
       padding: 12,
       backgroundColor: '#EEF2FF',
       borderRadius: 8,
+    },
+    speekingImg: {
+      width: width,
+      height: height / 3,
     },
   });
