@@ -10,7 +10,7 @@ import { BackNavigation, Text, BasicButton } from '../../components';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { VoiceLoggingResult } from './views/VoiceLoggingResult';
 import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
-import { speeking_wave } from '../../assets';
+import { ICONS, speeking_wave } from '../../assets';
 
 export interface VoiceLoggingScreenProps {
   logToDate?: Date | undefined;
@@ -80,6 +80,13 @@ export const VoiceLoggingScreen = gestureHandlerRootHOC(() => {
               text={!isRecording ? 'Start Listening' : 'Stop Listening'}
               onPress={onRecordingPress}
               isLoading={isFetchingResponse}
+              rightIcon={
+                <Image
+                  source={!isRecording ? ICONS.Mic : ICONS.RecordingStop}
+                  resizeMode="contain"
+                  style={styles.micIcon}
+                />
+              }
             />
           </View>
         </View>

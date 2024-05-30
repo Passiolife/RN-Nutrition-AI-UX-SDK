@@ -72,6 +72,8 @@ export const ICONS = {
   blueGlassMedium: require('./icons/blue_glass_medium.png'),
   blueGlassLarge: require('./icons/blue_glass_large.png'),
   editGreyIc: require('./icons/edit_grey_ic.png'),
+  RecordingStop: require('./icons/stop_white.png'),
+  Mic: require('./icons/mic_blue.png'),
 };
 export const onBoardingAssets = {
   onBoardingStep1: require('./images/onboarding_01.png'),

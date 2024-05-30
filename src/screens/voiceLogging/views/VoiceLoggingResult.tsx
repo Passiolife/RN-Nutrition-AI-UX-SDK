@@ -6,12 +6,14 @@ import {
   type ViewStyle,
   FlatList,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import { COLORS } from '../../../constants';
 import { Text } from '../../../components/texts/Text';
 import type { PassioSpeechRecognitionModel } from '@passiolife/nutritionai-react-native-sdk-v3';
 import { VoiceLoggingResultItemView } from './VoiceLoggingResultItemView';
 import { BasicButton } from '../../../components';
+import { ICONS } from '../../../assets';
 
 interface Props {
   style?: StyleProp<ViewStyle>;
@@ -108,6 +110,14 @@ export const VoiceLoggingResult = React.forwardRef(
             );
           }}
         />
+        <View style={styles.contentView}>
+          <Text size="_14px" weight="400">
+            Not what you’re looking for?{' '}
+            <Text size="_14px" weight="700" style={styles.contentText}>
+              Search Manually
+            </Text>
+          </Text>
+        </View>
 
         <View style={styles.buttonContainer}>
           <BasicButton
@@ -115,6 +125,13 @@ export const VoiceLoggingResult = React.forwardRef(
             onPress={onTryAgain}
             style={styles.buttonTryAgain}
             text="Try Again"
+            rightIcon={
+              <Image
+                source={ICONS.Mic}
+                resizeMode="contain"
+                style={styles.micIcon}
+              />
+            }
           />
           <BasicButton
             onPress={() => {
@@ -178,5 +195,16 @@ const styles = StyleSheet.create({
   clearBtnText: {
     textDecorationLine: 'underline',
     color: '#4F46E5',
+  },
+  contentView: {
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  contentText: {
+    color: '#4F46E5',
+  },
+  micIcon: {
+    height: 20,
+    width: 20,
   },
 });

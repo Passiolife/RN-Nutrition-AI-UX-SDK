@@ -24,7 +24,7 @@ export const LogOptions = ({
   const renderItem = (icon: number, title: string, onPress: () => void) => {
     return (
       <Pressable onPress={onPress} style={styles.optionContainer}>
-        <Image source={icon} style={styles.optionIcon} />
+        <Image source={icon} style={styles.optionIcon} resizeMode="contain" />
         <Text weight="500" size="_16px" color="text" style={styles.optionTitle}>
           {title}
         </Text>
@@ -34,7 +34,7 @@ export const LogOptions = ({
 
   return (
     <View style={styles.main}>
-      {renderItem(ICONS.logOptionFavorite, 'Voice Logging', onVoiceLogging)}
+      {renderItem(ICONS.Mic, 'Voice Logging', onVoiceLogging)}
       {renderItem(ICONS.logOptionFoodScanner, 'Food Scanner', onFoodScanner)}
       {renderItem(ICONS.logOptionSearch, 'Text Search', onTextSearch)}
       {renderItem(ICONS.logOptionFavorite, 'Favorites', onFavorite)}

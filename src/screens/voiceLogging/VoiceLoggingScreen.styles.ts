@@ -46,4 +46,9 @@ export const voiceLoggingScreenStyle = ({ backgroundColor }: Branding) =>
       width: width,
       height: height / 3,
     },
+    micIcon: {
+      height: 20,
+      width: 20,
+      tintColor: '#fff',
+    },
   });

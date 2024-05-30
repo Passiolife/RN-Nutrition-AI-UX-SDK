@@ -5,6 +5,7 @@ import {
   TouchableHighlight,
   type ViewStyle,
   ActivityIndicator,
+  View,
 } from 'react-native';
 
 import { COLORS } from '../../constants';
@@ -22,6 +23,7 @@ interface Props {
   enable?: boolean;
   boarderColor?: string;
   testId?: string;
+  rightIcon?: JSX.Element;
 }
 
 export const BasicButton: React.FC<Props> = (props) => {
@@ -36,6 +38,7 @@ export const BasicButton: React.FC<Props> = (props) => {
     enable = true,
     boarderColor = brandingContext.primaryColor,
     testId,
+    rightIcon,
   } = props;
   const styles = basicButtonStyle(brandingContext);
 
@@ -97,25 +100,29 @@ export const BasicButton: React.FC<Props> = (props) => {
       onPress={handleOnPress}
       underlayColor={COLORS.blueTranslucent}
     >
-      {isLoading ? (
-        <ActivityIndicator
-          style={[styles.text, small ? styles.smallText : styles.normalText]}
-        />
-      ) : (
-        <Text
-          weight="600"
-          size="_14px"
-          style={[
-            styles.text,
-            small ? styles.smallText : styles.normalText,
-            {
-              color: secondary ? boarderColor : COLORS.white,
-            },
-          ]}
-        >
-          {text}
-        </Text>
-      )}
+      <>
+        {rightIcon ? <View style={styles.iconView}>{rightIcon}</View> : null}
+
+        {isLoading ? (
+          <ActivityIndicator
+            style={[styles.text, small ? styles.smallText : styles.normalText]}
+          />
+        ) : (
+          <Text
+            weight="600"
+            size="_14px"
+            style={[
+              styles.text,
+              small ? styles.smallText : styles.normalText,
+              {
+                color: secondary ? boarderColor : COLORS.white,
+              },
+            ]}
+          >
+            {text}
+          </Text>
+        )}
+      </>
     </TouchableHighlight>
   );
 };
@@ -127,6 +134,7 @@ const basicButtonStyle = ({ primaryColor }: Branding) =>
       alignItems: 'center',
       paddingHorizontal: 16,
       minWidth: 100,
+      flexDirection: 'row',
     },
     text: {
       paddingVertical: scaleHeight(12),
@@ -151,5 +159,8 @@ const basicButtonStyle = ({ primaryColor }: Branding) =>
     smallText: {
       paddingVertical: scaleHeight(12),
       lineHeight: 18,
+    },
+    iconView: {
+      marginEnd: 8,
     },
   });
