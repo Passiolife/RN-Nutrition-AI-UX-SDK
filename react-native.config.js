@@ -11,6 +11,7 @@ module.exports = {
     'react-native-safe-area-context': {},
     'react-native-linear-gradient': {},
     'react-native-svg': {},
+    '@react-native-voice/voice': {},
   },
   includesNativeDependencies: true,
 };

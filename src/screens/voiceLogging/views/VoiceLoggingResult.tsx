@@ -22,7 +22,7 @@ interface Props {
   onSearchManuallyPress: () => void;
   onLogSelect: (selected: PassioSpeechRecognitionModel[]) => void;
 }
-export interface VoiceLoggingResultRef { }
+export interface VoiceLoggingResultRef {}
 
 export const VoiceLoggingResult = React.forwardRef(
   (

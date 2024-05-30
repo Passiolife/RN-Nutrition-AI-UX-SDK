@@ -56,7 +56,7 @@ enableScreens();
 export const NutritionNavigator = () => {
   return (
     <>
-      <NavigationContainer>
+      <NavigationContainer independent={true}>
         <Stack.Navigator
           screenOptions={{ gestureEnabled: false }}
           initialRouteName={BottomNavigation}

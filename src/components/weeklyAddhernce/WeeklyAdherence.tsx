@@ -29,7 +29,7 @@ const WeeklyAdherence = ({ headerDate }: Props) => {
   const styles = calderComponentStyle(branding);
 
   // Get short names of weekdays
-  const days = Info.weekdaysFormat('short');
+  const days = Info.weekdaysFormat('short', { locale: 'en' });
   // State variables
   const [calendarViewMode, setCalendarViewMode] = useState<'month' | 'week'>(
     'week'
