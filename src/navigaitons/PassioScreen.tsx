@@ -5,13 +5,15 @@ import { useNavigation } from '@react-navigation/native';
 
 export const PassioScreens = () => {
   const navigation = useNavigation();
-  <EntryProvider
-    entry={{
-      onBackToHost() {
-        navigation.goBack();
-      },
-    }}
-  >
-    <NutritionNavigator />
-  </EntryProvider>;
+  return (
+    <EntryProvider
+      entry={{
+        onBackToHost() {
+          navigation.goBack();
+        },
+      }}
+    >
+      <NutritionNavigator />
+    </EntryProvider>
+  );
 };
