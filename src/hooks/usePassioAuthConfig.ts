@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import { PassioSDK } from '@passiolife/nutritionai-react-native-sdk-v3';
+import {
+  CompletedDownloadingFile,
+  DownloadingError,
+  PassioSDK,
+} from '@passiolife/nutritionai-react-native-sdk-v3';
 
 export function usePassioConfig({ key }: { key: string }) {
   const [isReady, setIsReady] = useState(false);
+  const [leftFile, setDownloadingLeft] = useState<number | null>(null);
+  const [downloadError, setDownloadError] = useState<string | null>(null);
 
   useEffect(() => {
     async function getAuth() {
@@ -22,7 +28,26 @@ export function usePassioConfig({ key }: { key: string }) {
     getAuth();
   }, [key]);
 
+  const requestCameraAuthorization = () => {
+    return PassioSDK.requestCameraAuthorization();
+  };
+
+  useEffect(() => {
+    const callBacks = PassioSDK.onDownloadingPassioModelCallBacks({
+      completedDownloadingFile: ({ filesLeft }: CompletedDownloadingFile) => {
+        setDownloadingLeft(filesLeft);
+      },
+      downloadingError: ({ message }: DownloadingError) => {
+        setDownloadError(message);
+      },
+    });
+    return () => callBacks.remove();
+  }, []);
+
   return {
     isReady,
+    leftFile,
+    downloadError,
+    requestCameraAuthorization,
   };
 }

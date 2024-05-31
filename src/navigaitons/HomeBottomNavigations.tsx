@@ -8,7 +8,8 @@ import {
 } from '@react-navigation/bottom-tabs';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useBranding, type Branding } from '../contexts';
-import { TabBar, type BottomNavTab } from './BottomTabNavigations';
+import type { BottomNavTab } from './BottomTabNavigations';
+import { TabBar } from './TabBar';
 import { ICONS } from '../assets';
 import {
   HomeScreenRoute,

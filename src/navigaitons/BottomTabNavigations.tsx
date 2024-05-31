@@ -1,11 +1,9 @@
-import React, { useRef } from 'react';
-import { Image, Platform, Pressable, StyleSheet, View } from 'react-native';
+import React from 'react';
+import { Image, Platform, StyleSheet } from 'react-native';
 
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { useBranding, type Branding } from '../contexts';
+import type { Branding } from '../contexts';
 import { scaleHeight, scaleWidth, scaledSize } from '../utils';
-import { LogOptions, Text, type FloatingOptionRef } from '../components';
-import { FloatingOption } from '../components';
 
 export type MenuType = 'Home' | 'Diary' | 'Blank' | 'MealPlan' | 'Progress';
 
@@ -16,7 +14,7 @@ export interface BottomNavTab {
   type: MenuType;
 }
 
-interface TabBarProps extends BottomTabBarProps {
+export interface TabBarProps extends BottomTabBarProps {
   items: BottomNavTab[];
   onFoodScanner: () => void;
   onTextSearch: () => void;
@@ -24,84 +22,7 @@ interface TabBarProps extends BottomTabBarProps {
   onVoiceLogging: () => void;
 }
 
-export const TabBar = React.memo((props: TabBarProps) => {
-  const { navigation, state } = props;
-  const branding = useBranding();
-  const styles = bottomTabStyle(branding);
-  const floatingRef = useRef<FloatingOptionRef>(null);
-
-  return (
-    <View style={styles.tabBarContainer}>
-      {state.routes.map((route, index) => {
-        const menu: BottomNavTab = props.items[index] as BottomNavTab;
-        const isFocused = state.index === index;
-        const onPress = () => {
-          const event = navigation.emit({
-            canPreventDefault: true,
-            target: route.key,
-            type: 'tabPress',
-          });
-
-          if (!isFocused && !event.defaultPrevented) {
-            // The `merge: true` option makes sure that the params inside the tab screen are preserved
-            // navigation.navigate({merge: true, name: route.name});
-            navigation.navigate(route.name);
-          }
-        };
-
-        if (menu.title === 'Blank') {
-          return (
-            <FloatingOption
-              ref={floatingRef}
-              options={
-                <LogOptions
-                  onClose={function (): void {}}
-                  onFoodScanner={() => {
-                    floatingRef.current?.onClose();
-                    props.onFoodScanner();
-                  }}
-                  onTextSearch={() => {
-                    floatingRef.current?.onClose();
-                    props.onTextSearch();
-                  }}
-                  onFavorite={() => {
-                    floatingRef.current?.onClose();
-                    props.onFavorite();
-                  }}
-                  onVoiceLogging={() => {
-                    floatingRef.current?.onClose();
-                    props.onVoiceLogging();
-                  }}
-                />
-              }
-            />
-          );
-        }
-        return (
-          <Pressable
-            key={`${route.name}-${index}-TabBar`}
-            accessibilityRole="button"
-            onPress={onPress}
-            accessibilityState={isFocused ? { selected: true } : {}}
-            style={styles.tabBarItemStyle}
-          >
-            {renderTabBarIcons(menu.icon, isFocused, branding)}
-            <Text
-              weight="400"
-              size="_12px"
-              style={styles.tabItemText}
-              color={isFocused ? 'primaryColor' : 'gray300'}
-            >
-              {menu.title}
-            </Text>
-          </Pressable>
-        );
-      })}
-    </View>
-  );
-});
-
-const renderTabBarIcons = (
+export const renderTabBarIcons = (
   icon: number,
   isFocused: boolean,
   color: Branding
@@ -115,7 +36,7 @@ const renderTabBarIcons = (
   );
 };
 
-const bottomTabStyle = ({ white, primaryColor, border }: Branding) => {
+export const bottomTabStyle = ({ white, primaryColor, border }: Branding) => {
   const styles = StyleSheet.create({
     tabBarContainer: {
       alignItems: 'center',
