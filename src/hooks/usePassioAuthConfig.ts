@@ -13,16 +13,13 @@ export function usePassioConfig({ key }: { key: string }) {
 
   useEffect(() => {
     async function getAuth() {
-      const isAuthorized = await PassioSDK.requestCameraAuthorization();
       const passioSDKStatus = await PassioSDK.configure({
         key: key,
         autoUpdate: true,
         debugMode: true,
       });
 
-      setIsReady(
-        isAuthorized && passioSDKStatus.mode === 'isReadyForDetection'
-      );
+      setIsReady(passioSDKStatus.mode === 'isReadyForDetection');
     }
 
     getAuth();
