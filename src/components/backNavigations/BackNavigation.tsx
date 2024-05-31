@@ -62,7 +62,11 @@ export const BackNavigation: React.FC<Props> = (props) => {
                   props.onBackArrowPress();
                 } else {
                   try {
-                    navigation.goBack();
+                    if (navigation.canGoBack()) {
+                      navigation.goBack();
+                    } else {
+                      entry.onBackToHost();
+                    }
                   } catch (e) {
                     entry.onBackToHost();
                   }
