@@ -12,6 +12,7 @@ module.exports = {
     'react-native-linear-gradient': {},
     'react-native-svg': {},
     '@react-native-voice/voice': {},
+    '@notifee/react-native': {},
   },
   includesNativeDependencies: true,
 };

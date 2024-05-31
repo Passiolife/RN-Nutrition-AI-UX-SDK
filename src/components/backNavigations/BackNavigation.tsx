@@ -15,6 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 import { ICONS } from '../../assets';
 import { Card } from '../cards';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useEntry } from '../../contexts/entry/EntryContext';
 
 interface Props {
   rightSide?: Array<JSX.Element> | JSX.Element | undefined;
@@ -41,6 +42,7 @@ export const BackNavigation: React.FC<Props> = (props) => {
   let styles = headerStyle(useBranding(), insets);
   let hs = [styles.mainContainer];
   const navigation = useNavigation();
+  const entry = useEntry();
   return (
     <>
       <Card style={[styles.imgBgStyle, cardStyle]}>
@@ -59,7 +61,11 @@ export const BackNavigation: React.FC<Props> = (props) => {
                 if (props.onBackArrowPress) {
                   props.onBackArrowPress();
                 } else {
-                  navigation.goBack();
+                  try {
+                    navigation.goBack();
+                  } catch (e) {
+                    entry.onBackToHost();
+                  }
                 }
               }}
             >
