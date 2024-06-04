@@ -1,10 +1,5 @@
-import type { Services } from 'react-native-nutrition-ux';
-import { analyticsService } from './AnalyticsService';
-import dataService from './DataService';
+import type { ExternalServices } from 'react-native-nutrition-ux';
 
-const services: Services = {
-  dataService,
-  analyticsService,
-};
+const services: ExternalServices = {};
 
 export default services;
