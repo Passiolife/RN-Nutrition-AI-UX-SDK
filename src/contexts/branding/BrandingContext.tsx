@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import type { Branding } from './Branding';
+import type { ExternalBranding } from './ExternalBranding';
 
 const defaultBranding: Branding = {
   primaryColor: 'rgba(79, 70, 229, 1)',
@@ -27,7 +28,7 @@ const BrandingContext = React.createContext(defaultBranding);
 export const useBranding = () => useContext(BrandingContext);
 
 interface BrandingProviderProps extends React.PropsWithChildren {
-  branding: Branding;
+  branding: ExternalBranding;
 }
 
 export const BrandingProvider = ({
