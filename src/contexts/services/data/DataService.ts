@@ -32,7 +32,7 @@ import type { NutritionDataService } from '../NutritionDataService';
 
 const dataService: NutritionDataService = {
   getPatientProfile: () => {
-    return Promise.resolve(require('../../assets/json/patient_profile.json'));
+    return Promise.resolve(require('../../../db/patient_profile.json'));
   },
   async saveFoodLog(foodLog: FoodLog): Promise<void> {
     return saveFoodLog(await DBHandler.getInstance(), foodLog);
