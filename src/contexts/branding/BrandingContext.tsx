@@ -28,7 +28,7 @@ const BrandingContext = React.createContext(defaultBranding);
 export const useBranding = () => useContext(BrandingContext);
 
 interface BrandingProviderProps extends React.PropsWithChildren {
-  branding: ExternalBranding;
+  branding?: ExternalBranding;
 }
 
 export const BrandingProvider = ({

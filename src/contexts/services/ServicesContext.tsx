@@ -18,7 +18,7 @@ const ServicesContext = React.createContext({} as Services);
 export const useServices = () => useContext(ServicesContext);
 
 interface ServicesProviderProps extends React.PropsWithChildren {
-  services: ExternalServices;
+  services?: ExternalServices;
 }
 
 export const ServicesProvider = ({

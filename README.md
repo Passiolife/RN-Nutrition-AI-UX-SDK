@@ -3,18 +3,18 @@
 
 ## Installation
 
-Step 1: Create an .npmrc file in the root of your project with the following lines replacing GITHUB_ACCESS_TOKEN with the token you've created.
+#### Step 1: Create an .npmrc file in the root of your project with the following lines replacing GITHUB_ACCESS_TOKEN with the token you've created.
 ```sh
 //npm.pkg.github.com/:_authToken=GITHUB_ACCESS_TOKEN
 @passiolife:registry=https://npm.pkg.github.com
 ```
 
-Step 2: Open terminal
+#### Step 2: Open terminal
 ```sh
 yarn add @passiolife/nutrition-ai-ui-ux
 ```
 
-Step 3: add react-native.config.js at root
+#### Step 3: add react-native.config.js at root
 ```sh
 module.exports = {
   dependencies: {
@@ -37,18 +37,18 @@ module.exports = {
 };
 ```
 
-Step 4: require  @react-native-async-storage/async-storage
+#### Step 4: require  @react-native-async-storage/async-storage
 ```sh
 yarn add  @react-native-async-storage/async-storage
 ```
 
 
-Step 5: require  add react-native-screens
+#### Step 5: require  add react-native-screens
 ```sh
 yarn add react-native-screens
 ```
 
-Step 6: For Android, add this implementation line to the dependencies section on app/build.gradle file.
+#### Step 6: For Android, add this implementation line to the dependencies section on app/build.gradle file.
 ```sh
 dependencies {
     // Add this line below for Passio SDK library
@@ -59,10 +59,9 @@ dependencies {
 
 
 
-## Usage example 1
+## Usage example
 
-
-IOS Permission 
+#### Step:1 Add IOS Permission 
 
 ```
  Privacy - NSCameraUsageDescription
@@ -70,7 +69,7 @@ IOS Permission
  Privacy - NSMicrophoneUsageDescription
 ```
 
-Android Permission
+#### Step:2 Android Permission
 
 ```
 <uses-permission android:name="android.permission.CAMERA" />
@@ -78,31 +77,178 @@ Android Permission
 
 In Application
 
-``` JS
-import React from 'react';
-import {
-  AnalyticsService,
-  Branding,
-  BrandingProvider,
-  FavoriteFoodItem,
-  FoodLog,
-  NutritionDataService,
-  NutritionNavigator,
-  NutritionProfile,
-  Recipe,
-  Services,
-  ServicesProvider,
-} from '@passiolife/nutrition-ai-ui-ux';
-import { NavigationContainer } from '@react-navigation/native';
+Note: If you don't want to provide your service, move on to step 7.
+
+#### Step 3: If you'd like to include your data service, follow the steps below. Otherwise, skip to the next step
 
 
-export default function App() {
+`NutritionDataService` used for Return a function to store or retrieve data through a REST API, local database, or Firebase, etc
 
-  const branding: Branding = {
-    // you can change primary color form here
+```js
+
+export const dataService: NutritionDataService = {
+  /**
+   * Retrieves the patient profile.
+   * @returns A `Promise` resolving to the patient profile.
+   */
+  getPatientProfile: () => getPatientProfile(),
+
+  /**
+   * Saves a food log.
+   * @param foodLog - The food log to save.
+   * @returns A `Promise` that resolves when the operation is complete.
+   */
+  async saveFoodLog(foodLog: FoodLog): Promise<void> {
+    return saveFoodLog(foodLog);
+  },
+
+  /**
+   * Retrieves food logs.
+   * @returns A `Promise` resolving to an array of food logs.
+   */
+  async getFoodLogs(): Promise<FoodLog[]> {
+    return getFoodLogs();
+  },
+
+  /**
+   * Deletes a food log.
+   * @param uuid - The UUID of the food log to delete.
+   * @returns A `Promise` that resolves when the operation is complete.
+   */
+  async deleteFoodLog(uuid: string): Promise<void> {
+    return deleteFoodLog(uuid);
+  },
+
+  /**
+   * Deletes a recipe.
+   * @param uuid - The UUID of the recipe to delete.
+   * @returns A `Promise` that resolves when the operation is complete.
+   */
+  async deleteRecipe(uuid: string): Promise<void> {
+    return deleteRecipe(uuid);
+  },
+
+  /**
+   * Deletes a favorite food item.
+   * @param uuid - The UUID of the favorite food item to delete.
+   * @returns A `Promise` that resolves when the operation is complete.
+   */
+  async deleteFavoriteFoodItem(uuid: string): Promise<void> {
+    return deleteFavoriteFoodItem(uuid);
+  },
+
+  /**
+   * Retrieves meal logs within a specified date range.
+   * @param startDate - The start date of the range.
+   * @param endDate - The end date of the range.
+   * @returns A `Promise` resolving to an array of meal logs.
+   */
+  async getMealLogs(startDate: Date, endDate: Date): Promise<FoodLog[]> {
+    return getMealLogs(startDate, endDate);
+  },
+
+  /**
+   * Saves a favorite food item.
+   * @param favoriteFoodItem - The favorite food item to save.
+   * @returns A `Promise` that resolves when the operation is complete.
+   */
+  async saveFavoriteFoodItem(favoriteFoodItem: FavoriteFoodItem): Promise<void> {
+    return saveFavoriteFoodItem(favoriteFoodItem);
+  },
+
+  /**
+   * Retrieves favorite food items.
+   * @returns A `Promise` resolving to an array of favorite food items.
+   */
+  async getFavoriteFoodItems(): Promise<FavoriteFoodItem[]> {
+    return getFavoriteFoodItems();
+  },
+
+  /**
+   * Saves a nutrition profile.
+   * @param nutritionProfile - The nutrition profile to save.
+   * @returns A `Promise` that resolves when the operation is complete.
+   */
+  saveNutritionProfile(nutritionProfile: NutritionProfile): Promise<void> {
+    return saveNutritionProfile(nutritionProfile);
+  },
+
+  /**
+   * Saves a recipe.
+   * @param recipe - The recipe to save.
+   * @returns A `Promise` that resolves when the operation is complete.
+   */
+  async saveRecipe(recipe: Recipe): Promise<void> {
+    return saveRecipe(recipe);
+  },
+
+  /**
+   * Retrieves recipes.
+   * @returns A `Promise` resolving to an array of recipes.
+   */
+  async getRecipes(): Promise<Recipe[]> {
+    return getRecipes();
+  },
+
+  /**
+   * Retrieves the nutrition profile.
+   * @returns A `Promise` resolving to the nutrition profile, or `undefined` if not found.
+   */
+  async getNutritionProfile(): Promise<NutritionProfile | undefined> {
+    return getNutritionProfile();
+  },
+
+  /**
+   * Retrieves water logs within a specified date range.
+   * @param startDate - The start date of the range.
+   * @param endDate - The end date of the range.
+   * @returns A `Promise` resolving to an array of water logs.
+   */
+  async getWaters(startDate: Date, endDate: Date): Promise<Water[]> {
+    return getWaters(startDate, endDate);
+  },
+
+  /**
+   * Deletes a water log.
+   * @param uuid - The UUID of the water log to delete.
+   * @returns A `Promise` that resolves when the operation is complete.
+   */
+  async deleteWater(uuid: string): Promise<void> {
+    return deleteWater(uuid);
+  },
+
+  /**
+   * Deletes a weight log.
+   * @param uuid - The UUID of the weight log to delete.
+   * @returns A `Promise` that resolves when the operation is complete.
+   */
+  async deleteWeight(uuid: string): Promise<void> {
+    return deleteWeight(uuid);
+  },
+
+  /**
+   * Retrieves weight logs within a specified date range.
+   * @param startDate - The start date of the range.
+   * @param endDate - The end date of the range.
+   * @returns A `Promise` resolving to an array of weight logs.
+   */
+  async getWeight(startDate: Date, endDate: Date): Promise<Weight[]> {
+    return getWeight(startDate, endDate);
+  },
+};
+ ```
+
+ #### Step: 4 If you're want to apply your theme, you can use the following, although it's in experimental mode. otherwise you can skip to next step
+
+Nutrition-UX SDK also provide  Branding into BrandingProvider.
+
+```js
+  // you can change primary color form here
+ export const branding: Branding = {
   primaryColor: 'rgba(79, 70, 229, 1)',
   backgroundColor: 'rgba(249, 250, 251, 1)',
   black: 'rgba(0, 0, 0, 1)',
+  text: 'rgba(17, 24, 39, 1)',
   border: 'rgba(229, 231, 235, 1)',
   calories: 'rgba(245, 158, 11, 1)',
   carbs: 'rgba(14, 165, 233, 1)',
@@ -116,81 +262,39 @@ export default function App() {
   purple: 'rgba(79, 70, 229, 1)',
   searchBody: 'rgba(242, 245, 251, 1)',
   secondaryText: 'rgba(107, 114, 128, 1)',
-  text: 'rgba(17, 24, 39, 1)',
   white: 'white',
   };
-  
+```
 
-  // Nutrition UX Callback functions.
-  const dataService: NutritionDataService = {
-    getPatientProfile: () => {
-      return null;
-    },
-    // Getting save food log callback here so you can saved food log.
-    async saveFoodLog(foodLog: FoodLog): Promise<void> {
-    return null;
-    },
-    // Getting get foodlog's callback here so you can pass stored/saved food log's from here.
-    getFoodLogs: function (): Promise<FoodLog[]> {
-    return null;
-    },
-    // Getting delete foodlog's callback here so you can delete food log's from here.
-    async deleteFoodLog(uuid: string): Promise<void> {
-       return null;
-    },
-    // Getting delete recipe callback here so you can delete recipe and update  from here.
-    async deleteRecipe(uuid: string): Promise<void> {
-    return null;
-    },
-     // Getting delete favorite food item callBack here
-     async deleteFavoriteFoodItem(uuid: string): Promise<void> {
-       return null;
-    },
-     // Getting meal logs callBack here so you can pass your saved food log's from here.
-     async getMealLogs(startDate: Date, endDate: Date): Promise<FoodLog[]> {
-      return null;
-    },
-      // Getting save favorite food item callBack here
-      async saveFavoriteFoodItem(
-      favoriteFoodItem: FavoriteFoodItem
-    ): Promise<void> {
-      return null;
-    },
-      // Getting favorite food item callBack here so you can pass your saved favorite food log's from here.
-      getFavoriteFoodItems: function (): Promise<FavoriteFoodItem[]> {
-       return null;
-    },
-    // Getting save nutrition profile call back here so you can store saved nutrition profile form here.
-    saveNutritionProfile: (nutritionProfile): Promise<void> => {
-      return null
-    },
-    // Getting save recipe call back here so you can store your recipe from here.
-    async saveRecipe(recipe: Recipe): Promise<void> {
-      return null;
-    },
-    // Getting get recipes call back here so you can pass your saved recipe from here.
-     getRecipes: function (): Promise<Recipe[]> {
-      return null;
-    },
-    // Getting nutrition profile call back here so you can pass your saved nutrition profile here.
-    getNutritionProfile: (): Promise<NutritionProfile | undefined> => {
-      return null;
-    },
-  };
+#### Step:5 : If you're want to check some log event then provide analytic service, although it's in experimental mode. 
 
-   const analyticsService: AnalyticsService = {
+```js
+  export  const analyticsService: AnalyticsService = {
     logEvent(event: string) {
       console.log(`Analytics: ${event}`); // eslint-disable-line no-console
     },
   };
-  
+```
+
+#### Step:6 : Using your service
+
+
+``` JS
+import React from 'react';
+import {
+  BrandingProvider,
+  NutritionNavigator,
+  ServicesProvider,
+} from '@passiolife/nutrition-ai-ui-ux';
+import { NavigationContainer } from '@react-navigation/native';
+
+export default function App() {
+
   const services: Services = {
     dataService,
     analyticsService,
   };
 
-  // using our navigation container
-  
   return (
     <ServicesProvider services={services}>
       <BrandingProvider branding={branding}>
@@ -203,12 +307,37 @@ export default function App() {
 }
 
 ```
-## USage example 2
-#Also you can add passio ui/UX modue
 
 
+#### Step:7 : Without your service
 
-```typescript
+``` JS
+import React from 'react';
+import {
+  BrandingProvider,
+  NutritionNavigator,
+  ServicesProvider,
+} from '@passiolife/nutrition-ai-ui-ux';
+import { NavigationContainer } from '@react-navigation/native';
+
+export default function App() {
+  return (
+    <ServicesProvider>
+      <BrandingProvider>
+        <NavigationContainer>
+          <NutritionNavigator />
+        </NavigationContainer>
+      </BrandingProvider>
+    </ServicesProvider>
+  );
+}
+
+
+```
+
+#### Step 8: Now you can also use our module as part of the stack
+
+```js
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
@@ -236,132 +365,7 @@ export const AppNavigator = () => {
     </>
   );
 };
-```
 
-``` JS
-import React from 'react';
-import {
-  AnalyticsService,
-  Branding,
-  BrandingProvider,
-  FavoriteFoodItem,
-  FoodLog,
-  NutritionDataService,
-  NutritionProfile,
-  Recipe,
-  Services,
-  ServicesProvider,
-} from '@passiolife/nutrition-ai-ui-ux';
-import { NavigationContainer } from '@react-navigation/native';
-
-
-export default function App() {
-
-  const branding: Branding = {
-    // you can change primary color form here
-  primaryColor: 'rgba(79, 70, 229, 1)',
-  backgroundColor: 'rgba(249, 250, 251, 1)',
-  black: 'rgba(0, 0, 0, 1)',
-  border: 'rgba(229, 231, 235, 1)',
-  calories: 'rgba(245, 158, 11, 1)',
-  carbs: 'rgba(14, 165, 233, 1)',
-  error: 'rgba(239, 68, 68, 1)',
-  fat: 'rgba(139, 92, 246, 1)',
-  font: 'Passio-Regular',
-  gray300: 'rgba(209, 213, 219, 1)',
-  gray500: 'rgba(107, 114, 128, 1)',
-  indigo50: 'rgba(238, 242, 255, 1)',
-  proteins: 'rgba(16, 185, 129, 1)',
-  purple: 'rgba(79, 70, 229, 1)',
-  searchBody: 'rgba(242, 245, 251, 1)',
-  secondaryText: 'rgba(107, 114, 128, 1)',
-  text: 'rgba(17, 24, 39, 1)',
-  white: 'white',
-  };
-  
-
-  // Nutrition UX Callback functions.
-  const dataService: NutritionDataService = {
-    getPatientProfile: () => {
-      return null;
-    },
-    // Getting save food log callback here so you can saved food log.
-    async saveFoodLog(foodLog: FoodLog): Promise<void> {
-    return null;
-    },
-    // Getting get foodlog's callback here so you can pass stored/saved food log's from here.
-    getFoodLogs: function (): Promise<FoodLog[]> {
-    return null;
-    },
-    // Getting delete foodlog's callback here so you can delete food log's from here.
-    async deleteFoodLog(uuid: string): Promise<void> {
-       return null;
-    },
-    // Getting delete recipe callback here so you can delete recipe and update  from here.
-    async deleteRecipe(uuid: string): Promise<void> {
-    return null;
-    },
-     // Getting delete favorite food item callBack here
-     async deleteFavoriteFoodItem(uuid: string): Promise<void> {
-       return null;
-    },
-     // Getting meal logs callBack here so you can pass your saved food log's from here.
-     async getMealLogs(startDate: Date, endDate: Date): Promise<FoodLog[]> {
-      return null;
-    },
-      // Getting save favorite food item callBack here
-      async saveFavoriteFoodItem(
-      favoriteFoodItem: FavoriteFoodItem
-    ): Promise<void> {
-      return null;
-    },
-      // Getting favorite food item callBack here so you can pass your saved favorite food log's from here.
-      getFavoriteFoodItems: function (): Promise<FavoriteFoodItem[]> {
-       return null;
-    },
-    // Getting save nutrition profile call back here so you can store saved nutrition profile form here.
-    saveNutritionProfile: (nutritionProfile): Promise<void> => {
-      return null
-    },
-    // Getting save recipe call back here so you can store your recipe from here.
-    async saveRecipe(recipe: Recipe): Promise<void> {
-      return null;
-    },
-    // Getting get recipes call back here so you can pass your saved recipe from here.
-     getRecipes: function (): Promise<Recipe[]> {
-      return null;
-    },
-    // Getting nutrition profile call back here so you can pass your saved nutrition profile here.
-    getNutritionProfile: (): Promise<NutritionProfile | undefined> => {
-      return null;
-    },
-  };
-
-   const analyticsService: AnalyticsService = {
-    logEvent(event: string) {
-      console.log(`Analytics: ${event}`); // eslint-disable-line no-console
-    },
-  };
-  
-  const services: Services = {
-    dataService,
-    analyticsService,
-  };
-
-  // using our navigation container
-  
-  return (
-    <ServicesProvider services={services}>
-      <BrandingProvider branding={branding}>
-        <NavigationContainer>
-          <AppNavigator />
-        </NavigationContainer>
-      </BrandingProvider>
-    </ServicesProvider>
-  );
-}
-
-```
 
 
 #### NutritionDataService callback functions: 
@@ -386,29 +390,6 @@ export default function App() {
 | Callback     |  Argument     | Return       | Description    |                                                                                                                           
 | ------------------------ | ---------- | ------------------------------------------------------------------| -----------------------------------------------|
 | logEvent   | event | void |  This function provides you log Event's of nutrtion-sdk|
-
-
-Nutrition-UX SDK also provide  Branding into BrandingProvider.
-
-```
-     const branding: Branding = {
-        primaryColor: '#286CE2',
-    };
-
-    
-```
-
-```
- <BrandingProvider branding={branding}>
-            ......
-        </BrandingProvider>
-```
-
- #### branding  functions: 
-
-| function     |   Description    |                                                                                                                           
-| ------------------------ |----- |
-| primaryColor   | You have to provide primary color code here.|
 
 
 
