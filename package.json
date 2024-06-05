@@ -40,12 +40,12 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/Passiolife/React-Native-Nutrition-UX",
-  "author": "Goley, Patrick <patrick@passiolife.com> (https://www.passiolife.com)",
+  "repository": "https://github.com/Passiolife/Passio-Nutrition-AI-RN-UI-Module-Distribution",
+  "author": "Rami, Chirag (https://www.passiolife.com)",
   "bugs": {
-    "url": "https://github.com/Passiolife/React-Native-Nutrition-UX/issues"
+    "url": "https://github.com/Passiolife/Passio-Nutrition-AI-RN-UI-Module-Distribution/issues"
   },
-  "homepage": "https://github.com/Passiolife/React-Native-Nutrition-UX#readme",
+  "homepage": "https://github.com/Passiolife/Passio-Nutrition-AI-RN-UI-Module-Distribution#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

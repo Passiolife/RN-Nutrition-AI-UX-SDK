@@ -343,7 +343,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
 import { NavigationContainer } from '@react-navigation/native';
-import { PassioScreens } from 'react-native-nutrition-ux';
+import { PassioScreens } from '@passiolife/nutrition-ai-ui-ux';
 
 const Stack = createNativeStackNavigator();
 enableScreens();
