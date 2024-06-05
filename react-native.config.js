@@ -11,8 +11,10 @@ module.exports = {
     'react-native-safe-area-context': {},
     'react-native-linear-gradient': {},
     'react-native-svg': {},
+    'react-native-sqlite-storage': {},
     '@react-native-voice/voice': {},
     '@notifee/react-native': {},
+    '@react-native-async-storage/async-storage': {},
+    'react-native-screens': {},
   },
-  includesNativeDependencies: true,
 };

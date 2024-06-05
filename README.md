@@ -1,214 +1,73 @@
 # React Native Nutrition UX
 
-A white-labeled nutrition tracking module implemented in React Native.
-This module is using Passio's Nutrition-AI SDK and enables full process of food tracking for users. 
-
-
 
 ## Installation
 
-Step 1: Open terminal
+Step 1: Create an .npmrc file in the root of your project with the following lines replacing GITHUB_ACCESS_TOKEN with the token you've created.
 ```sh
-git clone https://github.com/Passiolife/RN-Nutrition-AI-UX-SDK.git
-```
-Step 2: Change directory into terminal
-```sh
-cd RN-Nutrition-AI-UX-SDK
-```
-Step 3: Install node_modules
-```sh
-yarn
-```
-Now node modules downloaded. 
-
-## Run Project in IOS
-
-Step 1: Change directory to example 
-```sh
-cd example
-```
-
-Step 2: Add .env file at example directory (refer example.env)
-```sh
-ENV_PASSIO_KEY = "Put your passio license key here"
-```
-
-Step 3:
-```sh
-yarn ios
-```
-Now project run in IOS
-
-NOTE: PLEASE RUN IOS PROJECT IN REAL DEVICE BECAUSE PASSIOSDK NOT SUPPORTED IN SIMULATOR
-
-
-## Run Project in Android
-
-Step 1: Change directory to example 
-```sh
-cd example
-```
-
-Step 2: Add .env file at example directory (refer example.env)
-```sh
-ENV_PASSIO_KEY = "Put your passio license key here"
-```
-
-Step 3:
-```sh
-yarn android  
-```
-
-
-### Documentation
-
-Nutrition-UX SDK provides `NutritionDataService` and `AnalyticsService` into  ServicesProvider.
-
-```
-    const services: Services = {
-        nutritionDataService,
-        analyticsService,
-    };
-    
-```
-
-```
- <ServicesProvider services={services}>
-            ......
-        </ServicesProvider>
-```
-
-#### NutritionDataService callback functions: 
-
-| Callback     |  Argument     | Return       | Description    |                                                                                                                           
-| ------------------------ | ---------- | ------------------------------------------------------------------| -----------------------------------------------|
-| saveNutritionProfile   | NutritionProfile | void |  This function provides you `NutritionProfile` object for save nutrition profile|
-| saveFoodLog            | FoodLog | void |  This function provide you  `FoodLog` for save food log|
-| saveFavoriteFoodItem   | FavoriteFoodItem | void |  This function provides you  `FavoriteFoodItem` object for save favortie food item|
-| saveRecipe             | Recipe | void |  This function provides you `Recipe` object for save recipe |
-| deleteRecipe           | uuID | void |  This function provide you delete recipe  `uuid` for delete recipe|
-| deleteFoodLog          | uuID  | void |  This function provide you delete foodLog `uuid` for delete food log|
-| getNutritionProfile    | - | NutritionProfile or undefined | You have to provide `NutritionProfile or undefined` to this funciton |
-| getFoodLogs            | - | FoodLog |  You have to provide `FoodLog` to this funciton |
-| getFavoriteFoodItems   | - | FavoriteFoodItem[]  | You have to provide `FavoriteFoodItem[]` to this funciton |
-| getMealLogs            | startDate: Date, endDate: Date| FoodLog[]| You have to provide `FoodLog[]` between this start data and end date  to this funciton|
-| getPatientProfile      | void | PatientProfile | You have to provide `PatientProfile` to this funciton|
-| getRecipes             | void | Recipe[] | You have to provide `Recipe[]` to this funciton|
-
-  #### AnalyticsService callback functions: 
-
-| Callback     |  Argument     | Return       | Description    |                                                                                                                           
-| ------------------------ | ---------- | ------------------------------------------------------------------| -----------------------------------------------|
-| logEvent   | event | void |  This function provides you log Event's of nutrtion-sdk|
-
-
-Nutrition-UX SDK also provide  Branding into BrandingProvider.
-
-```
-     const branding: Branding = {
-        primaryColor: '#286CE2',
-    };
-
-    
-```
-
-```
- <BrandingProvider branding={branding}>
-            ......
-        </BrandingProvider>
-```
-
- #### branding  functions: 
-
-| function     |   Description    |                                                                                                                           
-| ------------------------ |----- |
-| primaryColor   | You have to provide primary color code here.|
-
-
-
-Now project run in Android
-
-
-### A top-level directory layout
-
-    .
-    ├── example                 # Example application for the nutrition-ux lib                  
-    ├── src                     # Source files (`lib` or `app`)
-    ├── __test__                # Unit tests (alternatively `spec` or `tests`)
-    ├── __mock__ 
-    ├── yarn.lock               # main source of information about the current versions of dependencies in a project
-    └── README.md
-    
-### Unit tests
-
-Unit tests are usually placed into the `__test__ ` or, less commonly, into the `spec` or `tests` folder.
-    
-## Library structure
-    
-    .
-    ├── ...
-    ├── src                    
-    │   ├── components           # Common components 
-    │   ├── contexts             # All Context api's
-    │   ├── screens              # All Screens
-          ├── A
-            ├── views            # Screen views added into here
-            ├── A.Style.ts.      # Screen style mention here
-            ├── AScreen.tsx.     # Screen
-           
-    │   ├── navigations          # All navigation and it's props
-    │   ├── passio_sdk           # Configuration passio_sdk methods
-    │   ├── utils                # All utility function and classes
-    │   └── ...                  # etc.
-    └── ...
-
-## Our Recommended Environments
-
-- Xcode - 12.5
-- Android Studio - Bumblebee 2021.1.1
-
-
-## Development
-
-This module is designed as a library which can be integrated into a host application. The library source code is under the `/src` directory and there is an example application under the `/example` directory that can be used for running and testing the module.
-
-The host application will inject various dependencies and configuration into the library through context providers. For example, branding choices like color palletes and dependencies like API clients should be injected by the host application.
-
-## Testing
-
-Creation of automated tests is required for all new features. This includes both functional tests such as those covering state management / reducers as well as snapshot tests for verifying that components render correctly.
-
-We will configure Github actions to run these tests automatically prior to merging pull requests.
-
-## Adding the library to your app
-
-Step 1: Add `.npmrc` file at root level and paste below lines
-```
-//npm.pkg.github.com/:_authToken= "YOUR_GITHUB_ACCESS_TOKEN_HERE"
+//npm.pkg.github.com/:_authToken=GITHUB_ACCESS_TOKEN
 @passiolife:registry=https://npm.pkg.github.com
 ```
 
-Step 2: 
-```
+Step 2: Open terminal
+```sh
 yarn add @passiolife/nutrition-ai-ui-ux
-or
-yarn add @passiolife/nutrition-ai-ui-ux-0.1.0.tgz
 ```
 
-Step 3: Add into ios `Podfile`
-```
-pod 'NutritionReport', git: 'https://github.com/Passiolife/Nutrition-Report-iOS.git', :tag => '1.0.2'
+Step 3: add react-native.config.js at root
+```sh
+module.exports = {
+  dependencies: {
+    'lottie-react-native': {},
+    'lottie-ios': {},
+    '@react-native-community/slider': {},
+    '@passiolife/nutritionai-react-native-sdk-v3': {},
+    '@react-native-community/datetimepicker': {},
+    'react-native-reanimated': {},
+    'react-native-gesture-handler': {},
+    'luxon': {},
+    'react-native-safe-area-context': {},
+    'react-native-linear-gradient': {},
+    'react-native-svg': {},
+    'react-native-sqlite-storage': {},
+    '@react-native-voice/voice': {},
+    '@notifee/react-native': {},
+    '@react-native-async-storage/async-storage': {},
+  },
+};
 ```
 
-Step 4: Add below library 
+Step 4: require  @react-native-async-storage/async-storage
+```sh
+yarn add  @react-native-async-storage/async-storage
 ```
-yarn add @passiolife/react-native-passio-sdk @gregfrench/react-native-wheel-picker @react-native-community/datetimepicker @react-native-community/progress-bar-android @react-native-community/progress-view @react-native-community/slider @react-native-picker/picker @react-navigation/native lottie-ios lottie-react-native react-native-gesture-handler react-native-modal-datetime-picker react-native-pdf react-native-safe-area-context react-native-screens react-native-video react-navigation-stack rn-fetch-blob @react-native-async-storage/async-storage
+
+
+Step 5: require  add react-native-screens
+```sh
+yarn add react-native-screens
 ```
+
+Step 6: For Android, add this implementation line to the dependencies section on app/build.gradle file.
+```sh
+dependencies {
+    // Add this line below for Passio SDK library
+    implementation files("$rootDir/../node_modules/@passiolife/nutritionai-react-native-sdk-v3/android/libs/passiolib-release.aar")
+    ...
+}
+```
+
+
+
+## Usage example
+
 
 IOS Permission 
 
 ```
- Privacy - Camera Usage Description
+ Privacy - NSCameraUsageDescription
+ Privacy - NSSpeechRecognitionUsageDescription
+ Privacy - NSMicrophoneUsageDescription
 ```
 
 Android Permission
@@ -235,14 +94,30 @@ import {
   ServicesProvider,
 } from '@passiolife/nutrition-ai-ui-ux';
 import { NavigationContainer } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function App() {
 
   const branding: Branding = {
     // you can change primary color form here
-    primaryColor: '#286CE2',
+  primaryColor: 'rgba(79, 70, 229, 1)',
+  backgroundColor: 'rgba(249, 250, 251, 1)',
+  black: 'rgba(0, 0, 0, 1)',
+  border: 'rgba(229, 231, 235, 1)',
+  calories: 'rgba(245, 158, 11, 1)',
+  carbs: 'rgba(14, 165, 233, 1)',
+  error: 'rgba(239, 68, 68, 1)',
+  fat: 'rgba(139, 92, 246, 1)',
+  font: 'Passio-Regular',
+  gray300: 'rgba(209, 213, 219, 1)',
+  gray500: 'rgba(107, 114, 128, 1)',
+  indigo50: 'rgba(238, 242, 255, 1)',
+  proteins: 'rgba(16, 185, 129, 1)',
+  purple: 'rgba(79, 70, 229, 1)',
+  searchBody: 'rgba(242, 245, 251, 1)',
+  secondaryText: 'rgba(107, 114, 128, 1)',
+  text: 'rgba(17, 24, 39, 1)',
+  white: 'white',
   };
   
 
@@ -313,6 +188,8 @@ export default function App() {
     dataService,
     analyticsService,
   };
+
+  // using our navigation container
   
   return (
     <ServicesProvider services={services}>
@@ -326,6 +203,56 @@ export default function App() {
 }
 
 ```
+
+
+
+#### NutritionDataService callback functions: 
+
+| Callback     |  Argument     | Return       | Description    |                                                                                                                           
+| ------------------------ | ---------- | ------------------------------------------------------------------| -----------------------------------------------|
+| saveNutritionProfile   | NutritionProfile | void |  This function provides you `NutritionProfile` object for save nutrition profile|
+| saveFoodLog            | FoodLog | void |  This function provide you  `FoodLog` for save food log|
+| saveFavoriteFoodItem   | FavoriteFoodItem | void |  This function provides you  `FavoriteFoodItem` object for save favortie food item|
+| saveRecipe             | Recipe | void |  This function provides you `Recipe` object for save recipe |
+| deleteRecipe           | uuID | void |  This function provide you delete recipe  `uuid` for delete recipe|
+| deleteFoodLog          | uuID  | void |  This function provide you delete foodLog `uuid` for delete food log|
+| getNutritionProfile    | - | NutritionProfile or undefined | You have to provide `NutritionProfile or undefined` to this funciton |
+| getFoodLogs            | - | FoodLog |  You have to provide `FoodLog` to this funciton |
+| getFavoriteFoodItems   | - | FavoriteFoodItem[]  | You have to provide `FavoriteFoodItem[]` to this funciton |
+| getMealLogs            | startDate: Date, endDate: Date| FoodLog[]| You have to provide `FoodLog[]` between this start data and end date  to this funciton|
+| getPatientProfile      | void | PatientProfile | You have to provide `PatientProfile` to this funciton|
+| getRecipes             | void | Recipe[] | You have to provide `Recipe[]` to this funciton|
+
+  #### AnalyticsService callback functions: 
+
+| Callback     |  Argument     | Return       | Description    |                                                                                                                           
+| ------------------------ | ---------- | ------------------------------------------------------------------| -----------------------------------------------|
+| logEvent   | event | void |  This function provides you log Event's of nutrtion-sdk|
+
+
+Nutrition-UX SDK also provide  Branding into BrandingProvider.
+
+```
+     const branding: Branding = {
+        primaryColor: '#286CE2',
+    };
+
+    
+```
+
+```
+ <BrandingProvider branding={branding}>
+            ......
+        </BrandingProvider>
+```
+
+ #### branding  functions: 
+
+| function     |   Description    |                                                                                                                           
+| ------------------------ |----- |
+| primaryColor   | You have to provide primary color code here.|
+
+
 
 ## Contributing
 
@@ -351,11 +278,3 @@ If your project not runnable in IOS then follow below steps
 - restart system
 - yarn at root
 - open xcode
-
-If you're having trouble with a chart pod on iOS, update the specified section in the podfile.lock.
-
-- Charts (3.6.0):
-    - Charts/Core (= 3.6.0)
-  - Charts/Core (3.6.0):
-
-  
