@@ -1,4 +1,6 @@
-# React Native Nutrition UX
+# React Native Passio Nutrition-AI UI/UX SDK
+
+<img src='./media/header.png'>
 
 
 ## Installation
@@ -57,7 +59,9 @@ dependencies {
 }
 ```
 
-#### Step:7 Add IOS Permission 
+## Permission
+
+#### IOS Permission 
 
 ```
  Privacy - NSCameraUsageDescription
@@ -65,7 +69,7 @@ dependencies {
  Privacy - NSMicrophoneUsageDescription
 ```
 
-#### Step:8 Android Permission
+####  Android Permission
 
 ```
 <uses-permission android:name="android.permission.CAMERA" />
@@ -102,7 +106,7 @@ export default function App() {
 
 ```
 
-# Using External Services
+## Using External Services
 
 #### Step 1: If you'd like to include your data service, follow the steps below. Otherwise, skip to the next step
 
@@ -363,7 +367,7 @@ export const AppNavigator = () => {
   );
 };
 
-
+```
 
 #### NutritionDataService callback functions: 
 
