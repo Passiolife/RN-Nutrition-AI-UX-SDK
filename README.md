@@ -57,11 +57,7 @@ dependencies {
 }
 ```
 
-
-
-## Usage example
-
-#### Step:1 Add IOS Permission 
+#### Step:7 Add IOS Permission 
 
 ```
  Privacy - NSCameraUsageDescription
@@ -69,17 +65,46 @@ dependencies {
  Privacy - NSMicrophoneUsageDescription
 ```
 
-#### Step:2 Android Permission
+#### Step:8 Android Permission
 
 ```
 <uses-permission android:name="android.permission.CAMERA" />
 ```
 
-In Application
 
-Note: If you don't want to provide your service, move on to step 7.
+# Usage example
 
-#### Step 3: If you'd like to include your data service, follow the steps below. Otherwise, skip to the next step
+## Using Internal Services
+
+
+``` JS
+import React from 'react';
+import {
+  BrandingProvider,
+  NutritionNavigator,
+  ServicesProvider,
+} from '@passiolife/nutrition-ai-ui-ux';
+import { NavigationContainer } from '@react-navigation/native';
+
+export default function App() {
+  return (
+    <ServicesProvider>
+      <BrandingProvider>
+        <NavigationContainer>
+          <NutritionNavigator />
+        </NavigationContainer>
+      </BrandingProvider>
+    </ServicesProvider>
+  );
+}
+
+
+
+```
+
+# Using External Services
+
+#### Step 1: If you'd like to include your data service, follow the steps below. Otherwise, skip to the next step
 
 
 `NutritionDataService` used for Return a function to store or retrieve data through a REST API, local database, or Firebase, etc
@@ -238,7 +263,7 @@ export const dataService: NutritionDataService = {
 };
  ```
 
- #### Step: 4 If you're want to apply your theme, you can use the following, although it's in experimental mode. otherwise you can skip to next step
+ #### Step: 2 If you're want to apply your theme, you can use the following, although it's in experimental mode. otherwise you can skip to next step
 
 Nutrition-UX SDK also provide  Branding into BrandingProvider.
 
@@ -266,7 +291,7 @@ Nutrition-UX SDK also provide  Branding into BrandingProvider.
   };
 ```
 
-#### Step:5 : If you're want to check some log event then provide analytic service, although it's in experimental mode. 
+#### Step:3 : If you're want to check some log event then provide analytic service, although it's in experimental mode. 
 
 ```js
   export  const analyticsService: AnalyticsService = {
@@ -275,8 +300,6 @@ Nutrition-UX SDK also provide  Branding into BrandingProvider.
     },
   };
 ```
-
-#### Step:6 : Using your service
 
 
 ``` JS
@@ -309,33 +332,7 @@ export default function App() {
 ```
 
 
-#### Step:7 : Without your service
-
-``` JS
-import React from 'react';
-import {
-  BrandingProvider,
-  NutritionNavigator,
-  ServicesProvider,
-} from '@passiolife/nutrition-ai-ui-ux';
-import { NavigationContainer } from '@react-navigation/native';
-
-export default function App() {
-  return (
-    <ServicesProvider>
-      <BrandingProvider>
-        <NavigationContainer>
-          <NutritionNavigator />
-        </NavigationContainer>
-      </BrandingProvider>
-    </ServicesProvider>
-  );
-}
-
-
-```
-
-#### Step 8: Now you can also use our module as part of the stack
+# Use `PassioScreens` as `Stack` without navigation container
 
 ```js
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -384,12 +381,6 @@ export const AppNavigator = () => {
 | getMealLogs            | startDate: Date, endDate: Date| FoodLog[]| You have to provide `FoodLog[]` between this start data and end date  to this funciton|
 | getPatientProfile      | void | PatientProfile | You have to provide `PatientProfile` to this funciton|
 | getRecipes             | void | Recipe[] | You have to provide `Recipe[]` to this funciton|
-
-  #### AnalyticsService callback functions: 
-
-| Callback     |  Argument     | Return       | Description    |                                                                                                                           
-| ------------------------ | ---------- | ------------------------------------------------------------------| -----------------------------------------------|
-| logEvent   | event | void |  This function provides you log Event's of nutrtion-sdk|
 
 
 
