@@ -5,7 +5,7 @@ import {
   NutritionNavigator,
   ServicesProvider,
   usePassioConfig,
-} from 'react-native-nutrition-ux';
+} from '@passiolife/nutrition-ai-ui-ux';
 import branding from './branding';
 import { NavigationContainer } from '@react-navigation/native';
 import { SplashScreen } from './SplashScreen';

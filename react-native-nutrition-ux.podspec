@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.platforms    = { :ios => "13.0" }
   s.ios.deployment_target = '13.0'
-  s.source       = { :git => "https://github.com/Passiolife/React-Native-Nutrition-UX.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/Passiolife/Passio-Nutrition-AI-RN-UI-Module-Distribution.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
   s.public_header_files = 'ios/*.h'

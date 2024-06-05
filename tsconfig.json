@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "react-native-nutrition-ux": ["./src/index"],
+      "@passiolife/nutrition-ai-ui-ux": ["./src/index"],
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

@@ -1,4 +1,4 @@
-import type { Branding } from 'react-native-nutrition-ux';
+import type { Branding } from '@passiolife/nutrition-ai-ui-ux';
 
 const branding: Branding = {
   primaryColor: 'rgba(79, 70, 229, 1)',

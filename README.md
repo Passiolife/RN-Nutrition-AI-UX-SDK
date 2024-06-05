@@ -190,9 +190,9 @@ Step 1: Add `.npmrc` file at root level and paste below lines
 
 Step 2: 
 ```
-yarn add react-native-nutrition-ux
+yarn add @passiolife/nutrition-ai-ui-ux
 or
-yarn add react-native-nutrition-ux-0.1.0.tgz
+yarn add @passiolife/nutrition-ai-ui-ux-0.1.0.tgz
 ```
 
 Step 3: Add into ios `Podfile`
@@ -233,7 +233,7 @@ import {
   Recipe,
   Services,
   ServicesProvider,
-} from 'react-native-nutrition-ux';
+} from '@passiolife/nutrition-ai-ui-ux';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

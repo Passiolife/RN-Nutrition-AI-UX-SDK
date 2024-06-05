@@ -1,5 +1,5 @@
 // @ts-nocheck
-import type { MealLabel } from 'react-native-nutrition-ux';
+import type { MealLabel } from '@passiolife/nutrition-ai-ui-ux';
 import type { PassioIDAttributes } from '@passiolife/nutritionai-react-native-sdk-v3/src/sdk/v2';
 import { createFoodLogFromPassioIDAttributes } from '../../screens/scanning/utils';
 import uuid from 'react-native-uuid';

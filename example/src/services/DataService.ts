@@ -27,7 +27,7 @@ import {
   type NutritionDataService,
   type NutritionProfile,
   type Recipe,
-} from 'react-native-nutrition-ux';
+} from '@passiolife/nutrition-ai-ui-ux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const dataService: NutritionDataService = {

@@ -3,7 +3,7 @@ import type {
   FoodLog,
   Recipe,
   Water,
-} from 'react-native-nutrition-ux';
+} from '@passiolife/nutrition-ai-ui-ux';
 import {
   ROW_CONSUMED,
   ROW_DAY,

@@ -1,6 +1,9 @@
 // @ts-nocheck
 import React from 'react';
-import { BrandingProvider, ServicesProvider } from 'react-native-nutrition-ux';
+import {
+  BrandingProvider,
+  ServicesProvider,
+} from '@passiolife/nutrition-ai-ui-ux';
 import { cleanup, render } from '@testing-library/react-native';
 import { mockBranding, mockServices } from '../../provider/MockProviders';
 import { QuickSuggestions } from '../../../screens/meallogss/views/QuickSuggesstions';

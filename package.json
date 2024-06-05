@@ -1,6 +1,6 @@
 {
-  "name": "react-native-nutrition-ux",
-  "version": "3.0.3",
+  "name": "@passiolife/nutrition-ai-ui-ux",
+  "version": "3.1.0",
   "description": "A white-labeled nutrition tracking module implemented in React Native",
   "license": "UNLICENSED",
   "main": "lib/commonjs/index",
@@ -182,7 +182,7 @@
       ],
       "no-restricted-imports": [
         "error",
-        "react-native-nutrition-ux"
+        "@passiolife/nutrition-ai-ui-ux"
       ],
       "no-console": [
         "error"

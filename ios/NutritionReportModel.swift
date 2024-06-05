@@ -1,6 +1,6 @@
 //
 //  NutritionReportModel.swift
-//  react-native-nutrition-ux
+//  @passiolife/nutrition-ai-ui-ux
 //
 //  Created by Parth Gohel on 01/10/21.
 //

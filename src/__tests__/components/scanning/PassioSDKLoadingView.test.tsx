@@ -5,7 +5,7 @@ import {
   BrandingProvider,
   ProgressLoadingView,
   ServicesProvider,
-} from 'react-native-nutrition-ux';
+} from '@passiolife/nutrition-ai-ui-ux';
 import { mockBranding, mockServices } from '../../provider/MockProviders';
 describe('PassioSDKLoadingView', () => {
   it('renders correctly', async () => {

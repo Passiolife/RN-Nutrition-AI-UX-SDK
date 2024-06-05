@@ -1,4 +1,4 @@
-import type { ExternalServices } from 'react-native-nutrition-ux';
+import type { ExternalServices } from '@passiolife/nutrition-ai-ui-ux';
 
 const services: ExternalServices = {};
 

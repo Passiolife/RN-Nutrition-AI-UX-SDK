@@ -1,7 +1,10 @@
 // @ts-nocheck
 import React from 'react';
 import { render, type RenderAPI } from '@testing-library/react-native';
-import { type Recipe, RecipeEditorScreen } from 'react-native-nutrition-ux';
+import {
+  type Recipe,
+  RecipeEditorScreen,
+} from '@passiolife/nutrition-ai-ui-ux';
 import { MockProviders } from '../provider/MockProviders';
 
 const mockedDispatch = jest.fn();

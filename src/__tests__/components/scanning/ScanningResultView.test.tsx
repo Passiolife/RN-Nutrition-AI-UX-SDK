@@ -5,7 +5,7 @@ import {
   BrandingProvider,
   QuickScanningResultView,
   ServicesProvider,
-} from 'react-native-nutrition-ux';
+} from '@passiolife/nutrition-ai-ui-ux';
 import { mockBranding, mockServices } from '../../provider/MockProviders';
 import GestureRecognizer from 'react-native-swipe-gestures';
 

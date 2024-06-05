@@ -1,6 +1,6 @@
 {
-  "name": "react-native-nutrition-ux-example",
-  "description": "Example app for react-native-nutrition-ux",
+  "name": "@passiolife/nutrition-ai-ui-ux-example",
+  "description": "Example app for @passiolife/nutrition-ai-ui-ux",
   "version": "0.0.1",
   "private": true,
   "license": "UNLICENSED",

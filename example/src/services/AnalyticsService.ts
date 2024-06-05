@@ -1,4 +1,4 @@
-import type { AnalyticsService } from 'react-native-nutrition-ux';
+import type { AnalyticsService } from '@passiolife/nutrition-ai-ui-ux';
 
 export const analyticsService: AnalyticsService = {
   logEvent(event: string) {

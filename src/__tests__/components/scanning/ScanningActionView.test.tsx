@@ -5,7 +5,7 @@ import {
   BrandingProvider,
   QuickScanningActionView,
   ServicesProvider,
-} from 'react-native-nutrition-ux';
+} from '@passiolife/nutrition-ai-ui-ux';
 import { mockBranding, mockServices } from '../../provider/MockProviders';
 describe('ScanningActionView', () => {
   it('renders correctly', async () => {
