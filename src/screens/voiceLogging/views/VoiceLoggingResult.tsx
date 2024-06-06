@@ -46,15 +46,15 @@ export const VoiceLoggingResult = React.forwardRef(
     const onFoodSelect = (result: PassioSpeechRecognitionModel) => {
       const find = selected?.find(
         (item) =>
-          item.advisorInfo?.recognizedName ===
-          result.advisorInfo?.recognizedName
+          item.advisorInfo?.recognisedName ===
+          result.advisorInfo?.recognisedName
       );
       if (find) {
         setSelected((item) =>
           item?.filter(
             (i) =>
-              i.advisorInfo?.recognizedName !==
-              result.advisorInfo?.recognizedName
+              i.advisorInfo?.recognisedName !==
+              result.advisorInfo?.recognisedName
           )
         );
       } else {
@@ -102,13 +102,13 @@ export const VoiceLoggingResult = React.forwardRef(
             const isSelected =
               selected?.find(
                 (it) =>
-                  it.advisorInfo?.recognizedName ===
-                  item.advisorInfo?.recognizedName
+                  it.advisorInfo?.recognisedName ===
+                  item.advisorInfo?.recognisedName
               ) !== undefined;
 
             return (
               <VoiceLoggingResultItemView
-                foodName={item.advisorInfo?.recognizedName}
+                foodName={item.advisorInfo?.recognisedName}
                 imageName={foodDataInfo?.iconID}
                 bottom={`${item.advisorInfo?.portionSize} | ${item.advisorInfo?.foodDataInfo?.nutritionPreview?.calories} cal`}
                 onFoodLogSelect={() => {
