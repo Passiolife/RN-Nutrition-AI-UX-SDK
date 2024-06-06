@@ -39,7 +39,9 @@ export const VoiceLoggingResult = React.forwardRef(
       return <View style={styles.footer} />;
     };
 
-    const [selected, setSelected] = useState<PassioSpeechRecognitionModel[]>();
+    const [selected, setSelected] = useState<PassioSpeechRecognitionModel[]>(
+      []
+    );
 
     const onFoodSelect = (result: PassioSpeechRecognitionModel) => {
       const find = selected?.find(
@@ -108,7 +110,7 @@ export const VoiceLoggingResult = React.forwardRef(
               <VoiceLoggingResultItemView
                 foodName={item.advisorInfo?.recognizedName}
                 imageName={foodDataInfo?.iconID}
-                bottom={`${item.advisorInfo?.weightGrams} | ${item.advisorInfo?.portionSize}`}
+                bottom={`${item.advisorInfo?.portionSize} | ${item.advisorInfo?.foodDataInfo?.nutritionPreview?.calories} cal`}
                 onFoodLogSelect={() => {
                   onFoodSelect(item);
                 }}
