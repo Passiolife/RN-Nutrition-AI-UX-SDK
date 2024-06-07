@@ -3,7 +3,6 @@
   "version": "3.1.0-alpha-1",
   "description": "A white-labeled nutrition tracking module implemented in React Native",
   "license": "MIT",
-  "private": false,
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
@@ -50,14 +49,16 @@
     "ai advisor",
     "health"
   ],
-  "repository": "https://github.com/Passiolife/Passio-Nutrition-AI-RN-UI-Module-Distribution",
+  "repository": {
+    "url": "git+https://github.com/Passiolife/Passio-Nutrition-AI-RN-UI-Module-Distribution.git"
+  },
   "author": "Rami, Chirag (https://www.passiolife.com)",
   "bugs": {
     "url": "https://github.com/Passiolife/Passio-Nutrition-AI-RN-UI-Module-Distribution/issues"
   },
   "homepage": "https://github.com/Passiolife/Passio-Nutrition-AI-RN-UI-Module-Distribution#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://npm.pkg.github.com/passiolife"
   },
   "licenses": [
     {
@@ -66,7 +67,6 @@
     }
   ],
   "dependencies": {
-    "@babel/runtime": "^7.23.8",
     "@gorhom/bottom-sheet": "^4.6.1",
     "@notifee/react-native": "^7.8.2",
     "@passiolife/nutritionai-react-native-sdk-v3": "3.1.0-1",
@@ -75,26 +75,17 @@
     "@react-native-community/slider": "^4.5.0",
     "@react-native-picker/picker": "^2.6.1",
     "@react-native-voice/voice": "^3.2.4",
-    "@react-navigation/bottom-tabs": "^6.5.20",
-    "@react-navigation/native": "^6.1.17",
-    "@react-navigation/native-stack": "^6.9.26",
-    "@react-navigation/stack": "^6.3.29",
     "intl": "^1.2.5",
     "jsc-android": "^250231.0.0",
     "lottie-ios": "4.3.4",
     "lottie-react-native": "6.4.1",
     "luxon": "^3.4.4",
-    "patch-package": "^8.0.0",
     "react-error-boundary": "^4.0.12",
     "react-native-blob-util": "^0.19.6",
-    "react-native-gesture-handler": "^2.16.0",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-modal": "^13.0.1",
     "react-native-modal-datetime-picker": "^17.1.0",
     "react-native-pdf": "^6.7.4",
-    "react-native-reanimated": "^3.6.1",
-    "react-native-safe-area-context": "^4.8.2",
-    "react-native-screens": "^3.30.1",
     "react-native-sqlite-storage": "^6.0.1",
     "react-native-status-bar-height": "^2.6.0",
     "react-native-svg": "^15.3.0",
@@ -105,6 +96,7 @@
     "victory-native": "^37.0.2"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.23.8",
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
     "@react-native/eslint-config": "^0.73.2",
@@ -131,15 +123,41 @@
     "react-native-builder-bob": "^0.20.0",
     "react-test-renderer": "^18.2.0",
     "release-it": "^17.0.1",
-    "typescript": "5.0.4"
+    "typescript": "5.0.4",
+    "react-native-reanimated": "^3.6.1",
+    "react-native-gesture-handler": "^2.16.0",
+    "@react-navigation/bottom-tabs": "^6.5.20",
+    "@react-navigation/native": "^6.1.17",
+    "@react-navigation/native-stack": "^6.9.26",
+    "@react-navigation/stack": "^6.3.29",
+    "react-native-screens": "^3.30.1",
+    "react-native-safe-area-context": "^4.8.2"
   },
   "resolutions": {
     "@types/react": "^18.2.0",
     "react-native": "0.73.2"
   },
   "peerDependencies": {
+    "@types/react": "*",
+    "@types/react-native": "*",
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-gesture-handler": ">=1.10.1",
+    "react-native-reanimated": ">=2.2.0",
+    "@react-navigation/bottom-tabs": "*",
+    "@react-navigation/native": "*",
+    "@react-navigation/native-stack": "*",
+    "@react-navigation/stack": "*",
+    "react-native-safe-area-context": "*",
+    "react-native-screens": "*"
+  },
+  "peerDependenciesMeta": {
+    "@types/react-native": {
+      "optional": true
+    },
+    "@types/react": {
+      "optional": true
+    }
   },
   "jest": {
     "globalSetup": "./global-setup.js",
