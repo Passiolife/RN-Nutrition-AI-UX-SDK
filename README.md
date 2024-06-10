@@ -114,10 +114,18 @@ import {
   BrandingProvider,
   NutritionNavigator,
   ServicesProvider,
+  usePassioConfig
 } from '@passiolife/nutrition-ai-ui-ux';
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
+
+ const { isReady } = usePassioConfig({ key: "YOUR_PASSIO_KEY" });
+
+  if (!isReady) {
+    return <Loading />;
+  }
+
   return (
     <ServicesProvider>
       <BrandingProvider>
@@ -337,6 +345,7 @@ import {
   BrandingProvider,
   NutritionNavigator,
   ServicesProvider,
+  usePassioConfig
 } from '@passiolife/nutrition-ai-ui-ux';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -346,6 +355,13 @@ export default function App() {
     dataService,
     analyticsService,
   };
+
+
+const { isReady } = usePassioConfig({ key: "YOUR_PASSIO_KEY" });
+
+  if (!isReady) {
+    return <Loading />;
+  }
 
   return (
     <ServicesProvider services={services}>
