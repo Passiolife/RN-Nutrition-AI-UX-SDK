@@ -74,7 +74,31 @@ dependencies {
 
 ```
 <uses-permission android:name="android.permission.CAMERA" />
+
 ```
+### Required Dependencies
+
+| Dependency                   | Required Version |
+|------------------------------|------------------|
+| react-native-reanimated      | >=^3.6.1         |
+| react-native-gesture-handler | >=2.16.0         |
+| react-native-safe-area-context | >=4.8.2       |
+
+⚠️ Issue
+
+If you find a duplicate entry for '@react-navigation', ensure that the your project navigation dependencies are match our navigation dependencies require versions. 
+
+### Additional Navigation Dependencies
+
+| Dependency                          | Required Version |
+|-------------------------------------|------------------|
+| @react-navigation/native            | >=^6.1.17        |
+| @react-navigation/native-stack      | >=6.1.17         |
+| @react-navigation/stack             | >=6.3.29         |
+| @react-navigation/bottom-tabs      | >=6.5.20         |
+
+
+
 
 
 # Usage example
@@ -97,9 +121,7 @@ export default function App() {
   return (
     <ServicesProvider>
       <BrandingProvider>
-        <NavigationContainer>
           <NutritionNavigator />
-        </NavigationContainer>
       </BrandingProvider>
     </ServicesProvider>
   );
@@ -415,6 +437,21 @@ If your project not runnable in IOS then follow below steps
 - restart system
 - yarn at root
 - open xcode
+
+If you find a duplicate entry for '@react-navigation', ensure that the navigation dependencies are listed above the other '@react-navigation' dependencies
+
+To resolve the issue, you can use the following resolutions in your package.json:
+
+```
+"resolutions": {
+    "@types/react": "18.0.12",
+    "react-native": "0.68.1",
+    "react-native-reanimated": "3.6.1",
+    "@react-native-community/slider": "4.5.0",
+    "react-native-safe-area-context": "4.8.2",
+    ...others
+  }
+  ```
 
 
 ### Reference Properties  
