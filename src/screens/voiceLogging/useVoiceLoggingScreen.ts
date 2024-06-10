@@ -117,12 +117,18 @@ export function useVoiceLogging() {
     setIsRecord(false);
   };
 
-  const speechResultsHandler = (e: SpeechResultsEvent) => {
-    if (e && e.value && e.value.length > 0) {
-      const text = e.value[0];
-      setSearchQuery(text);
-    }
-  };
+  const speechResultsHandler = useCallback(
+    (e: SpeechResultsEvent) => {
+      if (e && e.value && e.value.length > 0) {
+        const text = e.value[0];
+        setSearchQuery(text);
+        if (!isRecording) {
+          recognizeSpeechRemote(text);
+        }
+      }
+    },
+    [isRecording, recognizeSpeechRemote]
+  );
 
   const onRecordingPress = () => {
     if (isRecording) {
@@ -157,7 +163,7 @@ export function useVoiceLogging() {
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
     };
-  }, []);
+  }, [speechResultsHandler]);
 
   return {
     PassioSpeechRecognitionResult,
