@@ -1391,10 +1391,9 @@
   resolved "https://registry.yarnpkg.com/@notifee/react-native/-/react-native-7.8.2.tgz#72d3199ae830b4128ddaef3c1c2f11604759c9c4"
   integrity sha512-VG4IkWJIlOKqXwa3aExC3WFCVCGCC9BA55Ivg0SMRfEs+ruvYy/zlLANcrVGiPtgkUEryXDhA8SXx9+JcO8oLA==
 
-"@passiolife/nutritionai-react-native-sdk-v3@3.1.4-1":
+"@passiolife/nutritionai-react-native-sdk-v3@https://github.com/Passiolife/NutritionAI-React-Native-SDK-v3.git#f544f392ba7fa7afef074be6706db9b6349829d4":
   version "3.1.4-1"
-  resolved "https://npm.pkg.github.com/download/@passiolife/nutritionai-react-native-sdk-v3/3.1.4-1/0a19d6e90effd17137e7e5235f8b9338773bd3ef#0a19d6e90effd17137e7e5235f8b9338773bd3ef"
-  integrity sha512-7SYH0H4fC0KHT33K/52EnHnKLb6YKRSDNUT0b4mWdtogfWxAcc3OiZhipFy8/LvgNoamLy3qtuyjZrehYGR+qw==
+  resolved "https://github.com/Passiolife/NutritionAI-React-Native-SDK-v3.git#f544f392ba7fa7afef074be6706db9b6349829d4"
 
 "@pkgjs/parseargs@^0.11.0":
   version "0.11.0"
