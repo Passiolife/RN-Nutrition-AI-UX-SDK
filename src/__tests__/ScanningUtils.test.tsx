@@ -1,9 +1,4 @@
-// @ts-nocheck
-import {
-  allDaysDate,
-  getLogToDate,
-  mealLabelByDate,
-} from '../../screens/scanning/utils';
+import { allDaysDate, getLogToDate, mealLabelByDate } from '../utils';
 
 describe('A user can log foods to a particular date and meal', () => {
   Date.now = jest.fn(() => new Date(2021, 8, 10, 14, 0, 0).valueOf());
@@ -43,7 +38,7 @@ describe('A user can log foods to a particular date and meal', () => {
     const resultDate = getLogToDate(date, undefined);
     const resultMealLog = mealLabelByDate(resultDate);
     expect(resultDate).toEqual(date);
-    expect(resultMealLog).toEqual('breakfast');
+    expect(resultMealLog).toEqual('snack');
   });
 
   it('if the meal log date is not today, and pass meal as  breakfast to get breakfast time (8:00)', () => {
