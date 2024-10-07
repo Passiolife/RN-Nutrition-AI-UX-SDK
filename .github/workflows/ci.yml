@@ -17,6 +17,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    - name: Create .npmrc file for private NPM packages
+      run: |
+        echo "//npm.pkg.github.com/:_authToken=${{ secrets.TOKEN }}" > ~/.npmrc
+        echo "@passiolife:registry=https://npm.pkg.github.com" >> ~/.npmrc
+
     - uses: actions/setup-node@master
     - uses: c-hive/gha-yarn-cache@v1
 

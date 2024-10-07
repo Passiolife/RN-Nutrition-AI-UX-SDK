@@ -18,11 +18,6 @@ jobs:
     steps:
     - checkout
     - attach_project
-    - run:
-        name: Create .npmrc file for private NPM packages
-         command: |
-            echo "//npm.pkg.github.com/:_authToken=${TOKEN}" > ~/.npmrc
-            echo "@passiolife:registry=https://npm.pkg.github.com" >> ~/.npmrc
     - restore_cache:
         keys:
         - dependencies-{{ checksum "package.json" }}
