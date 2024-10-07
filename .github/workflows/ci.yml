@@ -17,7 +17,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Check Token
-      run: echo "Token: ${{ secrets.TOKEN }}"
+      run: |
+        echo "Token: ${{ secrets.TOKEN }}"
     - name: Create .npmrc file for private NPM packages
       run: |
         echo "//npm.pkg.github.com/:_authToken=${{ secrets.TOKEN }}" > ~/.npmrc
