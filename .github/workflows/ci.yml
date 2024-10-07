@@ -3,8 +3,11 @@ name: Continuous Integration
 on:
   pull_request:
     branches:
-      - develop
-      - main
+    - develop
+    - main
+  push:
+    branches:
+    - implement-ci-cd
 
 jobs:
   test:
@@ -13,15 +16,18 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+
     - uses: actions/setup-node@master
     - uses: c-hive/gha-yarn-cache@v1
 
     - name: Install node modules
       run: |
         yarn install
+
     - name: Run linter
       run: |
         yarn lint
+
     - name: Run tests
       run: |
         yarn test
