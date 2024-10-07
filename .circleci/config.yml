@@ -18,6 +18,10 @@ jobs:
     steps:
     - checkout
     - attach_project
+    - run:
+        name: Create .npmrc file for private NPM packages
+        command: |
+          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" > ~/.npmrc
     - restore_cache:
         keys:
         - dependencies-{{ checksum "package.json" }}
