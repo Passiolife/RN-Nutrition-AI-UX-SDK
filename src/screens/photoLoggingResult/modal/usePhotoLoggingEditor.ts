@@ -79,6 +79,10 @@ export const usePhotoLoggingEditor = () => {
       onClose: () => {
         setOpen(true);
       },
+      onBack: () => {
+        navigation.goBack();
+        setOpen(true);
+      },
     });
   };
 

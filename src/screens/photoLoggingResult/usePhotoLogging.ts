@@ -258,6 +258,7 @@ export function usePhotoLogging() {
                       assets: item,
                       customFood: customFood,
                       isCustomFoodCreated: customFood !== undefined,
+                      resultType: advisorFoodInfo.resultType,
                       nutrients: getNutrientsOfPassioFoodItem(
                         passioFoodItem,
                         passioFoodItem?.amount.weight

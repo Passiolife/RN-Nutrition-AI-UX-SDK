@@ -160,35 +160,37 @@ export const useBarcodeScan = () => {
   };
 
   const onCreateCustomWithoutBarcodePress = () => {
-    if (quickResult) {
-      let passioFoodItem = quickResult.passioIDAttributes;
+    params?.onBack?.();
 
-      if (!passioFoodItem && quickResult.customFood) {
-        passioFoodItem = createPassioFoodItemFromCustomFood(
-          quickResult.customFood
-        );
-      }
+    // I commented this out because create custom food as previous flow
+    // if (quickResult) {
+    //   let passioFoodItem = quickResult.passioIDAttributes;
 
-      params?.onCreateFoodAnyWay?.({
-        ...quickResult,
-        barcode: undefined,
-        customFood: undefined,
-        passioIDAttributes: passioFoodItem
-          ? {
-              ...passioFoodItem,
-              ingredients: passioFoodItem?.ingredients?.map((o) => {
-                return {
-                  ...o,
-                  metadata: {
-                    ...o.metadata,
-                    barcode: undefined,
-                  },
-                };
-              }),
-            }
-          : undefined,
-      });
-    }
+    //   if (!passioFoodItem && quickResult.customFood) {
+    //     passioFoodItem = createPassioFoodItemFromCustomFood(
+    //       quickResult.customFood
+    //     );
+    //   }
+    //   params?.onCreateFoodAnyWay?.({
+    //     ...quickResult,
+    //     barcode: undefined,
+    //     customFood: undefined,
+    //     passioIDAttributes: passioFoodItem
+    //       ? {
+    //           ...passioFoodItem,
+    //           ingredients: passioFoodItem?.ingredients?.map((o) => {
+    //             return {
+    //               ...o,
+    //               metadata: {
+    //                 ...o.metadata,
+    //                 barcode: undefined,
+    //               },
+    //             };
+    //           }),
+    //         }
+    //       : undefined,
+    //   });
+    // }
   };
   const onViewExistingPress = () => {
     if (quickResult) {
