@@ -94,6 +94,7 @@ export interface BarcodeScanScreenNavProps {
   onBarcodePress?: (result?: BarcodeCustomResult) => void;
   onBarcodeOnly?: (result: string) => void;
   onClose?: () => void;
+  onBack?: () => void;
   type?: 'customFood' | 'general';
 }
 export interface EditRecipeScreenProps {
