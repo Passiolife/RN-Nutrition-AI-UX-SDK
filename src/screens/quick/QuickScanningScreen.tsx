@@ -56,10 +56,7 @@ export const QuickScanningScreen = gestureHandlerRootHOC(() => {
         />
         <View style={{ flex: 1 }}>
           {isFocused ? (
-            <DetectionCameraView
-              style={styles.cameraView}
-              volumeDetectionMode="none"
-            />
+            <DetectionCameraView style={styles.cameraView} />
           ) : (
             <View style={styles.cameraView} />
           )}

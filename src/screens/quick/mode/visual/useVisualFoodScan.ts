@@ -14,12 +14,9 @@ import {
   getLogToDate,
   getMealLog,
 } from '../../../../utils';
-import {
-  PassioSDK,
-  type DetectedCandidate,
-  type FoodDetectionConfig,
-  type FoodDetectionEvent,
-  type PackagedFoodCode,
+import type {
+  DetectedCandidate,
+  PackagedFoodCode,
 } from '@passiolife/nutritionai-react-native-sdk-v3';
 import {
   getDetectionCandidate,
@@ -45,12 +42,9 @@ export const useVisualFoodScan = () => {
   const [passioQuickResults, setPassioQuickResults] =
     useState<QuickResult | null>(null);
 
-  const [alternatives, setPassioAlternatives] = useState<QuickResult[] | null>(
-    []
-  );
+  const [alternatives] = useState<QuickResult[] | null>([]);
 
-  const [foodDetectEvents, setFoodDetectionEvent] =
-    useState<FoodDetectionEvent | null>(null);
+  const [foodDetectEvents, setFoodDetectionEvent] = useState<null>(null);
 
   const getQuickResults = useCallback(
     async (
@@ -189,83 +183,12 @@ export const useVisualFoodScan = () => {
   };
 
   useEffect(() => {
-    const config: FoodDetectionConfig = {
-      detectBarcodes: false,
-      detectPackagedFood: true,
-      detectVisual: true,
-    };
-    let subscription = PassioSDK.startFoodDetection(
-      config,
-      (detection: FoodDetectionEvent) => {
-        if (
-          detection &&
-          detection?.candidates?.detectedCandidates &&
-          detection.candidates?.detectedCandidates?.length > 0
-        ) {
-          const packageFood = detection.candidates.packagedFoodCode?.[0];
-          const passioID =
-            detection.candidates.detectedCandidates?.[0]?.passioID;
-
-          if (
-            packageFood !== undefined &&
-            packageFood === passioQuickResultRef.current?.packageFood
-          ) {
-            return;
-          }
-
-          if (
-            passioID !== undefined &&
-            passioID === passioQuickResultRef.current?.passioID
-          ) {
-            return;
-          }
-
-          setFoodDetectionEvent(detection);
-        }
-      }
-    );
-
-    return () => {
-      subscription?.remove();
-    };
-  }, []);
-
-  useEffect(() => {
     const detection = foodDetectEvents;
     async function init() {
       if (detection) {
         const { candidates } = detection;
 
         if (candidates) {
-          const detectedCandidate = candidates.detectedCandidates?.[0];
-          let attribute: QuickResult | null = await getQuickResults(
-            candidates.packagedFoodCode?.[0],
-            detectedCandidate
-          );
-
-          /** Now Check attribute and alternative */
-
-          if (
-            attribute &&
-            attribute?.passioID !== passioQuickResultRef.current?.passioID
-          ) {
-            setPassioQuickResults(attribute);
-            passioQuickResultRef.current = attribute;
-
-            /** Alternative */
-            const alternative =
-              detectedCandidate?.alternatives &&
-              detectedCandidate.alternatives.length > 0
-                ? detectedCandidate.alternatives
-                : candidates.detectedCandidates;
-
-            const candidateAlternatives = alternative
-              .map(getDetectionCandidate)
-              .filter(
-                (item) => item?.passioID !== attribute?.passioID
-              ) as QuickResult[];
-            setPassioAlternatives(candidateAlternatives);
-          }
         }
       }
     }

@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   BarcodeCandidate,
-  FoodDetectionConfig,
-  FoodDetectionEvent,
   PassioSDK,
 } from '@passiolife/nutritionai-react-native-sdk-v3';
 import { getBarcodeResult } from '../../utils';
@@ -15,7 +13,7 @@ import { useServices } from '../../contexts';
 import type { ParamList } from '../../navigaitons';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { BackHandler, NativeEventSubscription } from 'react-native';
-import { createPassioFoodItemFromCustomFood } from '../../utils/V3Utils';
+import type { BarcodeScanEvent } from '@passiolife/nutritionai-react-native-sdk-v3';
 
 export const useBarcodeScan = () => {
   const barcodeRef = useRef<string | undefined>(undefined);
@@ -23,7 +21,7 @@ export const useBarcodeScan = () => {
   const { params } = useRoute<RouteProp<ParamList, 'BarcodeScanScreen'>>();
 
   const [foodDetectEvents, setFoodDetectionEvent] =
-    useState<FoodDetectionEvent | null>(null);
+    useState<BarcodeScanEvent | null>(null);
 
   const [quickResult, setPassioQuickResults] =
     useState<BarcodeCustomResult | null>(null);
@@ -53,7 +51,7 @@ export const useBarcodeScan = () => {
     const detection = foodDetectEvents;
     async function init() {
       if (detection) {
-        const { candidates } = detection;
+        const candidates = detection;
 
         if (candidates) {
           const barcodeCandidate = candidates.barcodeCandidates?.[0];
@@ -117,19 +115,14 @@ export const useBarcodeScan = () => {
   }, [customFoods, foodDetectEvents, getQuickResults, params, type]);
 
   useEffect(() => {
-    const config: FoodDetectionConfig = {
-      detectBarcodes: true,
-      detectPackagedFood: false,
-    };
-    let subscription = PassioSDK.startFoodDetection(
-      config,
-      (detection: FoodDetectionEvent) => {
+    let subscription = PassioSDK.startBarcodeScanning(
+      (detection: BarcodeScanEvent) => {
         if (
           detection &&
-          detection?.candidates?.barcodeCandidates &&
-          detection.candidates?.barcodeCandidates?.length > 0
+          detection?.barcodeCandidates &&
+          detection?.barcodeCandidates?.length > 0
         ) {
-          const barcode = detection.candidates.barcodeCandidates?.[0]?.barcode;
+          const barcode = detection.barcodeCandidates?.[0]?.barcode;
 
           if (barcode !== undefined && barcode === barcodeRef.current) {
             return;

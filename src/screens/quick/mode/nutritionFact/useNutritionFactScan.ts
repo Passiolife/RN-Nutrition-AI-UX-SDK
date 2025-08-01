@@ -1,10 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import type { FoodLog } from '../../../../models';
-import {
-  NutritionDetectionEvent,
-  PassioSDK,
-  type NutritionFacts,
-} from '@passiolife/nutritionai-react-native-sdk-v3';
+import type { NutritionFacts } from '@passiolife/nutritionai-react-native-sdk-v3';
 import { getLogToDate, getMealLog, ShowToast } from '../../../../utils';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import type { ScanningScreenNavigationProps } from '../../QuickScanningScreen';
@@ -69,20 +65,6 @@ export const useNutritionFactScan = () => {
     },
     [date, meal, navigation]
   );
-
-  useEffect(() => {
-    let subscription = PassioSDK.startNutritionFactsDetection(
-      (detection: NutritionDetectionEvent) => {
-        if (detection && detection.nutritionFacts) {
-          setNutritionFacts(detection.nutritionFacts);
-        }
-      }
-    );
-
-    return () => {
-      subscription?.remove();
-    };
-  }, []);
 
   const onContinueScanningPress = () => {
     setLoggedFood(false);

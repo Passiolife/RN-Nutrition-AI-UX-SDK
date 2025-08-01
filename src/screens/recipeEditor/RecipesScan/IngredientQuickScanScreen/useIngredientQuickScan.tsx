@@ -1,6 +1,5 @@
 import {
-  type FoodDetectionConfig,
-  type FoodDetectionEvent,
+  BarcodeScanEvent,
   type PassioIDAttributes,
   PassioSDK,
 } from '@passiolife/nutritionai-react-native-sdk-v3/src/sdk/v2';
@@ -24,23 +23,13 @@ export function useIngredientQuickScan() {
 
   // Detect object from using startFoodDetection
   useEffect(() => {
-    const config: FoodDetectionConfig = {
-      detectBarcodes: true,
-      detectPackagedFood: true,
-    };
-
-    const subscription = PassioSDK.startFoodDetection(
-      config,
-      async (detection: FoodDetectionEvent) => {
-        const { candidates } = detection;
+    const subscription = PassioSDK.startBarcodeScanning(
+      async (detection: BarcodeScanEvent) => {
+        const candidates = detection;
         if (
           candidates !== undefined &&
-          ((candidates.detectedCandidates &&
-            candidates.detectedCandidates.length > 0) ||
-            (candidates.packagedFoodCode &&
-              candidates.packagedFoodCode.length > 0) ||
-            (candidates.barcodeCandidates &&
-              candidates.barcodeCandidates.length > 0))
+          candidates.barcodeCandidates &&
+          candidates.barcodeCandidates.length > 0
         ) {
           let attribute: PassioIDAttributes | null = null;
           if (candidates.barcodeCandidates?.[0] !== undefined) {
@@ -48,20 +37,6 @@ export function useIngredientQuickScan() {
             attribute = await PassioSDK.fetchAttributesForBarcode(
               barcode.barcode
             );
-          } else if (candidates.packagedFoodCode?.[0] !== undefined) {
-            const packagedFoodCode = candidates.packagedFoodCode[0];
-            attribute =
-              await PassioSDK.fetchPassioIDAttributesForPackagedFood(
-                packagedFoodCode
-              );
-          } else if (candidates.detectedCandidates?.[0] !== undefined) {
-            const passioID = candidates.detectedCandidates[0].passioID;
-
-            if (passioID === passioIDAttributesRef.current?.passioID) {
-              return;
-            }
-
-            attribute = await PassioSDK.getAttributesForPassioID(passioID);
           }
           if (
             attribute &&
