@@ -13,7 +13,7 @@ import { useServices } from '../../contexts';
 import type { ParamList } from '../../navigaitons';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { BackHandler, NativeEventSubscription } from 'react-native';
-import type { BarcodeScanEvent } from '@passiolife/nutritionai-react-native-sdk-v3/src';
+import type { BarcodeScanEvent } from '@passiolife/nutritionai-react-native-sdk-v3';
 
 export const useBarcodeScan = () => {
   const barcodeRef = useRef<string | undefined>(undefined);

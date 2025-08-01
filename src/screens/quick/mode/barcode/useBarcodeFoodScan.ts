@@ -30,7 +30,7 @@ import { convertDateToDBFormat } from '../../../../utils/DateFormatter';
 import type { ItemAddedToDairyViewModalRef } from '../../../../components';
 import { getCustomFoodUUID } from '../../../../screens/foodCreator/FoodCreator.utils';
 import { Platform } from 'react-native';
-import type { BarcodeScanEvent } from '@passiolife/nutritionai-react-native-sdk-v3/src';
+import type { BarcodeScanEvent } from '@passiolife/nutritionai-react-native-sdk-v3';
 
 export const useBarcodeFoodScan = () => {
   const services = useServices();
