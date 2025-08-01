@@ -19,8 +19,6 @@ import {
 import {
   PassioSDK,
   type BarcodeCandidate,
-  type FoodDetectionConfig,
-  type FoodDetectionEvent,
 } from '@passiolife/nutritionai-react-native-sdk-v3';
 import {
   getBarcodeResult,
@@ -32,6 +30,7 @@ import { convertDateToDBFormat } from '../../../../utils/DateFormatter';
 import type { ItemAddedToDairyViewModalRef } from '../../../../components';
 import { getCustomFoodUUID } from '../../../../screens/foodCreator/FoodCreator.utils';
 import { Platform } from 'react-native';
+import type { BarcodeScanEvent } from '@passiolife/nutritionai-react-native-sdk-v3/src';
 
 export const useBarcodeFoodScan = () => {
   const services = useServices();
@@ -52,7 +51,7 @@ export const useBarcodeFoodScan = () => {
     useState<QuickResult | null>(null);
 
   const [foodDetectEvents, setFoodDetectionEvent] =
-    useState<FoodDetectionEvent | null>(null);
+    useState<BarcodeScanEvent | null>(null);
 
   const getQuickResults = useCallback(
     async (barcodeCandidate?: BarcodeCandidate) => {
@@ -210,7 +209,7 @@ export const useBarcodeFoodScan = () => {
     const detection = foodDetectEvents;
     async function init() {
       if (detection) {
-        const { candidates } = detection;
+        const candidates = detection;
 
         if (candidates) {
           let attribute: QuickResult | null = await getQuickResults(
@@ -224,8 +223,7 @@ export const useBarcodeFoodScan = () => {
           }
         }
 
-        barcodeRef.current =
-          detection.candidates?.barcodeCandidates?.[0]?.barcode;
+        barcodeRef.current = detection?.barcodeCandidates?.[0]?.barcode;
       }
     }
 
@@ -235,12 +233,6 @@ export const useBarcodeFoodScan = () => {
   }, [foodDetectEvents, getQuickResults]);
 
   useEffect(() => {
-    const config: FoodDetectionConfig = {
-      detectBarcodes: true,
-      detectPackagedFood: false,
-      detectVisual: false,
-    };
-
     async function delay() {
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
@@ -251,24 +243,20 @@ export const useBarcodeFoodScan = () => {
         return null;
       }
       delay();
-      return PassioSDK.startFoodDetection(
-        config,
-        (detection: FoodDetectionEvent) => {
-          if (
-            detection &&
-            detection?.candidates?.barcodeCandidates &&
-            detection.candidates?.barcodeCandidates?.length > 0
-          ) {
-            const barcode =
-              detection.candidates.barcodeCandidates?.[0]?.barcode;
+      return PassioSDK.startBarcodeScanning((detection: BarcodeScanEvent) => {
+        if (
+          detection &&
+          detection?.barcodeCandidates &&
+          detection?.barcodeCandidates?.length > 0
+        ) {
+          const barcode = detection.barcodeCandidates?.[0]?.barcode;
 
-            if (barcode !== undefined && barcode === barcodeRef?.current) {
-              return;
-            }
-            setFoodDetectionEvent(detection);
+          if (barcode !== undefined && barcode === barcodeRef?.current) {
+            return;
           }
+          setFoodDetectionEvent(detection);
         }
-      );
+      });
     }
 
     return () => {
