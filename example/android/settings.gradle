@@ -1,7 +1,33 @@
-rootProject.name = 'NutritionUxExample'
-apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
-include ':app'
-includeBuild('../node_modules/@react-native/gradle-plugin')
 
-include ':reactnativenutritionux'
-project(':reactnativenutritionux').projectDir = new File(rootProject.projectDir, '../../android')
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal()
+        maven {
+            url("$rootDir/../node_modules/react-native/android")
+        }
+    }
+}
+
+rootProject.name = "NutritionUxExample"
+
+apply from: file("../node_modules/react-native/scripts/autolink.gradle")
+
+include(":app")
+includeBuild("../node_modules/react-native-gradle-plugin")
+
+// Include your local module
+include(":reactnativenutritionux")
+project(":reactnativenutritionux").projectDir =
+        new File(rootProject.projectDir, "../../android")

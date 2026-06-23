@@ -6,6 +6,7 @@ import type {
   ServingInfo,
 } from '../../../models';
 import type { ComputedWeight } from '../../../models/ComputedWeight';
+import 'dart:developer';
 
 export function maxSliderValue(qty: number): number {
   const sliderMultiplier = 5.0;
