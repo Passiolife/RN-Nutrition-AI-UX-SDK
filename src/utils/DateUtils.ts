@@ -1,3 +1,5 @@
+import { DateTime } from 'luxon';
+
 export function currentTimeStamp(): Date {
   return new Date(Date.now());
 }
@@ -11,16 +13,15 @@ export const isToday = (data: Date) => {
   );
 };
 
+// Start of the user's local calendar day. Logs are stored as UTC timestamps,
+// so the range must be built in the local zone, not snapped to UTC midnight.
 export function convertToPreviousMidnight(convertDate: Date): Date {
-  const startDate = new Date(convertDate.getTime());
-  startDate.setUTCHours(0, 0o0, 0o0, 0o0);
-  return startDate;
+  return DateTime.fromJSDate(convertDate).startOf('day').toJSDate();
 }
 
+// Last millisecond of the user's local calendar day.
 export function convertToNextMidnight(convertDate: Date): Date {
-  const endDate = new Date(convertDate.getTime());
-  endDate.setUTCHours(23, 59, 59, 59);
-  return endDate;
+  return DateTime.fromJSDate(convertDate).endOf('day').toJSDate();
 }
 
 export const getOneWeek = () => {
